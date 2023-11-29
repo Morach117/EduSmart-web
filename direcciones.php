@@ -16,12 +16,6 @@ $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home'; // Obte
 $pages = array(
     // Definir las páginas disponibles}
     'home',
-    'multimedia',
-    'unidades',
-    'equipos',
-    'examen1',
-    'examen2',
-    'materias'
 
 );
 
@@ -31,4 +25,3 @@ if (in_array($page, $pages)) { // Si la página a la que se quiere acceder está
     require(__DIR__ . "/pages/home.php"); // Si la página a la que se quiere acceder no está en el array de páginas disponibles, incluir el archivo de la página de inicio
 }
 ?>
-<script src="./assets/dist/js/demo-theme.min.js?1684106062"></script>
