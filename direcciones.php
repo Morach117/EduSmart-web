@@ -16,6 +16,7 @@ $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home'; // Obte
 $pages = array(
     // Definir las páginas disponibles}
     'home',
+    'ShowStudents',
 
 );
 

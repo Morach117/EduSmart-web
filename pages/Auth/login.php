@@ -48,7 +48,7 @@
                                         <label class="form-label mb-3">
                                             Contraseña
                                             <span class="form-label-description mb-3">
-                                                <a href="./pages/recuperarContraseña.php">¿Perdiste tu contraseña?</a>
+                                                <a href="./pages/Auth/RecoverPassword.php">¿Perdiste tu contraseña?</a>
                                             </span>
                                         </label>
                                         <div class="input-group input-group-flat mb-5">
@@ -75,7 +75,8 @@
                             </div>
                         </div>
                         <div class="text-center text-muted mt-3">
-                            ¿No tienes una cuenta? <a href="RegisterPage.php" tabindex="-1">Regístrate aquí</a>
+                            ¿No tienes una cuenta? <a href="./pages/Auth/recover.php" tabindex="-1">Regístrate
+                                aquí</a>
                         </div>
                     </div>
                 </div>

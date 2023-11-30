@@ -1,7 +1,7 @@
 import $ewBKy$justextend from "just-extend";
 
 function $parcel$interopDefault(a) {
-  return a && a.__esModule ? a.default : a;
+    return a && a.__esModule ? a.default : a;
 }
 
 class $4040acfd8584338d$export$2e2bcd8739ae039 {
@@ -18,7 +18,7 @@ class $4040acfd8584338d$export$2e2bcd8739ae039 {
         this._callbacks = this._callbacks || {
         };
         let callbacks = this._callbacks[event];
-        if (callbacks) for (let callback of callbacks)callback.apply(this, args);
+        if (callbacks) for (let callback of callbacks) callback.apply(this, args);
         // trigger a corresponding DOM event
         if (this.element) this.element.dispatchEvent(this.makeEvent("dropzone:" + event, {
             args: args
@@ -58,7 +58,7 @@ class $4040acfd8584338d$export$2e2bcd8739ae039 {
             return this;
         }
         // remove specific handler
-        for(let i = 0; i < callbacks.length; i++){
+        for (let i = 0; i < callbacks.length; i++) {
             let callback = callbacks[i];
             if (callback === fn) {
                 callbacks.splice(i, 1);
@@ -335,7 +335,7 @@ let $4ca367182776f80b$var$defaultOptions = {
     /**
    * Called when dropzone initialized
    * You can add event listeners here
-   */ init () {
+   */ init() {
     },
     /**
    * Can be an **object** of additional parameters to transfer to the server, **or** a `Function`
@@ -346,7 +346,7 @@ let $4ca367182776f80b$var$defaultOptions = {
    * chunked uploads.
    *
    * This is the same as adding hidden input fields in the form element.
-   */ params (files, xhr, chunk) {
+   */ params(files, xhr, chunk) {
         if (chunk) return {
             dzuuid: chunk.file.upload.uuid,
             dzchunkindex: chunk.index,
@@ -364,7 +364,7 @@ let $4ca367182776f80b$var$defaultOptions = {
    * be processed. If you pass an error message, the file is rejected, and the error
    * message will be displayed.
    * This function will not be called if the file is too big or doesn't match the mime types.
-   */ accept (file, done) {
+   */ accept(file, done) {
         return done();
     },
     /**
@@ -372,7 +372,7 @@ let $4ca367182776f80b$var$defaultOptions = {
    * It gets the file for which the chunks have been uploaded as the first parameter,
    * and the `done` function as second. `done()` needs to be invoked when everything
    * needed to finish the upload process is done.
-   */ chunksUploaded: function(file, done) {
+   */ chunksUploaded: function (file, done) {
         done();
     },
     /**
@@ -385,11 +385,11 @@ let $4ca367182776f80b$var$defaultOptions = {
    * Gets called when the browser is not supported.
    * The default implementation shows the fallback input field and adds
    * a text.
-   */ fallback () {
+   */ fallback() {
         // This code should pass in IE7... :(
         let messageElement;
         this.element.className = `${this.element.className} dz-browser-not-supported`;
-        for (let child of this.element.getElementsByTagName("div"))if (/(^| )dz-message($| )/.test(child.className)) {
+        for (let child of this.element.getElementsByTagName("div")) if (/(^| )dz-message($| )/.test(child.className)) {
             messageElement = child;
             child.className = "dz-message"; // Removes the 'dz-default' class
             break;
@@ -416,7 +416,7 @@ let $4ca367182776f80b$var$defaultOptions = {
    *  - `trgX` & `trgY` (optional, default `0`)
    *
    * Those values are going to be used by `ctx.drawImage()`.
-   */ resize (file, width, height, resizeMethod) {
+   */ resize(file, width, height, resizeMethod) {
         let info = {
             srcX: 0,
             srcY: 0,
@@ -464,7 +464,7 @@ let $4ca367182776f80b$var$defaultOptions = {
    *
    * Gets the `file` as the first parameter, and a `done()` function as the second, that needs
    * to be invoked with the file when the transformation is done.
-   */ transformFile (file, done) {
+   */ transformFile(file, done) {
         if ((this.options.resizeWidth || this.options.resizeHeight) && file.type.match(/image.*/)) return this.resizeImage(file, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
         else return done(file);
     },
@@ -490,143 +490,143 @@ let $4ca367182776f80b$var$defaultOptions = {
    want to add an additional event handler, register it on the dropzone object
    and don't overwrite those options.
    */ // Those are self explanatory and simply concern the DragnDrop.
-    drop (e) {
+    drop(e) {
         return this.element.classList.remove("dz-drag-hover");
     },
-    dragstart (e) {
+    dragstart(e) {
     },
-    dragend (e) {
+    dragend(e) {
         return this.element.classList.remove("dz-drag-hover");
     },
-    dragenter (e) {
+    dragenter(e) {
         return this.element.classList.add("dz-drag-hover");
     },
-    dragover (e) {
+    dragover(e) {
         return this.element.classList.add("dz-drag-hover");
     },
-    dragleave (e) {
+    dragleave(e) {
         return this.element.classList.remove("dz-drag-hover");
     },
-    paste (e) {
+    paste(e) {
     },
     // Called whenever there are no files left in the dropzone anymore, and the
     // dropzone should be displayed as if in the initial state.
-    reset () {
+    reset() {
         return this.element.classList.remove("dz-started");
     },
     // Called when a file is added to the queue
     // Receives `file`
-    addedfile (file) {
+    addedfile(file) {
         if (this.element === this.previewsContainer) this.element.classList.add("dz-started");
         if (this.previewsContainer && !this.options.disablePreviews) {
             file.previewElement = $3ed269f2f0fb224b$export$2e2bcd8739ae039.createElement(this.options.previewTemplate.trim());
             file.previewTemplate = file.previewElement; // Backwards compatibility
             this.previewsContainer.appendChild(file.previewElement);
-            for (var node of file.previewElement.querySelectorAll("[data-dz-name]"))node.textContent = file.name;
-            for (node of file.previewElement.querySelectorAll("[data-dz-size]"))node.innerHTML = this.filesize(file.size);
+            for (var node of file.previewElement.querySelectorAll("[data-dz-name]")) node.textContent = file.name;
+            for (node of file.previewElement.querySelectorAll("[data-dz-size]")) node.innerHTML = this.filesize(file.size);
             if (this.options.addRemoveLinks) {
                 file._removeLink = $3ed269f2f0fb224b$export$2e2bcd8739ae039.createElement(`<a class="dz-remove" href="javascript:undefined;" data-dz-remove>${this.options.dictRemoveFile}</a>`);
                 file.previewElement.appendChild(file._removeLink);
             }
-            let removeFileEvent = (e)=>{
+            let removeFileEvent = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if (file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING) return $3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm(this.options.dictCancelUploadConfirmation, ()=>this.removeFile(file)
+                if (file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING) return $3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm(this.options.dictCancelUploadConfirmation, () => this.removeFile(file)
                 );
                 else {
-                    if (this.options.dictRemoveFileConfirmation) return $3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm(this.options.dictRemoveFileConfirmation, ()=>this.removeFile(file)
+                    if (this.options.dictRemoveFileConfirmation) return $3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm(this.options.dictRemoveFileConfirmation, () => this.removeFile(file)
                     );
                     else return this.removeFile(file);
                 }
             };
-            for (let removeLink of file.previewElement.querySelectorAll("[data-dz-remove]"))removeLink.addEventListener("click", removeFileEvent);
+            for (let removeLink of file.previewElement.querySelectorAll("[data-dz-remove]")) removeLink.addEventListener("click", removeFileEvent);
         }
     },
     // Called whenever a file is removed.
-    removedfile (file) {
+    removedfile(file) {
         if (file.previewElement != null && file.previewElement.parentNode != null) file.previewElement.parentNode.removeChild(file.previewElement);
         return this._updateMaxFilesReachedClass();
     },
     // Called when a thumbnail has been generated
     // Receives `file` and `dataUrl`
-    thumbnail (file, dataUrl) {
+    thumbnail(file, dataUrl) {
         if (file.previewElement) {
             file.previewElement.classList.remove("dz-file-preview");
-            for (let thumbnailElement of file.previewElement.querySelectorAll("[data-dz-thumbnail]")){
+            for (let thumbnailElement of file.previewElement.querySelectorAll("[data-dz-thumbnail]")) {
                 thumbnailElement.alt = file.name;
                 thumbnailElement.src = dataUrl;
             }
-            return setTimeout(()=>file.previewElement.classList.add("dz-image-preview")
-            , 1);
+            return setTimeout(() => file.previewElement.classList.add("dz-image-preview")
+                , 1);
         }
     },
     // Called whenever an error occurs
     // Receives `file` and `message`
-    error (file, message) {
+    error(file, message) {
         if (file.previewElement) {
             file.previewElement.classList.add("dz-error");
             if (typeof message !== "string" && message.error) message = message.error;
-            for (let node of file.previewElement.querySelectorAll("[data-dz-errormessage]"))node.textContent = message;
+            for (let node of file.previewElement.querySelectorAll("[data-dz-errormessage]")) node.textContent = message;
         }
     },
-    errormultiple () {
+    errormultiple() {
     },
     // Called when a file gets processed. Since there is a cue, not all added
     // files are processed immediately.
     // Receives `file`
-    processing (file) {
+    processing(file) {
         if (file.previewElement) {
             file.previewElement.classList.add("dz-processing");
             if (file._removeLink) return file._removeLink.innerHTML = this.options.dictCancelUpload;
         }
     },
-    processingmultiple () {
+    processingmultiple() {
     },
     // Called whenever the upload progress gets updated.
     // Receives `file`, `progress` (percentage 0-100) and `bytesSent`.
     // To get the total number of bytes of the file, use `file.size`
-    uploadprogress (file, progress, bytesSent) {
-        if (file.previewElement) for (let node of file.previewElement.querySelectorAll("[data-dz-uploadprogress]"))node.nodeName === "PROGRESS" ? node.value = progress : node.style.width = `${progress}%`;
+    uploadprogress(file, progress, bytesSent) {
+        if (file.previewElement) for (let node of file.previewElement.querySelectorAll("[data-dz-uploadprogress]")) node.nodeName === "PROGRESS" ? node.value = progress : node.style.width = `${progress}%`;
     },
     // Called whenever the total upload progress gets updated.
     // Called with totalUploadProgress (0-100), totalBytes and totalBytesSent
-    totaluploadprogress () {
+    totaluploadprogress() {
     },
     // Called just before the file is sent. Gets the `xhr` object as second
     // parameter, so you can modify it (for example to add a CSRF token) and a
     // `formData` object to add additional information.
-    sending () {
+    sending() {
     },
-    sendingmultiple () {
+    sendingmultiple() {
     },
     // When the complete upload is finished and successful
     // Receives `file`
-    success (file) {
+    success(file) {
         if (file.previewElement) return file.previewElement.classList.add("dz-success");
     },
-    successmultiple () {
+    successmultiple() {
     },
     // When the upload is canceled.
-    canceled (file) {
+    canceled(file) {
         return this.emit("error", file, this.options.dictUploadCanceled);
     },
-    canceledmultiple () {
+    canceledmultiple() {
     },
     // When the upload is finished, either with success or an error.
     // Receives `file`
-    complete (file) {
+    complete(file) {
         if (file._removeLink) file._removeLink.innerHTML = this.options.dictRemoveFile;
         if (file.previewElement) return file.previewElement.classList.add("dz-complete");
     },
-    completemultiple () {
+    completemultiple() {
     },
-    maxfilesexceeded () {
+    maxfilesexceeded() {
     },
-    maxfilesreached () {
+    maxfilesreached() {
     },
-    queuecomplete () {
+    queuecomplete() {
     },
-    addedfiles () {
+    addedfiles() {
     }
 };
 var $4ca367182776f80b$export$2e2bcd8739ae039 = $4ca367182776f80b$var$defaultOptions;
@@ -671,27 +671,27 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             "reset",
             "maxfilesexceeded",
             "maxfilesreached",
-            "queuecomplete", 
+            "queuecomplete",
         ];
         this.prototype._thumbnailQueue = [];
         this.prototype._processingThumbnail = false;
     }
     // Returns all files that have been accepted
     getAcceptedFiles() {
-        return this.files.filter((file)=>file.accepted
-        ).map((file)=>file
+        return this.files.filter((file) => file.accepted
+        ).map((file) => file
         );
     }
     // Returns all files that have been rejected
     // Not sure when that's going to be useful, but added for completeness.
     getRejectedFiles() {
-        return this.files.filter((file)=>!file.accepted
-        ).map((file)=>file
+        return this.files.filter((file) => !file.accepted
+        ).map((file) => file
         );
     }
     getFilesWithStatus(status) {
-        return this.files.filter((file)=>file.status === status
-        ).map((file)=>file
+        return this.files.filter((file) => file.status === status
+        ).map((file) => file
         );
     }
     // Returns all files that are in the queue
@@ -706,8 +706,8 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     }
     // Files that are either queued or uploading
     getActiveFiles() {
-        return this.files.filter((file)=>file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING || file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.QUEUED
-        ).map((file)=>file
+        return this.files.filter((file) => file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING || file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.QUEUED
+        ).map((file) => file
         );
     }
     // The function that gets called when Dropzone is initialized. You
@@ -717,7 +717,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         if (this.element.tagName === "form") this.element.setAttribute("enctype", "multipart/form-data");
         if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) this.element.appendChild($3ed269f2f0fb224b$export$2e2bcd8739ae039.createElement(`<div class="dz-default dz-message"><button class="dz-button" type="button">${this.options.dictDefaultMessage}</button></div>`));
         if (this.clickableElements.length) {
-            let setupHiddenFileInput = ()=>{
+            let setupHiddenFileInput = () => {
                 if (this.hiddenFileInput) this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
                 this.hiddenFileInput = document.createElement("input");
                 this.hiddenFileInput.setAttribute("type", "file");
@@ -736,9 +736,9 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                 this.hiddenFileInput.style.height = "0";
                 this.hiddenFileInput.style.width = "0";
                 $3ed269f2f0fb224b$export$2e2bcd8739ae039.getElement(this.options.hiddenInputContainer, "hiddenInputContainer").appendChild(this.hiddenFileInput);
-                this.hiddenFileInput.addEventListener("change", ()=>{
-                    let { files: files  } = this.hiddenFileInput;
-                    if (files.length) for (let file of files)this.addFile(file);
+                this.hiddenFileInput.addEventListener("change", () => {
+                    let { files: files } = this.hiddenFileInput;
+                    if (files.length) for (let file of files) this.addFile(file);
                     this.emit("addedfiles", files);
                     setupHiddenFileInput();
                 });
@@ -749,29 +749,29 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         // Setup all event listeners on the Dropzone object itself.
         // They're not in @setupEventListeners() because they shouldn't be removed
         // again when the dropzone gets disabled.
-        for (let eventName of this.events)this.on(eventName, this.options[eventName]);
-        this.on("uploadprogress", ()=>this.updateTotalUploadProgress()
+        for (let eventName of this.events) this.on(eventName, this.options[eventName]);
+        this.on("uploadprogress", () => this.updateTotalUploadProgress()
         );
-        this.on("removedfile", ()=>this.updateTotalUploadProgress()
+        this.on("removedfile", () => this.updateTotalUploadProgress()
         );
-        this.on("canceled", (file)=>this.emit("complete", file)
+        this.on("canceled", (file) => this.emit("complete", file)
         );
         // Emit a `queuecomplete` event if all files finished uploading.
-        this.on("complete", (file)=>{
+        this.on("complete", (file) => {
             if (this.getAddedFiles().length === 0 && this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) // This needs to be deferred so that `queuecomplete` really triggers after `complete`
-            return setTimeout(()=>this.emit("queuecomplete")
-            , 0);
+                return setTimeout(() => this.emit("queuecomplete")
+                    , 0);
         });
-        const containsFiles = function(e) {
+        const containsFiles = function (e) {
             if (e.dataTransfer.types) // Because e.dataTransfer.types is an Object in
-            // IE, we need to iterate like this instead of
-            // using e.dataTransfer.types.some()
-            for(var i = 0; i < e.dataTransfer.types.length; i++){
-                if (e.dataTransfer.types[i] === "Files") return true;
-            }
+                // IE, we need to iterate like this instead of
+                // using e.dataTransfer.types.some()
+                for (var i = 0; i < e.dataTransfer.types.length; i++) {
+                    if (e.dataTransfer.types[i] === "Files") return true;
+                }
             return false;
         };
-        let noPropagation = function(e) {
+        let noPropagation = function (e) {
             // If there are no files, we don't want to stop
             // propagation so we don't interfere with other
             // drag and drop behaviour.
@@ -785,14 +785,14 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             {
                 element: this.element,
                 events: {
-                    dragstart: (e)=>{
+                    dragstart: (e) => {
                         return this.emit("dragstart", e);
                     },
-                    dragenter: (e)=>{
+                    dragenter: (e) => {
                         noPropagation(e);
                         return this.emit("dragenter", e);
                     },
-                    dragover: (e)=>{
+                    dragover: (e) => {
                         // Makes it possible to drag files from chrome's download bar
                         // http://stackoverflow.com/questions/19526430/drag-and-drop-file-uploads-from-chrome-downloads-bar
                         // Try is required to prevent bug in Internet Explorer 11 (SCRIPT65535 exception)
@@ -805,24 +805,24 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                         noPropagation(e);
                         return this.emit("dragover", e);
                     },
-                    dragleave: (e)=>{
+                    dragleave: (e) => {
                         return this.emit("dragleave", e);
                     },
-                    drop: (e)=>{
+                    drop: (e) => {
                         noPropagation(e);
                         return this.drop(e);
                     },
-                    dragend: (e)=>{
+                    dragend: (e) => {
                         return this.emit("dragend", e);
                     }
                 }
-            }, 
+            },
         ];
-        this.clickableElements.forEach((clickableElement)=>{
+        this.clickableElements.forEach((clickableElement) => {
             return this.listeners.push({
                 element: clickableElement,
                 events: {
-                    click: (evt)=>{
+                    click: (evt) => {
                         // Only the actual dropzone or the message element should trigger file selection
                         if (clickableElement !== this.element || evt.target === this.element || $3ed269f2f0fb224b$export$2e2bcd8739ae039.elementInside(evt.target, this.element.querySelector(".dz-message"))) this.hiddenFileInput.click(); // Forward the click
                         return true;
@@ -850,7 +850,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         let totalBytes = 0;
         let activeFiles = this.getActiveFiles();
         if (activeFiles.length) {
-            for (let file of this.getActiveFiles()){
+            for (let file of this.getActiveFiles()) {
                 totalBytesSent += file.upload.bytesSent;
                 totalBytes += file.upload.total;
             }
@@ -895,55 +895,55 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     //
     // This code has to pass in IE7 :(
     getExistingFallback() {
-        let getFallback = function(elements) {
-            for (let el of elements){
+        let getFallback = function (elements) {
+            for (let el of elements) {
                 if (/(^| )fallback($| )/.test(el.className)) return el;
             }
         };
         for (let tagName of [
             "div",
             "form"
-        ]){
+        ]) {
             var fallback;
             if (fallback = getFallback(this.element.getElementsByTagName(tagName))) return fallback;
         }
     }
     // Activates all listeners stored in @listeners
     setupEventListeners() {
-        return this.listeners.map((elementListeners)=>(()=>{
-                let result = [];
-                for(let event in elementListeners.events){
-                    let listener = elementListeners.events[event];
-                    result.push(elementListeners.element.addEventListener(event, listener, false));
-                }
-                return result;
-            })()
+        return this.listeners.map((elementListeners) => (() => {
+            let result = [];
+            for (let event in elementListeners.events) {
+                let listener = elementListeners.events[event];
+                result.push(elementListeners.element.addEventListener(event, listener, false));
+            }
+            return result;
+        })()
         );
     }
     // Deactivates all listeners stored in @listeners
     removeEventListeners() {
-        return this.listeners.map((elementListeners)=>(()=>{
-                let result = [];
-                for(let event in elementListeners.events){
-                    let listener = elementListeners.events[event];
-                    result.push(elementListeners.element.removeEventListener(event, listener, false));
-                }
-                return result;
-            })()
+        return this.listeners.map((elementListeners) => (() => {
+            let result = [];
+            for (let event in elementListeners.events) {
+                let listener = elementListeners.events[event];
+                result.push(elementListeners.element.removeEventListener(event, listener, false));
+            }
+            return result;
+        })()
         );
     }
     // Removes all event listeners and cancels all files in the queue or being processed.
     disable() {
-        this.clickableElements.forEach((element)=>element.classList.remove("dz-clickable")
+        this.clickableElements.forEach((element) => element.classList.remove("dz-clickable")
         );
         this.removeEventListeners();
         this.disabled = true;
-        return this.files.map((file)=>this.cancelUpload(file)
+        return this.files.map((file) => this.cancelUpload(file)
         );
     }
     enable() {
         delete this.disabled;
-        this.clickableElements.forEach((element)=>element.classList.add("dz-clickable")
+        this.clickableElements.forEach((element) => element.classList.add("dz-clickable")
         );
         return this.setupEventListeners();
     }
@@ -959,7 +959,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                 "kb",
                 "b"
             ];
-            for(let i = 0; i < units.length; i++){
+            for (let i = 0; i < units.length; i++) {
                 let unit = units[i];
                 let cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
                 if (size >= cutoff) {
@@ -985,37 +985,37 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         // Convert the FileList to an Array
         // This is necessary for IE11
         let files = [];
-        for(let i = 0; i < e.dataTransfer.files.length; i++)files[i] = e.dataTransfer.files[i];
+        for (let i = 0; i < e.dataTransfer.files.length; i++)files[i] = e.dataTransfer.files[i];
         // Even if it's a folder, files.length will contain the folders.
         if (files.length) {
-            let { items: items  } = e.dataTransfer;
+            let { items: items } = e.dataTransfer;
             if (items && items.length && items[0].webkitGetAsEntry != null) // The browser supports dropping of folders, so handle items instead of files
-            this._addFilesFromItems(items);
+                this._addFilesFromItems(items);
             else this.handleFiles(files);
         }
         this.emit("addedfiles", files);
     }
     paste(e) {
-        if ($3ed269f2f0fb224b$var$__guard__(e != null ? e.clipboardData : undefined, (x)=>x.items
+        if ($3ed269f2f0fb224b$var$__guard__(e != null ? e.clipboardData : undefined, (x) => x.items
         ) == null) return;
         this.emit("paste", e);
-        let { items: items  } = e.clipboardData;
+        let { items: items } = e.clipboardData;
         if (items.length) return this._addFilesFromItems(items);
     }
     handleFiles(files) {
-        for (let file of files)this.addFile(file);
+        for (let file of files) this.addFile(file);
     }
     // When a folder is dropped (or files are pasted), items must be handled
     // instead of files.
     _addFilesFromItems(items) {
-        return (()=>{
+        return (() => {
             let result = [];
-            for (let item of items){
+            for (let item of items) {
                 var entry;
                 if (item.webkitGetAsEntry != null && (entry = item.webkitGetAsEntry())) {
                     if (entry.isFile) result.push(this.addFile(item.getAsFile()));
                     else if (entry.isDirectory) // Append all files from that directory to files
-                    result.push(this._addFilesFromDirectory(entry, entry.name));
+                        result.push(this._addFilesFromDirectory(entry, entry.name));
                     else result.push(undefined);
                 } else if (item.getAsFile != null) {
                     if (item.kind == null || item.kind === "file") result.push(this.addFile(item.getAsFile()));
@@ -1028,14 +1028,14 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     // Goes through the directory, and adds each file it finds recursively
     _addFilesFromDirectory(directory, path) {
         let dirReader = directory.createReader();
-        let errorHandler = (error)=>$3ed269f2f0fb224b$var$__guardMethod__(console, "log", (o)=>o.log(error)
-            )
-        ;
-        var readEntries = ()=>{
-            return dirReader.readEntries((entries)=>{
+        let errorHandler = (error) => $3ed269f2f0fb224b$var$__guardMethod__(console, "log", (o) => o.log(error)
+        )
+            ;
+        var readEntries = () => {
+            return dirReader.readEntries((entries) => {
                 if (entries.length > 0) {
-                    for (let entry of entries){
-                        if (entry.isFile) entry.file((file)=>{
+                    for (let entry of entries) {
+                        if (entry.isFile) entry.file((file) => {
                             if (this.options.ignoreHiddenFiles && file.name.substring(0, 1) === ".") return;
                             file.fullPath = `${path}/${file.name}`;
                             return this.addFile(file);
@@ -1080,7 +1080,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.ADDED;
         this.emit("addedfile", file);
         this._enqueueThumbnail(file);
-        this.accept(file, (error)=>{
+        this.accept(file, (error) => {
             if (error) {
                 file.accepted = false;
                 this._errorProcessing([
@@ -1089,35 +1089,35 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             } else {
                 file.accepted = true;
                 if (this.options.autoQueue) this.enqueueFile(file);
-                 // Will set .accepted = true
+                // Will set .accepted = true
             }
             this._updateMaxFilesReachedClass();
         });
     }
     // Wrapper for enqueueFile
     enqueueFiles(files) {
-        for (let file of files)this.enqueueFile(file);
+        for (let file of files) this.enqueueFile(file);
         return null;
     }
     enqueueFile(file) {
         if (file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.ADDED && file.accepted === true) {
             file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.QUEUED;
-            if (this.options.autoProcessQueue) return setTimeout(()=>this.processQueue()
-            , 0); // Deferring the call
+            if (this.options.autoProcessQueue) return setTimeout(() => this.processQueue()
+                , 0); // Deferring the call
         } else throw new Error("This file can't be queued because it has already been processed or was rejected.");
     }
     _enqueueThumbnail(file) {
         if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1048576) {
             this._thumbnailQueue.push(file);
-            return setTimeout(()=>this._processThumbnailQueue()
-            , 0); // Deferring the call
+            return setTimeout(() => this._processThumbnailQueue()
+                , 0); // Deferring the call
         }
     }
     _processThumbnailQueue() {
         if (this._processingThumbnail || this._thumbnailQueue.length === 0) return;
         this._processingThumbnail = true;
         let file = this._thumbnailQueue.shift();
-        return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, (dataUrl)=>{
+        return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, (dataUrl) => {
             this.emit("thumbnail", file, dataUrl);
             this._processingThumbnail = false;
             return this._processThumbnailQueue();
@@ -1134,29 +1134,29 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     removeAllFiles(cancelIfNecessary) {
         // Create a copy of files since removeFile() changes the @files array.
         if (cancelIfNecessary == null) cancelIfNecessary = false;
-        for (let file of this.files.slice())if (file.status !== $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING || cancelIfNecessary) this.removeFile(file);
+        for (let file of this.files.slice()) if (file.status !== $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING || cancelIfNecessary) this.removeFile(file);
         return null;
     }
     // Resizes an image before it gets sent to the server. This function is the default behavior of
     // `options.transformFile` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
     // the resized blob.
     resizeImage(file, width, height, resizeMethod, callback) {
-        return this.createThumbnail(file, width, height, resizeMethod, true, (dataUrl, canvas)=>{
+        return this.createThumbnail(file, width, height, resizeMethod, true, (dataUrl, canvas) => {
             if (canvas == null) // The image has not been resized
-            return callback(file);
+                return callback(file);
             else {
-                let { resizeMimeType: resizeMimeType  } = this.options;
+                let { resizeMimeType: resizeMimeType } = this.options;
                 if (resizeMimeType == null) resizeMimeType = file.type;
                 let resizedDataURL = canvas.toDataURL(resizeMimeType, this.options.resizeQuality);
                 if (resizeMimeType === "image/jpeg" || resizeMimeType === "image/jpg") // Now add the original EXIF information
-                resizedDataURL = $3ed269f2f0fb224b$var$ExifRestore.restore(file.dataURL, resizedDataURL);
+                    resizedDataURL = $3ed269f2f0fb224b$var$ExifRestore.restore(file.dataURL, resizedDataURL);
                 return callback($3ed269f2f0fb224b$export$2e2bcd8739ae039.dataURItoBlob(resizedDataURL));
             }
         });
     }
     createThumbnail(file, width, height, resizeMethod, fixOrientation, callback) {
         let fileReader = new FileReader();
-        fileReader.onload = ()=>{
+        fileReader.onload = () => {
             file.dataURL = fileReader.result;
             // Don't bother creating a thumbnail for SVG images since they're vector
             if (file.type === "image/svg+xml") {
@@ -1180,7 +1180,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             this.emit("thumbnail", mockFile, imageUrl);
             if (callback) callback();
         } else {
-            let onDone = (thumbnail)=>{
+            let onDone = (thumbnail) => {
                 this.emit("thumbnail", mockFile, thumbnail);
                 if (callback) callback();
             };
@@ -1195,14 +1195,14 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         if (crossOrigin) img.crossOrigin = crossOrigin;
         // fixOrientation is not needed anymore with browsers handling imageOrientation
         fixOrientation = getComputedStyle(document.body)["imageOrientation"] == "from-image" ? false : fixOrientation;
-        img.onload = ()=>{
-            let loadExif = (callback)=>callback(1)
-            ;
-            if (typeof EXIF !== "undefined" && EXIF !== null && fixOrientation) loadExif = (callback)=>EXIF.getData(img, function() {
-                    return callback(EXIF.getTag(this, "Orientation"));
-                })
-            ;
-            return loadExif((orientation)=>{
+        img.onload = () => {
+            let loadExif = (callback) => callback(1)
+                ;
+            if (typeof EXIF !== "undefined" && EXIF !== null && fixOrientation) loadExif = (callback) => EXIF.getData(img, function () {
+                return callback(EXIF.getTag(this, "Orientation"));
+            })
+                ;
+            return loadExif((orientation) => {
                 file.width = img.width;
                 file.height = img.height;
                 let resizeInfo = this.options.resize.call(this, file, width, height, resizeMethod);
@@ -1214,7 +1214,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                     canvas.width = resizeInfo.trgHeight;
                     canvas.height = resizeInfo.trgWidth;
                 }
-                switch(orientation){
+                switch (orientation) {
                     case 2:
                         // horizontal flip
                         ctx.translate(canvas.width, 0);
@@ -1263,7 +1263,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     }
     // Goes through the queue and processes files if there aren't too many already.
     processQueue() {
-        let { parallelUploads: parallelUploads  } = this.options;
+        let { parallelUploads: parallelUploads } = this.options;
         let processingLength = this.getUploadingFiles().length;
         let i = processingLength;
         // There are already at least as many files uploading than should be
@@ -1271,10 +1271,10 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         let queuedFiles = this.getQueuedFiles();
         if (!(queuedFiles.length > 0)) return;
         if (this.options.uploadMultiple) // The files should be uploaded in one request
-        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
-        else while(i < parallelUploads){
+            return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
+        else while (i < parallelUploads) {
             if (!queuedFiles.length) return;
-             // Nothing left to process
+            // Nothing left to process
             this.processFile(queuedFiles.shift());
             i++;
         }
@@ -1287,7 +1287,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     }
     // Loads the file, then calls finishedLoading()
     processFiles(files) {
-        for (let file of files){
+        for (let file of files) {
             file.processing = true; // Backwards compatibility
             file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING;
             this.emit("processing", file);
@@ -1297,8 +1297,8 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     }
     _getFilesWithXhr(xhr) {
         let files;
-        return files = this.files.filter((file)=>file.xhr === xhr
-        ).map((file)=>file
+        return files = this.files.filter((file) => file.xhr === xhr
+        ).map((file) => file
         );
     }
     // Cancels the file upload and sets the status to CANCELED
@@ -1308,9 +1308,9 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     cancelUpload(file) {
         if (file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.UPLOADING) {
             let groupedFiles = this._getFilesWithXhr(file.xhr);
-            for (let groupedFile of groupedFiles)groupedFile.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.CANCELED;
+            for (let groupedFile of groupedFiles) groupedFile.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.CANCELED;
             if (typeof file.xhr !== "undefined") file.xhr.abort();
-            for (let groupedFile1 of groupedFiles)this.emit("canceled", groupedFile1);
+            for (let groupedFile1 of groupedFiles) this.emit("canceled", groupedFile1);
             if (this.options.uploadMultiple) this.emit("canceledmultiple", groupedFiles);
         } else if (file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.ADDED || file.status === $3ed269f2f0fb224b$export$2e2bcd8739ae039.QUEUED) {
             file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.CANCELED;
@@ -1331,7 +1331,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         ]);
     }
     uploadFiles(files) {
-        this._transformFiles(files, (transformedFiles)=>{
+        this._transformFiles(files, (transformedFiles) => {
             if (this.options.chunking) {
                 // Chunking is not allowed to be used with `uploadMultiple` so we know
                 // that there is only __one__file.
@@ -1347,10 +1347,10 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                 let transformedFile = transformedFiles[0];
                 let startedChunkCount = 0;
                 file.upload.chunks = [];
-                let handleNextChunk = ()=>{
+                let handleNextChunk = () => {
                     let chunkIndex = 0;
                     // Find the next item in file.upload.chunks that is not defined yet.
-                    while(file.upload.chunks[chunkIndex] !== undefined)chunkIndex++;
+                    while (file.upload.chunks[chunkIndex] !== undefined) chunkIndex++;
                     // This means, that all chunks have already been started.
                     if (chunkIndex >= file.upload.totalChunkCount) return;
                     startedChunkCount++;
@@ -1374,7 +1374,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                         dataBlock
                     ]);
                 };
-                file.upload.finishedChunkUpload = (chunk, response)=>{
+                file.upload.finishedChunkUpload = (chunk, response) => {
                     let allFinished = true;
                     chunk.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.SUCCESS;
                     // Clear the data from the chunk
@@ -1383,19 +1383,19 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
                     chunk.responseHeaders = chunk.xhr.getAllResponseHeaders();
                     // Leaving this reference to xhr will cause memory leaks.
                     chunk.xhr = null;
-                    for(let i = 0; i < file.upload.totalChunkCount; i++){
+                    for (let i = 0; i < file.upload.totalChunkCount; i++) {
                         if (file.upload.chunks[i] === undefined) return handleNextChunk();
                         if (file.upload.chunks[i].status !== $3ed269f2f0fb224b$export$2e2bcd8739ae039.SUCCESS) allFinished = false;
                     }
-                    if (allFinished) this.options.chunksUploaded(file, ()=>{
+                    if (allFinished) this.options.chunksUploaded(file, () => {
                         this._finished(files, response, null);
                     });
                 };
-                if (this.options.parallelChunkUploads) for(let i = 0; i < file.upload.totalChunkCount; i++)handleNextChunk();
+                if (this.options.parallelChunkUploads) for (let i = 0; i < file.upload.totalChunkCount; i++)handleNextChunk();
                 else handleNextChunk();
             } else {
                 let dataBlocks = [];
-                for(let i = 0; i < files.length; i++)dataBlocks[i] = {
+                for (let i = 0; i < files.length; i++)dataBlocks[i] = {
                     name: this._getParamName(i),
                     data: transformedFiles[i],
                     filename: files[i].upload.filename
@@ -1406,7 +1406,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     }
     /// Returns the right chunk for given file and xhr
     _getChunk(file, xhr) {
-        for(let i = 0; i < file.upload.totalChunkCount; i++){
+        for (let i = 0; i < file.upload.totalChunkCount; i++) {
             if (file.upload.chunks[i] !== undefined && file.upload.chunks[i].xhr === xhr) return file.upload.chunks[i];
         }
     }
@@ -1418,10 +1418,10 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     _uploadData(files, dataBlocks) {
         let xhr = new XMLHttpRequest();
         // Put the xhr object in the file objects to be able to reference it later.
-        for (let file of files)file.xhr = xhr;
+        for (let file of files) file.xhr = xhr;
         if (files[0].upload.chunked) // Put the xhr object in the right chunk object, so it can be associated
-        // later, and found with _getChunk.
-        files[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
+            // later, and found with _getChunk.
+            files[0].upload.chunks[dataBlocks[0].chunkIndex].xhr = xhr;
         let method = this.resolveOption(this.options.method, files, dataBlocks);
         let url = this.resolveOption(this.options.url, files, dataBlocks);
         xhr.open(method, url, true);
@@ -1430,19 +1430,19 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         if (timeout) xhr.timeout = this.resolveOption(this.options.timeout, files);
         // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
         xhr.withCredentials = !!this.options.withCredentials;
-        xhr.onload = (e)=>{
+        xhr.onload = (e) => {
             this._finishedUploading(files, xhr, e);
         };
-        xhr.ontimeout = ()=>{
+        xhr.ontimeout = () => {
             this._handleUploadError(files, xhr, `Request timedout after ${this.options.timeout / 1000} seconds`);
         };
-        xhr.onerror = ()=>{
+        xhr.onerror = () => {
             this._handleUploadError(files, xhr);
         };
         // Some browsers do not have the .upload property
         let progressObj = xhr.upload != null ? xhr.upload : xhr;
-        progressObj.onprogress = (e)=>this._updateFilesUploadProgress(files, xhr, e)
-        ;
+        progressObj.onprogress = (e) => this._updateFilesUploadProgress(files, xhr, e)
+            ;
         let headers = this.options.defaultHeaders ? {
             Accept: "application/json",
             "Cache-Control": "no-cache",
@@ -1451,14 +1451,14 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         };
         if (this.options.binaryBody) headers["Content-Type"] = files[0].type;
         if (this.options.headers) $ewBKy$justextend(headers, this.options.headers);
-        for(let headerName in headers){
+        for (let headerName in headers) {
             let headerValue = headers[headerName];
             if (headerValue) xhr.setRequestHeader(headerName, headerValue);
         }
         if (this.options.binaryBody) {
             // Since the file is going to be sent as binary body, it doesn't make
             // any sense to generate `FormData` for it.
-            for (let file of files)this.emit("sending", file, xhr);
+            for (let file of files) this.emit("sending", file, xhr);
             if (this.options.uploadMultiple) this.emit("sendingmultiple", files, xhr);
             this.submitRequest(xhr, null, files);
         } else {
@@ -1467,22 +1467,22 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             if (this.options.params) {
                 let additionalParams = this.options.params;
                 if (typeof additionalParams === "function") additionalParams = additionalParams.call(this, files, xhr, files[0].upload.chunked ? this._getChunk(files[0], xhr) : null);
-                for(let key in additionalParams){
+                for (let key in additionalParams) {
                     let value = additionalParams[key];
                     if (Array.isArray(value)) // The additional parameter contains an array,
-                    // so lets iterate over it to attach each value
-                    // individually.
-                    for(let i = 0; i < value.length; i++)formData.append(key, value[i]);
+                        // so lets iterate over it to attach each value
+                        // individually.
+                        for (let i = 0; i < value.length; i++)formData.append(key, value[i]);
                     else formData.append(key, value);
                 }
             }
             // Let the user add additional data if necessary
-            for (let file of files)this.emit("sending", file, xhr, formData);
+            for (let file of files) this.emit("sending", file, xhr, formData);
             if (this.options.uploadMultiple) this.emit("sendingmultiple", files, xhr, formData);
             this._addFormElementData(formData);
             // Finally add the files
             // Has to be last because some servers (eg: S3) expect the file to be the last parameter
-            for(let i = 0; i < dataBlocks.length; i++){
+            for (let i = 0; i < dataBlocks.length; i++) {
                 let dataBlock = dataBlocks[i];
                 formData.append(dataBlock.name, dataBlock.data, dataBlock.filename);
             }
@@ -1494,7 +1494,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         let transformedFiles = [];
         // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
         let doneCounter = 0;
-        for(let i = 0; i < files.length; i++)this.options.transformFile.call(this, files[i], (transformedFile)=>{
+        for (let i = 0; i < files.length; i++)this.options.transformFile.call(this, files[i], (transformedFile) => {
             transformedFiles[i] = transformedFile;
             if (++doneCounter === files.length) done(transformedFiles);
         });
@@ -1502,7 +1502,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     // Takes care of adding other input elements of the form to the AJAX request
     _addFormElementData(formData) {
         // Take care of other input elements
-        if (this.element.tagName === "FORM") for (let input of this.element.querySelectorAll("input, textarea, select, button")){
+        if (this.element.tagName === "FORM") for (let input of this.element.querySelectorAll("input, textarea, select, button")) {
             let inputName = input.getAttribute("name");
             let inputType = input.getAttribute("type");
             if (inputType) inputType = inputType.toLowerCase();
@@ -1510,7 +1510,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             if (typeof inputName === "undefined" || inputName === null) continue;
             if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
                 // Possibly multiple values
-                for (let option of input.options)if (option.selected) formData.append(inputName, option.value);
+                for (let option of input.options) if (option.selected) formData.append(inputName, option.value);
             } else if (!inputType || inputType !== "checkbox" && inputType !== "radio" || input.checked) formData.append(inputName, input.value);
         }
     }
@@ -1518,19 +1518,19 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     // If e is not provided, it is assumed that the upload is finished.
     _updateFilesUploadProgress(files, xhr, e) {
         if (!files[0].upload.chunked) // Handle file uploads without chunking
-        for (let file of files){
-            if (file.upload.total && file.upload.bytesSent && file.upload.bytesSent == file.upload.total) continue;
-            if (e) {
-                file.upload.progress = 100 * e.loaded / e.total;
-                file.upload.total = e.total;
-                file.upload.bytesSent = e.loaded;
-            } else {
-                // No event, so we're at 100%
-                file.upload.progress = 100;
-                file.upload.bytesSent = file.upload.total;
+            for (let file of files) {
+                if (file.upload.total && file.upload.bytesSent && file.upload.bytesSent == file.upload.total) continue;
+                if (e) {
+                    file.upload.progress = 100 * e.loaded / e.total;
+                    file.upload.total = e.total;
+                    file.upload.bytesSent = e.loaded;
+                } else {
+                    // No event, so we're at 100%
+                    file.upload.progress = 100;
+                    file.upload.bytesSent = file.upload.total;
+                }
+                this.emit("uploadprogress", file, file.upload.progress, file.upload.bytesSent);
             }
-            this.emit("uploadprogress", file, file.upload.progress, file.upload.bytesSent);
-        }
         else {
             // Handle chunked file uploads
             // Chunked upload is not compatible with uploading multiple files in one
@@ -1552,7 +1552,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             file.upload.progress = 0;
             file.upload.total = 0;
             file.upload.bytesSent = 0;
-            for(let i = 0; i < file.upload.totalChunkCount; i++)if (file.upload.chunks[i] && typeof file.upload.chunks[i].progress !== "undefined") {
+            for (let i = 0; i < file.upload.totalChunkCount; i++)if (file.upload.chunks[i] && typeof file.upload.chunks[i].progress !== "undefined") {
                 file.upload.progress += file.upload.chunks[i].progress;
                 file.upload.total += file.upload.chunks[i].total;
                 file.upload.bytesSent += file.upload.chunks[i].bytesSent;
@@ -1609,7 +1609,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     // Called internally when processing is finished.
     // Individual callbacks have to be called in the appropriate sections.
     _finished(files, responseText, e) {
-        for (let file of files){
+        for (let file of files) {
             file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.SUCCESS;
             this.emit("success", file, responseText, e);
             this.emit("complete", file);
@@ -1623,7 +1623,7 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
     // Called internally when processing is finished.
     // Individual callbacks have to be called in the appropriate sections.
     _errorProcessing(files, message, xhr) {
-        for (let file of files){
+        for (let file of files) {
             file.status = $3ed269f2f0fb224b$export$2e2bcd8739ae039.ERROR;
             this.emit("error", file, message, xhr);
             this.emit("complete", file);
@@ -1635,12 +1635,12 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
         if (this.options.autoProcessQueue) return this.processQueue();
     }
     static uuidv4() {
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
             let r = Math.random() * 16 | 0, v = c === "x" ? r : r & 3 | 8;
             return v.toString(16);
         });
     }
-    constructor(el, options){
+    constructor(el, options) {
         super();
         let fallback, left;
         this.element = el;
@@ -1675,11 +1675,11 @@ class $3ed269f2f0fb224b$export$2e2bcd8739ae039 extends $4040acfd8584338d$export$
             delete this.options.acceptedMimeTypes;
         }
         // Backwards compatibility
-        if (this.options.renameFilename != null) this.options.renameFile = (file)=>this.options.renameFilename.call(this, file.name, file)
-        ;
+        if (this.options.renameFilename != null) this.options.renameFile = (file) => this.options.renameFilename.call(this, file.name, file)
+            ;
         if (typeof this.options.method === "string") this.options.method = this.options.method.toUpperCase();
         if ((fallback = this.getExistingFallback()) && fallback.parentNode) // Remove the fallback
-        fallback.parentNode.removeChild(fallback);
+            fallback.parentNode.removeChild(fallback);
         // Display previews in the previewsContainer element or the Dropzone element unless explicitly set to false
         if (this.options.previewsContainer !== false) {
             if (this.options.previewsContainer) this.previewsContainer = $3ed269f2f0fb224b$export$2e2bcd8739ae039.getElement(this.options.previewsContainer, "previewsContainer");
@@ -1708,7 +1708,7 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.initClass();
 $3ed269f2f0fb224b$export$2e2bcd8739ae039.options = {
 };
 // Returns the options for an element or undefined if none available.
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.optionsForElement = function(element) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.optionsForElement = function (element) {
     // Get the `Dropzone.options.elementId` for this element if it exists
     if (element.getAttribute("id")) return $3ed269f2f0fb224b$export$2e2bcd8739ae039.options[$3ed269f2f0fb224b$var$camelize(element.getAttribute("id"))];
     else return undefined;
@@ -1716,33 +1716,33 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.optionsForElement = function(element) {
 // Holds a list of all dropzone instances
 $3ed269f2f0fb224b$export$2e2bcd8739ae039.instances = [];
 // Returns the dropzone for given element if any
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.forElement = function(element) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.forElement = function (element) {
     if (typeof element === "string") element = document.querySelector(element);
     if ((element != null ? element.dropzone : undefined) == null) throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");
     return element.dropzone;
 };
 // Looks for all .dropzone elements and creates a dropzone for them
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.discover = function() {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.discover = function () {
     let dropzones;
     if (document.querySelectorAll) dropzones = document.querySelectorAll(".dropzone");
     else {
         dropzones = [];
         // IE :(
-        let checkElements = (elements)=>(()=>{
-                let result = [];
-                for (let el of elements)if (/(^| )dropzone($| )/.test(el.className)) result.push(dropzones.push(el));
-                else result.push(undefined);
-                return result;
-            })()
-        ;
+        let checkElements = (elements) => (() => {
+            let result = [];
+            for (let el of elements) if (/(^| )dropzone($| )/.test(el.className)) result.push(dropzones.push(el));
+            else result.push(undefined);
+            return result;
+        })()
+            ;
         checkElements(document.getElementsByTagName("div"));
         checkElements(document.getElementsByTagName("form"));
     }
-    return (()=>{
+    return (() => {
         let result = [];
         for (let dropzone of dropzones)// Create a dropzone unless auto discover has been disabled for specific element
-        if ($3ed269f2f0fb224b$export$2e2bcd8739ae039.optionsForElement(dropzone) !== false) result.push(new $3ed269f2f0fb224b$export$2e2bcd8739ae039(dropzone));
-        else result.push(undefined);
+            if ($3ed269f2f0fb224b$export$2e2bcd8739ae039.optionsForElement(dropzone) !== false) result.push(new $3ed269f2f0fb224b$export$2e2bcd8739ae039(dropzone));
+            else result.push(undefined);
         return result;
     })();
 };
@@ -1758,19 +1758,19 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.discover = function() {
 // incorrectly **
 $3ed269f2f0fb224b$export$2e2bcd8739ae039.blockedBrowsers = [
     // The mac os and windows phone version of opera 12 seems to have a problem with the File drag'n'drop API.
-    /opera.*(Macintosh|Windows Phone).*version\/12/i, 
+    /opera.*(Macintosh|Windows Phone).*version\/12/i,
 ];
 // Checks if the browser is supported
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.isBrowserSupported = function() {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.isBrowserSupported = function () {
     let capableBrowser = true;
     if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
         if (!("classList" in document.createElement("a"))) capableBrowser = false;
         else {
             if ($3ed269f2f0fb224b$export$2e2bcd8739ae039.blacklistedBrowsers !== undefined) // Since this has been renamed, this makes sure we don't break older
-            // configuration.
-            $3ed269f2f0fb224b$export$2e2bcd8739ae039.blockedBrowsers = $3ed269f2f0fb224b$export$2e2bcd8739ae039.blacklistedBrowsers;
+                // configuration.
+                $3ed269f2f0fb224b$export$2e2bcd8739ae039.blockedBrowsers = $3ed269f2f0fb224b$export$2e2bcd8739ae039.blacklistedBrowsers;
             // The browser supports the API, but may be blocked.
-            for (let regex of $3ed269f2f0fb224b$export$2e2bcd8739ae039.blockedBrowsers)if (regex.test(navigator.userAgent)) {
+            for (let regex of $3ed269f2f0fb224b$export$2e2bcd8739ae039.blockedBrowsers) if (regex.test(navigator.userAgent)) {
                 capableBrowser = false;
                 continue;
             }
@@ -1778,7 +1778,7 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.isBrowserSupported = function() {
     } else capableBrowser = false;
     return capableBrowser;
 };
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.dataURItoBlob = function(dataURI) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.dataURItoBlob = function (dataURI) {
     // convert base64 to raw binary data held in a string
     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
     let byteString = atob(dataURI.split(",")[1]);
@@ -1787,7 +1787,7 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.dataURItoBlob = function(dataURI) {
     // write the bytes of the string to an ArrayBuffer
     let ab = new ArrayBuffer(byteString.length);
     let ia = new Uint8Array(ab);
-    for(let i = 0, end = byteString.length, asc = 0 <= end; asc ? i <= end : i >= end; asc ? i++ : i--)ia[i] = byteString.charCodeAt(i);
+    for (let i = 0, end = byteString.length, asc = 0 <= end; asc ? i <= end : i >= end; asc ? i++ : i--)ia[i] = byteString.charCodeAt(i);
     // write the ArrayBuffer to a blob
     return new Blob([
         ab
@@ -1796,48 +1796,48 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.dataURItoBlob = function(dataURI) {
     });
 };
 // Returns an array without the rejected item
-const $3ed269f2f0fb224b$var$without = (list, rejectedItem)=>list.filter((item)=>item !== rejectedItem
-    ).map((item)=>item
-    )
-;
+const $3ed269f2f0fb224b$var$without = (list, rejectedItem) => list.filter((item) => item !== rejectedItem
+).map((item) => item
+)
+    ;
 // abc-def_ghi -> abcDefGhi
-const $3ed269f2f0fb224b$var$camelize = (str)=>str.replace(/[\-_](\w)/g, (match)=>match.charAt(1).toUpperCase()
-    )
-;
+const $3ed269f2f0fb224b$var$camelize = (str) => str.replace(/[\-_](\w)/g, (match) => match.charAt(1).toUpperCase()
+)
+    ;
 // Creates an element from string
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.createElement = function(string) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.createElement = function (string) {
     let div = document.createElement("div");
     div.innerHTML = string;
     return div.childNodes[0];
 };
 // Tests if given element is inside (or simply is) the container
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.elementInside = function(element, container) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.elementInside = function (element, container) {
     if (element === container) return true;
-     // Coffeescript doesn't support do/while loops
-    while(element = element.parentNode){
+    // Coffeescript doesn't support do/while loops
+    while (element = element.parentNode) {
         if (element === container) return true;
     }
     return false;
 };
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.getElement = function(el, name) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.getElement = function (el, name) {
     let element;
     if (typeof el === "string") element = document.querySelector(el);
     else if (el.nodeType != null) element = el;
     if (element == null) throw new Error(`Invalid \`${name}\` option provided. Please provide a CSS selector or a plain HTML element.`);
     return element;
 };
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.getElements = function(els, name) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.getElements = function (els, name) {
     let el, elements;
     if (els instanceof Array) {
         elements = [];
         try {
-            for (el of els)elements.push(this.getElement(el, name));
+            for (el of els) elements.push(this.getElement(el, name));
         } catch (e) {
             elements = null;
         }
     } else if (typeof els === "string") {
         elements = [];
-        for (el of document.querySelectorAll(els))elements.push(el);
+        for (el of document.querySelectorAll(els)) elements.push(el);
     } else if (els.nodeType != null) elements = [
         els
     ];
@@ -1848,20 +1848,20 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.getElements = function(els, name) {
 //
 // The default implementation just uses `window.confirm` and then calls the
 // appropriate callback.
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm = function(question, accepted, rejected) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.confirm = function (question, accepted, rejected) {
     if (window.confirm(question)) return accepted();
     else if (rejected != null) return rejected();
 };
 // Validates the mime type like this:
 //
 // https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
-$3ed269f2f0fb224b$export$2e2bcd8739ae039.isValidFile = function(file, acceptedFiles) {
+$3ed269f2f0fb224b$export$2e2bcd8739ae039.isValidFile = function (file, acceptedFiles) {
     if (!acceptedFiles) return true;
-     // If there are no accepted mime types, it's OK
+    // If there are no accepted mime types, it's OK
     acceptedFiles = acceptedFiles.split(",");
     let mimeType = file.type;
     let baseMimeType = mimeType.replace(/\/.*$/, "");
-    for (let validType of acceptedFiles){
+    for (let validType of acceptedFiles) {
         validType = validType.trim();
         if (validType.charAt(0) === ".") {
             if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) return true;
@@ -1875,8 +1875,8 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.isValidFile = function(file, acceptedFi
     return false;
 };
 // Augment jQuery
-if (typeof jQuery !== "undefined" && jQuery !== null) jQuery.fn.dropzone = function(options) {
-    return this.each(function() {
+if (typeof jQuery !== "undefined" && jQuery !== null) jQuery.fn.dropzone = function (options) {
+    return this.each(function () {
         return new $3ed269f2f0fb224b$export$2e2bcd8739ae039(this, options);
     });
 };
@@ -1900,7 +1900,7 @@ $3ed269f2f0fb224b$export$2e2bcd8739ae039.SUCCESS = "success";
  */ // Detecting vertical squash in loaded image.
 // Fixes a bug which squash image vertically while drawing into canvas for some images.
 // This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
-let $3ed269f2f0fb224b$var$detectVerticalSquash = function(img) {
+let $3ed269f2f0fb224b$var$detectVerticalSquash = function (img) {
     let iw = img.naturalWidth;
     let ih = img.naturalHeight;
     let canvas = document.createElement("canvas");
@@ -1908,12 +1908,12 @@ let $3ed269f2f0fb224b$var$detectVerticalSquash = function(img) {
     canvas.height = ih;
     let ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
-    let { data: data  } = ctx.getImageData(1, 0, 1, ih);
+    let { data: data } = ctx.getImageData(1, 0, 1, ih);
     // search image edge pixel position in case it is squashed vertically.
     let sy = 0;
     let ey = ih;
     let py = ih;
-    while(py > sy){
+    while (py > sy) {
         let alpha = data[(py - 1) * 4 + 3];
         if (alpha === 0) ey = py;
         else sy = py;
@@ -1925,7 +1925,7 @@ let $3ed269f2f0fb224b$var$detectVerticalSquash = function(img) {
 };
 // A replacement for context.drawImage
 // (args are for source and destination).
-var $3ed269f2f0fb224b$var$drawImageIOSFix = function(ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
+var $3ed269f2f0fb224b$var$drawImageIOSFix = function (ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
     let vertSquashRatio = $3ed269f2f0fb224b$var$detectVerticalSquash(img);
     return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
 };
@@ -1946,7 +1946,7 @@ class $3ed269f2f0fb224b$var$ExifRestore {
         let enc3 = undefined;
         let enc4 = "";
         let i = 0;
-        while(true){
+        while (true) {
             chr1 = input[i++];
             chr2 = input[i++];
             chr3 = input[i++];
@@ -1979,7 +1979,7 @@ class $3ed269f2f0fb224b$var$ExifRestore {
     static getExifArray(segments) {
         let seg = undefined;
         let x = 0;
-        while(x < segments.length){
+        while (x < segments.length) {
             seg = segments[x];
             if (seg[0] === 255 & seg[1] === 225) return seg;
             x++;
@@ -2000,7 +2000,7 @@ class $3ed269f2f0fb224b$var$ExifRestore {
     static slice2Segments(rawImageArray) {
         let head = 0;
         let segments = [];
-        while(true){
+        while (true) {
             var length;
             if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 218) break;
             if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 216) head += 2;
@@ -2030,7 +2030,7 @@ class $3ed269f2f0fb224b$var$ExifRestore {
         let base64test = /[^A-Za-z0-9\+\/\=]/g;
         if (base64test.exec(input)) console.warn("There were invalid base64 characters in the input text.\nValid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding.");
         input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-        while(true){
+        while (true) {
             enc1 = this.KEY_STR.indexOf(input.charAt(i++));
             enc2 = this.KEY_STR.indexOf(input.charAt(i++));
             enc3 = this.KEY_STR.indexOf(input.charAt(i++));
@@ -2063,7 +2063,7 @@ $3ed269f2f0fb224b$var$ExifRestore.initClass();
  * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
  */ // @win window reference
 // @fn function reference
-let $3ed269f2f0fb224b$var$contentLoaded = function(win, fn) {
+let $3ed269f2f0fb224b$var$contentLoaded = function (win, fn) {
     let done = false;
     let top = true;
     let doc = win.document;
@@ -2071,12 +2071,12 @@ let $3ed269f2f0fb224b$var$contentLoaded = function(win, fn) {
     let add = doc.addEventListener ? "addEventListener" : "attachEvent";
     let rem = doc.addEventListener ? "removeEventListener" : "detachEvent";
     let pre = doc.addEventListener ? "" : "on";
-    var init = function(e) {
+    var init = function (e) {
         if (e.type === "readystatechange" && doc.readyState !== "complete") return;
         (e.type === "load" ? win : doc)[rem](pre + e.type, init, false);
         if (!done && (done = true)) return fn.call(win, e.type || e);
     };
-    var poll = function() {
+    var poll = function () {
         try {
             root.doScroll("left");
         } catch (e) {
@@ -2107,5 +2107,5 @@ function $3ed269f2f0fb224b$var$__guardMethod__(obj, methodName, transform) {
 }
 
 
-export {$3ed269f2f0fb224b$export$2e2bcd8739ae039 as default, $3ed269f2f0fb224b$export$2e2bcd8739ae039 as Dropzone};
+export { $3ed269f2f0fb224b$export$2e2bcd8739ae039 as default, $3ed269f2f0fb224b$export$2e2bcd8739ae039 as Dropzone };
 //# sourceMappingURL=dropzone.mjs.map

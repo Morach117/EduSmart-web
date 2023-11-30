@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $contraseñaEncriptada = encriptarContraseña($contraseña);
 
             // Insertar los datos en la base de datos
-            $sql = "INSERT INTO docentes (nombre, app, apm , correo_electronico, contrasena) VALUES ('$nombre', '$app', '$apm', '$correo', '$contraseñaEncriptada')";
+            $sql = "INSERT INTO docentes (nombre, app, apm , correo_electronico, password) VALUES ('$nombre', '$app', '$apm', '$correo', '$contraseñaEncriptada')";
 
             if ($conn->query($sql) === true) {
                 // Redirigir al usuario a la página de inicio de sesión
@@ -103,9 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">Crear cuenta nueva</h2>
                     <?php if (!empty($mensaje)): ?>
-                            <div class="alert alert-danger mb-3">
-                                <?php echo $mensaje; ?>
-                            </div>
+                        <div class="alert alert-danger mb-3">
+                            <?php echo $mensaje; ?>
+                        </div>
                     <?php endif; ?>
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>

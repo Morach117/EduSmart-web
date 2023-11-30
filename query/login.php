@@ -6,8 +6,8 @@ extract($_POST);
 
 $providedHash = hash('sha256', $password); // Hash de la contraseña proporcionada
 
-$selAcc = $conn->query("SELECT * FROM docentes WHERE correo_electronico = '$email'");
-$selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC);
+$selAcc = $conn->query("SELECT * FROM docentes WHERE correo_electronico = '$email'"); // Seleccionar la cuenta con el correo proporcionado
+$selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC); // Obtener la fila de la cuenta seleccionada
 
 if ($selAcc->rowCount() > 0) {
     $storedHash = $selAccRow['password']; // Hash almacenado en la base de datos
