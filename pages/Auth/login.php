@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="text-center text-muted mt-3">
-                            ¿No tienes una cuenta? <a href="./pages/register.php" tabindex="-1">Regístrate aquí</a>
+                            ¿No tienes una cuenta? <a href="RegisterPage.php" tabindex="-1">Regístrate aquí</a>
                         </div>
                     </div>
                 </div>
