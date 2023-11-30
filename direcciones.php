@@ -17,6 +17,7 @@ $pages = array(
     // Definir las páginas disponibles}
     'home',
     'ShowStudents',
+    'WorkTeams',
 
 );
 

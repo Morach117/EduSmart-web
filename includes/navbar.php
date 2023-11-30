@@ -259,7 +259,7 @@
                       </a>';
                       }
                       ?>
-                      <a class="dropdown-item" href="./blank.html">
+                      <a class="dropdown-item" href="direcciones.php?page=WordTeams">
                         Asignar equipos
                       </a>
                     </div>
@@ -534,7 +534,7 @@
                 <input name="file" max="1" accept=".csv" type="file" />
               </div>
               <div class="dz-message">
-                <h3 class="dropzone-msg-title">Arrastra tus archivos hacia aquí</h3>
+                <h3 class="dropzone-msg-title dark:text-white">Arrastra tus archivos hacia aquí</h3>
                 <span class="dropzone-msg-desc">Puedes dar un click en esta area para abrir el explorador de
                   archivos</span>
               </div>
