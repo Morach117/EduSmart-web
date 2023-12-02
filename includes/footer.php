@@ -8,6 +8,10 @@
 <script src="./assets/dist/js/demo.min.js?1684106062" defer></script>
 <script src="./assets/dist/js/demo-theme.min.js?1684106062"></script>
 <script src="./assets/datatables.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+
 <script>
 	// @formatter:off
 	document.addEventListener("DOMContentLoaded", function () {

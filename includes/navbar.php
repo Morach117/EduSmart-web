@@ -22,6 +22,8 @@
   <link href="./assets/dist/css/demo.min.css?1684106062" rel="stylesheet" />
   <link href="./assets/dist/libs/dropzone/dist/dropzone.css?1684106062" rel="stylesheet" />
   <link href="./assets/datatables.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+
   <style>
     @import url('https://rsms.me/inter/inter.css');
 
@@ -262,7 +264,7 @@
                         if ($selAlumnos->rowCount() > 0) {
                           echo '<a class="dropdown-item" href="direcciones.php?page=ShowStudents">Ver alumnos</a>';
                         } else {
-                          echo '<a class="dropdown-item btn bg-red text-white fw-bold text-center" data-bs-toggle="modal" data-bs-target="#modal-team">
+                          echo '<a class="dropdown-item btn bg-red text-white fw-bold text-center" data-bs-toggle="modal" data-bs-target="#modal-alumnos">
                         Cargar lista de alumnos <br>
                         (No hay ningún registro actualmente)
                       </a>';
@@ -486,76 +488,12 @@
           </div>
         </div>
       </div>
-      <div class="modal modal-blur fade" id="modal-team" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Cargar lista de alumnos</h5>
-              <a href="../files/list-students.csv" download rel="noopener noreferrer" class="btn btn-primary">Descargar
-                plantilla csv</a>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form class="dropzone" id="dropzone-custom" action="./" autocomplete="off">
-                <div class="fallback">
-                  <input name="file" max="1" accept=".csv" type="file" />
-                </div>
-                <div class="dz-message">
-                  <h3 class="dropzone-msg-title dark:text-white">Arrastra tus archivos hacia aquí</h3>
-                  <span class="dropzone-msg-desc">Puedes dar un click en esta area para abrir el explorador de
-                    archivos</span>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <div class="container text-end">
-                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Cargar</button>
-              </div>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
+
+
+
 
       <!-- modal materias -->
 
-      <div class="modal modal-blur fade" id="modal-subject" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Crear nueva materia</h5>
-            </div>
-            <div class="modal-body">
-              <!-- form para la creacion de la materia -->
-              <div class="container">
-                <form action="./" method="POST">
-                  <div class="row mb-4">
-                    <div class="col">
-                      <label for="name">Nombre de la materia</label>
-                      <input type="text" class="form-control" maxlength="20" name="name" id="name"
-                        placeholder="Nombre de la materia" required>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <label for="teacher">Portada de la materia</label>
-                      <input type="file" class="form-control" name="cover" size="220kb" accept="image/*" id="cover"
-                        required>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div class="container text-end">
-                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Cargar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
 
 

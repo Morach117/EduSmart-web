@@ -10,6 +10,7 @@ define('INCLUDED_FROM_MAIN', true); // Definir una constante para evitar que se 
 include('conn.php'); // Incluir archivo de conexión a la base de datos
 include('includes/navbar.php'); // Incluir archivo de barra de navegación
 include('includes/footer.php');
+include('includes/modals.php');
 
 $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home'; // Obtener la página a la que se quiere acceder
 
