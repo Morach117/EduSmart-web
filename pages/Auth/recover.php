@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 // Función para encriptar la contraseña
 function encriptarContraseña($contraseña)
 {
-    // haz que encripte en sha-256
+    // Haz que encripte en sha-256
     $contraseñaEncriptada = hash('sha256', $contraseña);
     return $contraseñaEncriptada;
 }
@@ -27,17 +27,27 @@ $contraseña = "";
 $mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nombre = $_POST["nombre"];
-    $app = $_POST["app"];
-    $apm = $_POST["apm"];
-    $correo = $_POST["correo"];
-    $contraseña = $_POST["contraseña"];
+    $nombre = htmlspecialchars($_POST["nombre"]);
+    $app = htmlspecialchars($_POST["app"]);
+    $apm = htmlspecialchars($_POST["apm"]);
+    $correo = htmlspecialchars($_POST["correo"]);
+    $contraseña = htmlspecialchars($_POST["contraseña"]);
 
-    // Verificar si el correo ya existe en la base de datos
-    $sql_verificar_correo = "SELECT id_docente FROM docentes WHERE correo_electronico = '$correo'";
-    $resultado = $conn->query($sql_verificar_correo);
+    // Validar la entrada del usuario
+    $nombre = htmlspecialchars($nombre);
+    $app = htmlspecialchars($app);
+    $apm = htmlspecialchars($apm);
+    $correo = htmlspecialchars($correo);
+    $contraseña = htmlspecialchars($contraseña);
 
-    if ($resultado->num_rows > 0) {
+    // Verificar si el correo ya existe en la base de datos usando una sentencia preparada
+    $sql_verificar_correo = "SELECT id_docente FROM docentes WHERE correo_electronico = ?";
+    $stmt_verificar_correo = $conn->prepare($sql_verificar_correo);
+    $stmt_verificar_correo->bind_param("s", $correo);
+    $stmt_verificar_correo->execute();
+    $stmt_verificar_correo->store_result();
+
+    if ($stmt_verificar_correo->num_rows > 0) {
         $mensaje = "El correo electrónico ya está registrado.";
     } else {
         // Verificar si la contraseña cumple con los requisitos (por ejemplo, al menos 8 caracteres y al menos un número)
@@ -48,24 +58,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Encriptar la contraseña
             $contraseñaEncriptada = encriptarContraseña($contraseña);
 
-            // Insertar los datos en la base de datos
-            $sql = "INSERT INTO docentes (nombre, app, apm , correo_electronico, password) VALUES ('$nombre', '$app', '$apm', '$correo', '$contraseñaEncriptada')";
+            // Insertar los datos en la base de datos usando una sentencia preparada
+            $sql_insertar_usuario = "INSERT INTO docentes (nombre, app, apm, correo_electronico, password) VALUES (?, ?, ?, ?, ?)";
+            $stmt_insertar_usuario = $conn->prepare($sql_insertar_usuario);
+            $stmt_insertar_usuario->bind_param("sssss", $nombre, $app, $apm, $correo, $contraseñaEncriptada);
 
-            if ($conn->query($sql) === true) {
+            if ($stmt_insertar_usuario->execute()) {
                 // Redirigir al usuario a la página de inicio de sesión
-                header("Location: ../index.php");
-
+                header("Location: ../../index.php");
                 exit();
             } else {
-                $mensaje = "Error al crear el usuario: " . $conn->error;
+                $mensaje = "Error al crear el usuario: " . $stmt_insertar_usuario->error;
             }
-
         }
     }
+
+    $stmt_verificar_correo->close();
+    $stmt_insertar_usuario->close();
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -83,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         @import url('https://rsms.me/inter/inter.css');
 
         :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto,
+                Helvetica Neue, sans-serif;
         }
 
         body {
@@ -92,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </style>
 </head>
 
-<body class=" d-flex flex-column">
+<body class="d-flex flex-column">
     <script src="../../assets/dist/js/demo-theme.min.js?1684106062"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
@@ -110,28 +124,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" placeholder="Ingrese su nombre" name="nombre"
-                            value="<?php echo $nombre; ?>" required>
+                            value="<?php echo htmlspecialchars($nombre); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Apellido Paterno</label>
                         <input type="text" class="form-control" placeholder="Ingrese su apellido Paterno" name="app"
-                            value="<?php echo $app; ?>" required>
+                            value="<?php echo htmlspecialchars($app); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Apellido Materno</label>
                         <input type="text" class="form-control" placeholder="Ingrese su apellido Materno" name="apm"
-                            value="<?php echo $apm; ?>" required>
+                            value="<?php echo htmlspecialchars($apm); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Correo electrónico</label>
                         <input type="email" class="form-control" placeholder="Ingrese su correo" name="correo"
-                            value="<?php echo $correo; ?>" required>
+                            value="<?php echo htmlspecialchars($correo); ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contraseña</label>
                         <div class="input-group input-group-flat">
                             <input type="password" id="password" class="form-control" placeholder="Contraseña"
-                                autocomplete="off" name="contraseña" value="<?php echo $contraseña; ?>" required>
+                                autocomplete="off" name="contraseña" value="<?php echo htmlspecialchars($contraseña); ?>"
+                                required>
                             <span class="input-group-text">
                                 <a href="#" class="link-secondary" id="showPassword" data-bs-toggle="tooltip">
                                     <img id="icon" src="../assets/static/svg/eye.svg" alt="">
