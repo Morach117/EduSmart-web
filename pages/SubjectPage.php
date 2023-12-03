@@ -18,14 +18,12 @@
                         </h2>
                         <div class="text-muted mt-1">
                             <?php
-                            $selMaterias = $conn->query("SELECT COUNT(*) AS total FROM materias");
+                            $docenteId = $selDocenteData['id_docente'];
+
+                            $selMaterias = $conn->query("SELECT COUNT(*) AS total FROM materias WHERE id_docente = '$docenteId'");
                             $rowMaterias = $selMaterias->fetch(PDO::FETCH_ASSOC);
                             echo $rowMaterias['total'];
-                            if ($rowMaterias['total'] == 1) {
-                                echo " materia";
-                            } else {
-                                echo " materias";
-                            }
+                            echo ($rowMaterias['total'] == 1) ? " materia" : " materias";
                             ?>
                         </div>
                     </div>
@@ -33,7 +31,6 @@
                     <div class="col-auto ms-auto d-print-none">
                         <div class="d-flex">
                             <button data-bs-toggle="modal" data-bs-target="#modal-subject" class="btn btn-primary">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -53,7 +50,8 @@
             <div class="container-xl">
                 <div class="row row-cards">
                     <?php
-                    $selMaterias = $conn->query("SELECT * FROM materias");
+                    $docenteId = $selDocenteData['id_docente'];
+                    $selMaterias = $conn->query("SELECT * FROM materias WHERE id_docente = '$docenteId'");
                     if ($selMaterias->rowCount() == 0) {
                         echo "<div class='col-12'><div class='alert alert-important alert-danger'>No hay materias registradas</div></div>";
                     } else {
@@ -63,7 +61,7 @@
                                 <div class="card">
                                     <div class="card-body p-4 text-center">
                                         <span class="avatar avatar-xl mb-3 rounded"
-                                            style="background-image: url(./files/materias/<?php echo $rowMaterias['img'] ?>)"></span>
+                                            style="background-image: url(./files/uploads/<?php echo $rowMaterias['img'] ?>)"></span>
                                         <h3 class="m-0 mb-1">
                                             <a href="#">
                                                 <?php echo $rowMaterias['nombre_materia'] ?>
@@ -88,6 +86,47 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Manejar clic en el botón "Cargar"
+            $("#btnCargarMateria").click(function () {
+                // Crear un objeto FormData para enviar datos del formulario
+                var formData = new FormData($("#formCrearMateria")[0]);
+
+                // Realizar una solicitud AJAX
+                $.ajax({
+                    url: './query/materia/add_materia.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // Manejar la respuesta del servidor
+                        console.log(response);
+
+                        // Mostrar SweetAlert con un mensaje
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Materia cargada con éxito',
+                            showConfirmButton: false,
+                            timer: 500, // 0.5 segundos
+                        }).then(() => {
+                            // Cerrar el modal o realizar otras acciones según sea necesario
+                            $('#modal-subject').modal('hide');
+
+                            // Recargar la página después de mostrar SweetAlert
+                            location.reload(true); // Usa true para forzar una recarga desde el servidor
+                        });
+                    },
+                    error: function (error) {
+                        // Manejar errores
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

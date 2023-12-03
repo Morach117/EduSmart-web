@@ -1,12 +1,7 @@
+<?php
+include("./query/selectData.php"); //incluye el archivo de consultas a la base de datos
+?>
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta19
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
 <html lang="en">
 
 <head>
@@ -200,8 +195,11 @@
                 aria-label="Open user menu">
                 <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
                 <div class="d-none d-xl-block ps-2">
-                  <div>Paweł Kuna</div>
-                  <div class="mt-1 small text-muted">UI Designer</div>
+                  <div>
+                  <?php
+                            echo $selDocenteData['nombre'];
+                  ?>
+                  </div>
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -489,10 +487,6 @@
         </div>
       </div>
 
-
-
-
-      <!-- modal materias -->
 
     </header>
 

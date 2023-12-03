@@ -1,40 +1,45 @@
-
+<!-- Modal para la creacion de una nueva materia -->
 <div class="modal modal-blur fade" id="modal-subject" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+    tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Crear nueva materia</h5>
+                <h5 class="modal-title">Crear nueva materia</h5>
             </div>
             <div class="modal-body">
-              <!-- form para la creacion de la materia -->
-              <div class="container">
-                <form action="./" method="POST">
-                  <div class="row mb-4">
-                    <div class="col">
-                      <label for="name">Nombre de la materia</label>
-                      <input type="text" class="form-control" maxlength="20" name="name" id="name"
-                        placeholder="Nombre de la materia" required>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <label for="teacher">Portada de la materia</label>
-                      <input type="file" class="form-control" name="cover" size="220kb" accept="image/*" id="cover"
-                        required>
-                    </div>
-                  </div>
-              </div>
+                <!-- form para la creacion de la materia -->
+                <div class="container">
+                    <form id="formCrearMateria" enctype="multipart/form-data">
+                        <!-- Agrega un input oculto para el id del docente -->
+                        <input type="hidden" name="docenteId" id="docenteId" value="<?php echo $selDocenteData['id_docente']; ?>">
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="name">Nombre de la materia</label>
+                                <input type="text" class="form-control" maxlength="20" name="name" id="name"
+                                    placeholder="Nombre de la materia" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="teacher">Portada de la materia</label>
+                                <input type="file" class="form-control" name="cover" accept="image/*" id="cover"
+                                    required>
+                            </div>
+                        </div>
+                </div>
             </div>
             <div class="modal-footer">
-              <div class="container text-end">
-                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Cargar</button>
-              </div>
+                <div class="container text-end">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnCargarMateria">Cargar</button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
+<!-- Modal para la creacion de un nuevo alumno -->
 
       <div class="modal modal-blur fade" id="modal-alumnos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <p>Descargar plantilla:</p>
-                        <a href="./Plantilla.csv" download="Plantilla.csv" class="btn btn-outline-primary">Descargar Plantilla</a>
+                        <a href="./files/Plantilla.csv" download="Plantilla.csv" class="btn btn-outline-primary">Descargar Plantilla</a>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -65,3 +70,4 @@
         </div>
     </div>
 </div>
+
