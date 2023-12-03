@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "edusmart_v2";
+$db = "edusmart_v2";
 $conn = null;
 
 try {
@@ -15,6 +15,4 @@ try {
 } catch (Exception $e) {
   echo $e->getMessage();
 }
-
-
- ?>
+?>

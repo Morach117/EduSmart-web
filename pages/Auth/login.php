@@ -57,7 +57,7 @@
                                             <span class="input-group-text">
                                                 <a href="#" class="link-secondary" id="showPassword"
                                                     data-bs-toggle="tooltip">
-                                                    <img id="icon" src="./assets/static/svg/eye.svg" alt="">
+                                                    <img id="icon" src=".../../assets/dist/svg/eye.svg" alt="">
                                                 </a>
                                             </span>
                                         </div>
@@ -101,11 +101,11 @@
 
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                showIcon.src = './assets/static/svg/eye-off.svg';
+                showIcon.src = '../../assets/dist/svg/eye-off.svg';
                 showPasswordLink.setAttribute('title', 'Mostrar contraseña')
             } else {
                 passwordInput.type = 'password';
-                showIcon.src = './assets/static/svg/eye.svg';
+                showIcon.src = '../../assets/dist/svg/eye.svg';
                 showPasswordLink.setAttribute('title', 'Ocultar contraseña')
             }
         });

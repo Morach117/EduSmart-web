@@ -56,26 +56,59 @@
                         echo "<div class='col-12'><div class='alert alert-important alert-danger'>No hay materias registradas</div></div>";
                     } else {
                         while ($rowMaterias = $selMaterias->fetch(PDO::FETCH_ASSOC)) {
-                            ?>
+                            $idMateria = $rowMaterias['id_materia']
+                                ?>
                             <div class="col-md-6 col-lg-3">
                                 <div class="card">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end text-warning">
+                                        <button data-bs-toggle="modal" data-id="<?php echo $rowMateria['id_materia'] ?>"
+                                            data-bs-target="#modal-danger" class="btn btn-link a text-center" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash"
+                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 7l16 0" />
+                                                <path d="M10 11l0 6" />
+                                                <path d="M14 11l0 6" />
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                            </svg>
+                                        </button>
+                                    </div>
                                     <div class="card-body p-4 text-center">
-                                        <span class="avatar avatar-xl mb-3 rounded"
+                                        <span class="cursor-pointer avatar avatar-xl mb-3 rounded"
                                             style="background-image: url(./files/uploads/<?php echo $rowMaterias['img'] ?>)"></span>
                                         <h3 class="m-0 mb-1">
-                                            <a href="#">
+                                            <a>
                                                 <?php echo $rowMaterias['nombre_materia'] ?>
                                             </a>
                                         </h3>
                                     </div>
+
                                     <div class="d-flex">
-                                        <a href="#" class="card-btn">
-                                            Contenido temático
+                                        <?php
+                                        // verifica en la base de datos si existen unidades para esta materia
+                                        $selUnidades = $conn->query("SELECT * FROM unidades_tematicas WHERE id_materia = '$idMateria'");
+                                        if ($selUnidades->rowCount() > 0) {
+                                            ?>
+                                            <a href="direcciones.php?page=TopicPage&id=<?php echo $rowMaterias['id_materia']; ?>"
+                                                class=" card-btn">
+                                                Gestionar temas
+                                            </a>
+                                            <?php
+                                        }
+                                        ?>
+                                        <a href="direcciones.php?page=UnitPage&id=<?php echo $rowMaterias['id_materia']; ?>"
+                                            class=" card-btn">
+                                            Gestionar unidades
                                         </a>
-                                        <a href="#" class="card-btn">
-                                            Gestionar temas
-                                        </a>
+                                        <!-- <a href="direcciones.php?page=ContentPage&id=<?php echo $rowMaterias['id_materia']; ?>"
+                                                class="card-btn">
+                                                Gestionar contenido
+                                            </a> -->
                                     </div>
+
                                 </div>
                             </div>
                             <?php
