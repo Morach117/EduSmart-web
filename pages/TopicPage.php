@@ -118,7 +118,7 @@
                                                         <div class="btn-list flex-nowrap">
                                                             <button data-bs-toggle="modal"
                                                                 data-id="<?php echo $rowTemas['id_tema'] ?>"
-                                                                data-bs-target="#modal-danger"
+                                                                data-bs-target="#modal-danger-topic"
                                                                 class="btn btn-link text-danger text-decoration-none">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                     class="icon icon-tabler icon-tabler-trash" width="24"
