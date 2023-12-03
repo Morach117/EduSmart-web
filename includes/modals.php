@@ -149,6 +149,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!-- Modal de edición -->
 <div class="modal fade" id="modalEditarUnidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -171,11 +172,54 @@
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                 </form>
+=======
+<!-- Modal para ver las unidades -->
+<div class="modal fade" id="modal-unidades" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Lista de unidades</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="units" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Unidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $selUnidades = $conn->query("SELECT * FROM unidades_tematicas");
+                        while ($rowUnidades = $selUnidades->fetch(PDO::FETCH_ASSOC)) {
+                            $idUnidad = $rowUnidades['id_unidad'];
+                            $nombreUnidad = $rowUnidades['nombre_unidad'];
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $nombreUnidad ?>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" data-bs-dismiss="modal" data-value="<?php echo $idUnidad ?>"
+                                            class="copy-button btn btn-outline-primary">Copiar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+>>>>>>> e62977e1c543e11a56673311831f05dbb2d4a423
             </div>
         </div>
     </div>
 </div>
 
+<<<<<<< HEAD
 <div class="modal modal-blur fade" id="modal-danger-unidad" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -212,3 +256,20 @@
         </div>
     </div>
 </div>
+=======
+
+<!-- Optional: Place to the bottom of scripts -->
+<script>
+    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+
+</script>
+<script>
+    var copyButtons = document.getElementsByClassName("copy-button");
+    for (var i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].addEventListener("click", function () {
+            var valueToCopy = this.getAttribute("data-value");
+            document.getElementById("unidad").value = valueToCopy;
+        });
+    }
+</script>
+>>>>>>> e62977e1c543e11a56673311831f05dbb2d4a423
