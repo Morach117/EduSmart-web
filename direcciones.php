@@ -24,6 +24,8 @@ $pages = array(
     'ContentPage',
     'UnitPage',
     'SubtopicsPage',
+    'NewExamPage',
+    'AddQuestions',
 );
 
 if (in_array($page, $pages)) { // Si la página a la que se quiere acceder está en el array de páginas disponibles, incluir el archivo de la página

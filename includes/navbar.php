@@ -191,6 +191,9 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                         <a class="dropdown-item" href="direcciones.php?page=WorkTeams">
                           Asignar equipos
                         </a>
+                        <a class="dropdown-item" href="direcciones.php?page=WorkTeams">
+                          Asignar materias
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -226,188 +229,27 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                       </svg>
                     </span>
                     <span class="nav-link-title">
-                      Gestión de exámenes
+                      Exámenes
                     </span>
                   </a>
                   <div class="dropdown-menu">
                     <div class="dropdown-menu-columns">
                       <div class="dropdown-menu-column">
-                        <a class="dropdown-item" href="./empty.html">
-                          Empty page
+                        <a class="dropdown-item" href="direcciones.php?page=NewExamPage">
+                          Crear examen
                         </a>
                         <a class="dropdown-item" href="./cookie-banner.html">
-                          Cookie banner
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./activity.html">
-                          Activity
-                        </a>
-                        <a class="dropdown-item" href="./gallery.html">
-                          Gallery
-                        </a>
-                        <a class="dropdown-item" href="./invoice.html">
-                          Invoice
-                        </a>
-                        <a class="dropdown-item" href="./search-results.html">
-                          Search results
-                        </a>
-                        <a class="dropdown-item" href="./pricing.html">
-                          Pricing cards
-                        </a>
-                        <a class="dropdown-item" href="./pricing-table.html">
-                          Pricing table
-                        </a>
-                        <a class="dropdown-item" href="./faq.html">
-                          FAQ
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./users.html">
-                          Users
-                        </a>
-                        <a class="dropdown-item" href="./license.html">
-                          License
-                        </a>
-                      </div>
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item" href="./logs.html">
-                          Logs
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./music.html">
-                          Music
-                        </a>
-                        <a class="dropdown-item" href="./photogrid.html">
-                          Photogrid
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./tasks.html">
-                          Tasks
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./uptime.html">
-                          Uptime monitor
-                        </a>
-                        <a class="dropdown-item" href="./widgets.html">
-                          Widgets
-                        </a>
-                        <a class="dropdown-item" href="./wizard.html">
-                          Wizard
-                        </a>
-                        <a class="dropdown-item" href="./settings.html">
-                          Settings
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./trial-ended.html">
-                          Trial ended
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./job-listing.html">
-                          Job listing
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./page-loader.html">
-                          Page loader
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+                          Ver exámenes
                         </a>
                       </div>
                     </div>
                   </div>
-                </li>
-                <li class="nav-item active dropdown">
-                  <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside" role="button" aria-expanded="false">
-                    <span
-                      class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                        <path d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                        <path d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                        <path d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                      </svg>
-                    </span>
-                    <span class="nav-link-title">
-                      Layout
-                    </span>
-                  </a>
-                  <div class="dropdown-menu">
-                    <div class="dropdown-menu-columns">
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item" href="./layout-horizontal.html">
-                          Horizontal
-                        </a>
-                        <a class="dropdown-item" href="./layout-boxed.html">
-                          Boxed
-                          <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                        </a>
-                        <a class="dropdown-item" href="./layout-vertical.html">
-                          Vertical
-                        </a>
-                        <a class="dropdown-item" href="./layout-vertical-transparent.html">
-                          Vertical transparent
-                        </a>
-                        <a class="dropdown-item" href="./layout-vertical-right.html">
-                          Right vertical
-                        </a>
-                        <a class="dropdown-item" href="./layout-condensed.html">
-                          Condensed
-                        </a>
-                        <a class="dropdown-item" href="./layout-combo.html">
-                          Combined
-                        </a>
-                      </div>
-                      <div class="dropdown-menu-column">
-                        <a class="dropdown-item" href="./layout-navbar-dark.html">
-                          Navbar dark
-                        </a>
-                        <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                          Navbar sticky
-                        </a>
-                        <a class="dropdown-item active" href="./layout-navbar-overlap.html">
-                          Navbar overlap
-                        </a>
-                        <a class="dropdown-item" href="./layout-rtl.html">
-                          RTL mode
-                        </a>
-                        <a class="dropdown-item" href="./layout-fluid.html">
-                          Fluid
-                        </a>
-                        <a class="dropdown-item" href="./layout-fluid-vertical.html">
-                          Fluid vertical
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./icons.html">
-                    <span
-                      class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/ghost -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                          d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7" />
-                        <path d="M10 10l.01 0" />
-                        <path d="M14 10l.01 0" />
-                        <path d="M10 14a3.5 3.5 0 0 0 4 0" />
-                      </svg>
-                    </span>
-                    <span class="nav-link-title">
-                      4158 icons
-                    </span>
-                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-
-
     </header>
 
 

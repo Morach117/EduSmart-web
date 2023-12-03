@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.4.28-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             12.5.0.6677
+-- Versión del servidor:         10.4.28-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             12.5.0.6677
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for edusmart_v2
+-- Volcando estructura de base de datos para edusmart_v2
 CREATE DATABASE IF NOT EXISTS `edusmart_v2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `edusmart_v2`;
 
--- Dumping structure for table edusmart_v2.alumnos
+-- Volcando estructura para tabla edusmart_v2.alumnos
 CREATE TABLE IF NOT EXISTS `alumnos` (
   `id_alumno` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` varchar(50) NOT NULL DEFAULT '',
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `alumnos` (
   CONSTRAINT `FK_alumnos_institucion` FOREIGN KEY (`⁯id_institucion`) REFERENCES `institucion` (`id_institucion`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=816 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.alumnos: ~101 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.alumnos: ~101 rows (aproximadamente)
 INSERT INTO `alumnos` (`id_alumno`, `matricula`, `⁯id_institucion`, `nombre`, `app`, `apm`, `correo`, `contrasena`, `foto`, `telefono`, `sexo`, `fecha_nac`) VALUES
 	(715, '92010513', NULL, 'Hola mundo', ' mundo!&quot;&quot;);&quot;', 'Garcia', 'Caballero', '$2y$10$I6T1/0M/JWCTKgk/d0z6eutaOSNsU5h/gDNRx86jVb1adJBHEMrt.', NULL, '123', '', '2023-12-01'),
 	(716, '37552221', NULL, 'Luis', 'Perez', 'Sanchez', 'luis472@example.com', '$2y$10$oJg.Y7vZ58YQuunsnuHZauHmezoIqV2z21dtqz/5FMzp85GHUuNse', NULL, '919225054', 'F', '2003-12-02'),
@@ -144,7 +144,7 @@ INSERT INTO `alumnos` (`id_alumno`, `matricula`, `⁯id_institucion`, `nombre`, 
 	(814, '53403910', NULL, 'Sofia', 'Garcia', 'Torres', 'sofia248@example.com', '$2y$10$XHPiawiOrPVjIjGedKS5pueNrxB0oh1yRHKkUWzyVyEgomnTmgJbm', NULL, '929351230', 'M', '2001-12-02'),
 	(815, '23665410', NULL, 'Ana', 'Lopez', 'Molina', 'ana450@example.com', '$2y$10$hrHjRmx8/mt5Rf5ynB3.EeeZ8.84KF9GDcNvGrmz72jAIAieFkBp2', NULL, '922097587', 'M', '2002-12-02');
 
--- Dumping structure for table edusmart_v2.calificaciones
+-- Volcando estructura para tabla edusmart_v2.calificaciones
 CREATE TABLE IF NOT EXISTS `calificaciones` (
   `id_calificacion` int(11) NOT NULL AUTO_INCREMENT,
   `id_alumno` int(11) DEFAULT NULL,
@@ -159,9 +159,9 @@ CREATE TABLE IF NOT EXISTS `calificaciones` (
   CONSTRAINT `FK_calificaciones_alumnos` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.calificaciones: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.calificaciones: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.contenido_tematico
+-- Volcando estructura para tabla edusmart_v2.contenido_tematico
 CREATE TABLE IF NOT EXISTS `contenido_tematico` (
   `id_contenido` int(11) NOT NULL AUTO_INCREMENT,
   `id_subtema` int(11) DEFAULT NULL,
@@ -174,15 +174,9 @@ CREATE TABLE IF NOT EXISTS `contenido_tematico` (
   CONSTRAINT `FK_contenido_tematico_subtemas` FOREIGN KEY (`id_subtema`) REFERENCES `subtemas` (`id_subtema`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.contenido_tematico: ~3 rows (approximately)
-INSERT INTO `contenido_tematico` (`id_contenido`, `id_subtema`, `titulo`, `descripcion`, `nombre_archivo`, `tipo`) VALUES
-	(1, 1, 'Introduccion a sql', 'Video de instroducción', 'https://www.youtube.com/watch?v=gmdgvtQC89o', 'Video'),
-	(2, 1, 'Concepto básico', 'Infografia de introdución', 'concepto1.pdf', 'infografia'),
-	(3, 1, 'usuario de la BD', 'Infografia sobre el usuarioa de la BD', 'prueba.pdf', 'infografia'),
-	(16, 1, '123', '123', NULL, 'Video'),
-	(17, 1, '123', '132123', NULL, 'Video');
+-- Volcando datos para la tabla edusmart_v2.contenido_tematico: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.docentes
+-- Volcando estructura para tabla edusmart_v2.docentes
 CREATE TABLE IF NOT EXISTS `docentes` (
   `id_docente` int(11) NOT NULL AUTO_INCREMENT,
   `id_institucion` int(11) DEFAULT NULL,
@@ -194,21 +188,13 @@ CREATE TABLE IF NOT EXISTS `docentes` (
   PRIMARY KEY (`id_docente`),
   KEY `FK_docentes_institucion` (`id_institucion`),
   CONSTRAINT `FK_docentes_institucion` FOREIGN KEY (`id_institucion`) REFERENCES `institucion` (`id_institucion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.docentes: ~9 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.docentes: ~1 rows (aproximadamente)
 INSERT INTO `docentes` (`id_docente`, `id_institucion`, `nombre`, `app`, `apm`, `correo_electronico`, `password`) VALUES
-	(1, 1, 'Jesus', 'Dominguez', 'Gutu', 'nose@nose', 'xd'),
-	(2, 1, 'Maria', 'Perez', 'Lopez', 'maria@gmail.com', '12345678'),
-	(4, NULL, 'Adrian', 'Morales', 'Morales', 'morach.117@gmail.com', '946bb22607824e5c848f031141c50f3292c7066da09f957cdd5b41da8a4ca724'),
-	(5, NULL, 'Adrian', '123', 'Morales', 'moracsh117@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac'),
-	(6, NULL, 'Adrian', '123', 'Morales', 'morach1c17@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac'),
-	(9, NULL, 'alert(&amp;quot;Hola, mundo!&amp;quot;);', 'Morales', 'Morales', 'morach1..17@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac'),
-	(10, NULL, 'alert(&amp;quot;Hola, mundo!&amp;quot;);', '12313', 'Morales', 'mor.ach117@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac'),
-	(11, NULL, 'Adrian', '123123', 'Morales', '1morach117@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac'),
-	(13, NULL, 'Adrian', 'Morales', 'Ancheyta', 'morach117@gmail.com', '2209691a0f52928b05604a5c7dfd910aa0572c301aeae5092b7a51103cd645ac');
+	(14, 1, 'Jesus', 'Garcia', 'Caballero', 'garciacaballerojesus285@gmail.com', '8812c96f99bf8b404e3d138d838b8c994507bc8dc19178f245d1a69fdf5b7ac5');
 
--- Dumping structure for table edusmart_v2.equipos
+-- Volcando estructura para tabla edusmart_v2.equipos
 CREATE TABLE IF NOT EXISTS `equipos` (
   `id_equipo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_equipo` varchar(100) DEFAULT NULL,
@@ -216,13 +202,13 @@ CREATE TABLE IF NOT EXISTS `equipos` (
   PRIMARY KEY (`id_equipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.equipos: ~3 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.equipos: ~3 rows (aproximadamente)
 INSERT INTO `equipos` (`id_equipo`, `nombre_equipo`, `numero_integrantes`) VALUES
 	(4, 'Equipo 1', 5),
 	(5, '', 0),
 	(6, 'idk', 5);
 
--- Dumping structure for table edusmart_v2.equipoxalumno
+-- Volcando estructura para tabla edusmart_v2.equipoxalumno
 CREATE TABLE IF NOT EXISTS `equipoxalumno` (
   `id_alumno` int(11) DEFAULT NULL,
   `id_equipo` int(11) DEFAULT NULL,
@@ -232,9 +218,9 @@ CREATE TABLE IF NOT EXISTS `equipoxalumno` (
   CONSTRAINT `FK_equipoxalumno_equipos` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.equipoxalumno: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.equipoxalumno: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.examenes
+-- Volcando estructura para tabla edusmart_v2.examenes
 CREATE TABLE IF NOT EXISTS `examenes` (
   `id_examen` int(11) NOT NULL AUTO_INCREMENT,
   `id_docente` int(11) DEFAULT NULL,
@@ -251,11 +237,9 @@ CREATE TABLE IF NOT EXISTS `examenes` (
   CONSTRAINT `FK_examenes_unidades_tematicas` FOREIGN KEY (`id_unidad`) REFERENCES `unidades_tematicas` (`id_unidad`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.examenes: ~1 rows (approximately)
-INSERT INTO `examenes` (`id_examen`, `id_docente`, `id_materia`, `id_unidad`, `tipo_examen`, `fecha_examen`) VALUES
-	(2, 2, 2, 2, 'Equipo', '2023-10-13');
+-- Volcando datos para la tabla edusmart_v2.examenes: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.gamificacion
+-- Volcando estructura para tabla edusmart_v2.gamificacion
 CREATE TABLE IF NOT EXISTS `gamificacion` (
   `id_ranking` int(11) NOT NULL AUTO_INCREMENT,
   `id_examen` int(11) DEFAULT NULL,
@@ -271,9 +255,9 @@ CREATE TABLE IF NOT EXISTS `gamificacion` (
   CONSTRAINT `FK_gamificacion_materias` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.gamificacion: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.gamificacion: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.gamificacion_equipos
+-- Volcando estructura para tabla edusmart_v2.gamificacion_equipos
 CREATE TABLE IF NOT EXISTS `gamificacion_equipos` (
   `id_ranking` int(11) NOT NULL AUTO_INCREMENT,
   `id_examen` int(11) DEFAULT NULL,
@@ -289,9 +273,9 @@ CREATE TABLE IF NOT EXISTS `gamificacion_equipos` (
   CONSTRAINT `FK_gamificacion_equipos_materias` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.gamificacion_equipos: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.gamificacion_equipos: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.institucion
+-- Volcando estructura para tabla edusmart_v2.institucion
 CREATE TABLE IF NOT EXISTS `institucion` (
   `id_institucion` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(70) DEFAULT NULL,
@@ -301,11 +285,11 @@ CREATE TABLE IF NOT EXISTS `institucion` (
   KEY `nombre` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.institucion: ~1 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.institucion: ~0 rows (aproximadamente)
 INSERT INTO `institucion` (`id_institucion`, `nombre`, `tipo`, `correo`) VALUES
 	(1, 'UTS', 'Universidad Tecnologica', 'uts@uts');
 
--- Dumping structure for table edusmart_v2.materias
+-- Volcando estructura para tabla edusmart_v2.materias
 CREATE TABLE IF NOT EXISTS `materias` (
   `id_materia` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_materia` varchar(100) DEFAULT NULL,
@@ -314,17 +298,16 @@ CREATE TABLE IF NOT EXISTS `materias` (
   PRIMARY KEY (`id_materia`),
   KEY `FK_materias_docentes` (`id_docente`),
   CONSTRAINT `FK_materias_docentes` FOREIGN KEY (`id_docente`) REFERENCES `docentes` (`id_docente`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.materias: ~5 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.materias: ~4 rows (aproximadamente)
 INSERT INTO `materias` (`id_materia`, `nombre_materia`, `img`, `id_docente`) VALUES
-	(1, 'Base de datos', '65483dec5e288.jpg', NULL),
-	(2, 'Desarrollo Web', '65483de7cf539.jpg', NULL),
-	(4, 'Desarrollo web Progresivo', '65483ddb7c418.jpg', NULL),
-	(43, 'xd', '../../files/uploads/cover_656bc91727c464.20773520_gameobject_0.jpg', 13),
-	(44, 'alert(&quot;Hola, mundo!&quot;', '../../files/uploads/cover_656bc97146c221.26044104_gameobject_0.jpg', 13);
+	(45, 'Base de datos', '../../files/uploads/cover_656be0407bcba6.20907492_linecons_e0214_256.png', 14),
+	(46, 'Desarrollo web responsivo', '../../files/uploads/cover_656be0be29b692.42473748_WEB.png', 14),
+	(47, 'Negociación empresarial', '../../files/uploads/cover_656be199d7c423.71144257_download.png', 14),
+	(49, 'Metodologías para el desarrollo de proyectos', '../../files/uploads/cover_656bea96e7d793.57922793_xd.png', 14);
 
--- Dumping structure for table edusmart_v2.materiaxalumno
+-- Volcando estructura para tabla edusmart_v2.materiaxalumno
 CREATE TABLE IF NOT EXISTS `materiaxalumno` (
   `id_alumno` int(11) NOT NULL AUTO_INCREMENT,
   `id_materia` int(11) DEFAULT NULL,
@@ -337,9 +320,9 @@ CREATE TABLE IF NOT EXISTS `materiaxalumno` (
   CONSTRAINT `FK_materiaxalumno_materias` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.materiaxalumno: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.materiaxalumno: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.planes_pago
+-- Volcando estructura para tabla edusmart_v2.planes_pago
 CREATE TABLE IF NOT EXISTS `planes_pago` (
   `id_plan` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
@@ -348,9 +331,9 @@ CREATE TABLE IF NOT EXISTS `planes_pago` (
   PRIMARY KEY (`id_plan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.planes_pago: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.planes_pago: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.preguntas
+-- Volcando estructura para tabla edusmart_v2.preguntas
 CREATE TABLE IF NOT EXISTS `preguntas` (
   `id_pregunta` int(11) NOT NULL AUTO_INCREMENT,
   `id_examen` int(11) DEFAULT NULL,
@@ -370,12 +353,9 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
   CONSTRAINT `FK_preguntas_unidades_tematicas` FOREIGN KEY (`id_unidad`) REFERENCES `unidades_tematicas` (`id_unidad`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.preguntas: ~2 rows (approximately)
-INSERT INTO `preguntas` (`id_pregunta`, `id_examen`, `id_unidad`, `tiempo_respuesta`, `enunciado`, `inciso_a`, `inciso_b`, `inciso_c`, `inciso_d`, `respuesta`, `multimedia`) VALUES
-	(5, 2, 2, '00:00:59', 'Pregunta 5', NULL, NULL, NULL, NULL, 'A', 'https://www.youtube.com/watch?v=gmdgvtQC89o'),
-	(6, 2, 2, '00:00:59', 'Pregunta 6', 'A', 'B', 'C', 'D', 'B', NULL);
+-- Volcando datos para la tabla edusmart_v2.preguntas: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.respuesta
+-- Volcando estructura para tabla edusmart_v2.respuesta
 CREATE TABLE IF NOT EXISTS `respuesta` (
   `id_respuesta` int(11) NOT NULL AUTO_INCREMENT,
   `id_pregunta` int(11) DEFAULT NULL,
@@ -387,9 +367,9 @@ CREATE TABLE IF NOT EXISTS `respuesta` (
   CONSTRAINT `FK_respuesta_preguntas` FOREIGN KEY (`id_pregunta`) REFERENCES `preguntas` (`id_pregunta`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.respuesta: ~0 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.respuesta: ~0 rows (aproximadamente)
 
--- Dumping structure for table edusmart_v2.subtemas
+-- Volcando estructura para tabla edusmart_v2.subtemas
 CREATE TABLE IF NOT EXISTS `subtemas` (
   `id_subtema` int(11) NOT NULL AUTO_INCREMENT,
   `id_tema` int(11) DEFAULT NULL,
@@ -399,48 +379,34 @@ CREATE TABLE IF NOT EXISTS `subtemas` (
   CONSTRAINT `FK_subtemas_tema` FOREIGN KEY (`id_tema`) REFERENCES `tema` (`id_tema`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.subtemas: ~20 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.subtemas: ~6 rows (aproximadamente)
 INSERT INTO `subtemas` (`id_subtema`, `id_tema`, `nombre`) VALUES
-	(1, 1, 'Conceptos básicos'),
-	(2, 1, 'Usuario de la BD'),
-	(3, 1, 'Modelo  de datos'),
-	(4, 2, 'Cardinalidad'),
-	(13, 6, '123123'),
-	(14, NULL, '123'),
-	(15, NULL, '123'),
-	(16, NULL, '123'),
+	(14, 8, '123'),
+	(15, 8, '123'),
+	(16, 9, '123'),
 	(17, NULL, '123'),
 	(18, NULL, '123123'),
-	(19, NULL, '12313'),
-	(20, 2, '12313'),
-	(21, 2, '12313'),
-	(22, 2, '12313'),
-	(23, 2, '123'),
-	(24, 2, '123'),
-	(25, 2, '123123'),
-	(26, 2, ''),
-	(27, 6, '123123'),
-	(28, 6, 'xd');
+	(19, NULL, '12313');
 
--- Dumping structure for table edusmart_v2.tema
+-- Volcando estructura para tabla edusmart_v2.tema
 CREATE TABLE IF NOT EXISTS `tema` (
   `id_tema` int(11) NOT NULL AUTO_INCREMENT,
   `id_unidad` int(11) DEFAULT NULL,
+  `materia` int(11) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_tema`),
   KEY `FK_tema_unidades_tematicas` (`id_unidad`),
+  KEY `FK_tema_materias` (`materia`),
+  CONSTRAINT `FK_tema_materias` FOREIGN KEY (`materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tema_unidades_tematicas` FOREIGN KEY (`id_unidad`) REFERENCES `unidades_tematicas` (`id_unidad`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.tema: ~5 rows (approximately)
-INSERT INTO `tema` (`id_tema`, `id_unidad`, `nombre`) VALUES
-	(1, 1, 'Introducción'),
-	(2, 1, 'Modelo Entidad-Relación'),
-	(3, 2, 'Introducción a GitHub'),
-	(6, 1, '12313'),
-	(7, 6, '12313');
+-- Volcando datos para la tabla edusmart_v2.tema: ~2 rows (aproximadamente)
+INSERT INTO `tema` (`id_tema`, `id_unidad`, `materia`, `nombre`) VALUES
+	(8, 10, 45, 'a'),
+	(9, 10, 46, 'xd');
 
--- Dumping structure for table edusmart_v2.unidades_tematicas
+-- Volcando estructura para tabla edusmart_v2.unidades_tematicas
 CREATE TABLE IF NOT EXISTS `unidades_tematicas` (
   `id_unidad` int(11) NOT NULL AUTO_INCREMENT,
   `id_materia` int(11) DEFAULT NULL,
@@ -448,15 +414,11 @@ CREATE TABLE IF NOT EXISTS `unidades_tematicas` (
   PRIMARY KEY (`id_unidad`),
   KEY `FK_unidades_tematicas_materias` (`id_materia`),
   CONSTRAINT `FK_unidades_tematicas_materias` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table edusmart_v2.unidades_tematicas: ~5 rows (approximately)
+-- Volcando datos para la tabla edusmart_v2.unidades_tematicas: ~1 rows (aproximadamente)
 INSERT INTO `unidades_tematicas` (`id_unidad`, `id_materia`, `nombre_unidad`) VALUES
-	(1, 1, 'Manejo de SQL'),
-	(2, 2, 'Versionamiento'),
-	(3, 2, 'Docker'),
-	(5, 1, '123'),
-	(6, 1, 'No se');
+	(10, 45, 'xd');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
