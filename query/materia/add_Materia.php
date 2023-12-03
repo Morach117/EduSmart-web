@@ -13,9 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK) {
         $directorioDestino = '../../files/uploads/';
         $nombreArchivo = uniqid('cover_', true) . '_' . $_FILES['cover']['name'];
-        $rutaImagen = $nombreArchivo;
-
+        $rutaImagen = $directorioDestino . $nombreArchivo;
+        
         move_uploaded_file($_FILES['cover']['tmp_name'], $rutaImagen);
+        
     }
 
     try {
