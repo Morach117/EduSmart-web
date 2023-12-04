@@ -112,7 +112,7 @@
 </div>
 
 <!-- modal para eliminar tema -->
-<div class="modal modal-blur fade" id="modal-danger-topic" data-bs-backdrop="static" tabindex="-1" role="dialog"
+<div class="modal modal-blur fade" id="modal-danger-topic-tema" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -149,7 +149,7 @@
     </div>
 </div>
 
-<!-- Modal de edición -->
+<!-- Modal para editar unidad -->
 <div class="modal fade" id="modalEditarUnidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -176,6 +176,8 @@
     </div>
 </div>
 
+<!-- Modal para eliminar unidad -->
+
 <div class="modal modal-blur fade" id="modal-danger-unidad" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -193,7 +195,7 @@
                     <path d="M12 9v4" />
                     <path d="M12 17h.01" />
                 </svg>
-                <h3>¿Estas seguro de eliminar esta materia?</h3>
+                <h3>¿Estas seguro de eliminar esta unidad?</h3>
                 </h3>
                 <div class="text-muted">No podrás revertir esta acción</div>
             </div>
