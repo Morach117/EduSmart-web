@@ -436,28 +436,6 @@
 </div>
 
 
-<!-- Modal para editar y activar/desactivar examen -->
-<div class="modal" id="editarExamenModal" tabindex="-1" aria-labelledby="editarExamenModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarExamenModalLabel">Editar Examen</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Contenido del formulario de edición y activación/desactivación -->
-                <!-- Aquí puedes agregar campos de edición y el botón de activar/desactivar -->
-                <p>Contenido del formulario...</p>
-                <button type="button" class="btn btn-success" id="activarDesactivarBtn">Activar</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="guardarCambiosBtn">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script>
