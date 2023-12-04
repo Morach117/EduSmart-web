@@ -29,56 +29,59 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-fieldset">
-                                <div class="row">
-                                    <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir contenido
-                                        temático</h3>
-                                </div>
-                                <hr class="m-1">
-                                <div class="row g-3">
-                                    <div class="col mb-3">
-                                        <div class="form-label">Multimedia</div>
-                                        <input type="text" class="form-control" placeholder="YouTube Link" />
-                                    </div>
-                                    <div class="col form-group">
-                                        <label htmlFor="descripcion">Descripción:</label>
-                                        <textarea class="form-control" id="descripcion" rows="2"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col mb-3">
-                                        <div class="form-label">Multimedia</div>
-                                        <input type="file" class="form-control" multiple="multiple" />
-                                    </div>
-                                    <div class="col form-group">
-                                        <label htmlFor="descripcion">Descripción:</label>
-                                        <textarea class="form-control" id="descripcion" rows="2"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row g-3 ps-2">
-                                    <div class="list-group col">
-                                        <div class="file-list list-group list-group-numbered">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col">
-                                        <a href="direcciones.php?page=SubjectPage"> Volver a la lista de materias </a>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-end">
-                                            <button type="submit" class="btn btn-primary">
-                                                Subir multimedia
-                                            </button>
-                                            <button type="reset" class="btn btn-danger ms-2">
-                                                Cancelar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                        <form class="form-fieldset" enctype="multipart/form-data" method="post" action="./query/contenido/addContenido.php">
+    <div class="row">
+        <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir contenido temático</h3>
+    </div>
+    <hr class="m-1">
+
+    <div class="row g-3">
+        <div class="col mb-3">
+            <div class="form-label">Tipo de Contenido:</div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipo_contenido" id="videoRadio" value="video">
+                <label class="form-check-label" for="videoRadio">Video</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipo_contenido" id="infografiaRadio" value="infografia">
+                <label class="form-check-label" for="infografiaRadio">Infografía</label>
+            </div>
+        </div>
+        <div class="col mb-3" id="multimediaLinkContainer">
+            <div class="form-label">Multimedia</div>
+            <input type="text" class="form-control" name="multimedia_link" placeholder="YouTube Link" />
+        </div>
+        <div class="col mb-3" id="tituloContainer">
+            <div class="form-label">Titulo:</div>
+            <input type="hidden" name="id_subtema" value="<?php echo $id; ?>">
+            <input type="text" class="form-control" name="titulo" id="titulo" />
+        </div>
+        <div class="col mb-3" id="archivoContainer" style="display: none;">
+    <div class="form-label">Archivo:</div>
+    <input type="file" name="nombre_archivo" class="form-control" multiple="multiple" accept=".pdf, .doc, .docx, .ppt, .pptx" />
+</div>
+
+    <div class="col form-group" id="descripcionArchivoContainer" style="display: none;">
+        <label for="descripcionArchivo">Descripción del Archivo:</label>
+        <textarea class="form-control" name="descripcion" id="descripcionArchivo" rows="2"></textarea>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col">
+        <a href="direcciones.php?page=SubjectPage">Volver a la lista de materias</a>
+    </div>
+    <div class="col">
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Subir multimedia</button>
+            <button type="reset" class="btn btn-danger ms-2">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+</form>
+
+
                         </div>
                     </div>
 
@@ -168,5 +171,94 @@
     new DataTable('#example');
 
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var videoRadio = document.getElementById('videoRadio');
+        var infografiaRadio = document.getElementById('infografiaRadio');
+        var multimediaLinkContainer = document.getElementById('multimediaLinkContainer');
+        var tituloContainer = document.getElementById('tituloContainer');
+        var archivoContainer = document.getElementById('archivoContainer');
+        var descripcionArchivoContainer = document.getElementById('descripcionArchivoContainer');
+
+        function toggleElements() {
+            if (videoRadio.checked) {
+                multimediaLinkContainer.style.display = 'block';
+                tituloContainer.style.display = 'block';
+                archivoContainer.style.display = 'none';
+                descripcionArchivoContainer.style.display = 'block';
+            } else if (infografiaRadio.checked) {
+                multimediaLinkContainer.style.display = 'none';
+                tituloContainer.style.display = 'block';
+                archivoContainer.style.display = 'block';
+                descripcionArchivoContainer.style.display = 'block';
+            }
+        }
+
+        toggleElements();
+
+        videoRadio.addEventListener('change', toggleElements);
+        infografiaRadio.addEventListener('change', toggleElements);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Manejar el envío del formulario
+        $('form.form-fieldset').submit(function (event) {
+            // Evitar el envío tradicional del formulario
+            event.preventDefault();
+
+            // Obtener la URL del formulario
+            var url = $(this).attr('action');
+
+            // Obtener los datos del formulario
+            var formData = new FormData(this);
+
+            // Realizar la solicitud Ajax
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function (response) {
+                    // Mostrar la alerta SweetAlert según la respuesta
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function () {
+                            // Recargar la página
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function () {
+                    // Mostrar una alerta en caso de error de Ajax
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error al procesar la solicitud',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
 
 </html>
