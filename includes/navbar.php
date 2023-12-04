@@ -238,7 +238,7 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                         <a class="dropdown-item" href="direcciones.php?page=NewExamPage">
                           Crear examen
                         </a>
-                        <a class="dropdown-item" href="./cookie-banner.html">
+                        <a class="dropdown-item" href="direcciones.php?page=ShowExams">
                           Ver exámenes
                         </a>
                       </div>

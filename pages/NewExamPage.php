@@ -88,7 +88,7 @@ $docenteId = $selDocenteData['id_docente'];
                                 </div>
                                 <div class="row g-3">
                                     <div class="col">
-                                        <!-- <a href="direcciones.php?page=SubjectPage"> Volver a la lista de materias </a> -->
+                                        <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a>
                                     </div>
                                     <div class="col">
                                         <div class="text-end">
