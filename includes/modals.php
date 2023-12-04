@@ -302,7 +302,95 @@
     </div>
 </div>
 
+<div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog"
+    aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Gestionar equipos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form class="form-fieldset">
+                        <div class="row">
+                            <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col mb-3">
+                                <label for="nombre" class="form-label">Nombre del equipo</label>
+                                <input type="text" maxlength="100" class="form-control" name="nombre" required
+                                    id="nombre" aria-describedby="helpId" placeholder="">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="time" class="form-label">Numero de integrantes</label>
+                                <input type="number" class="form-control" name="time" id="time"
+                                    aria-describedby="helpId" required placeholder="">
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col">
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">
+                                        Subir examen
+                                    </button>
+                                    <button type="reset" class="btn btn-danger ms-2">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Alumnos Disponibles</h4>
+                        <div class="table-responsive">
+                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Matricula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th class="text-center">Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno");
+                                    if ($selAlumno->rowCount() > 0) {
+                                        while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['matricula'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['nombre'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php $Apellidos = $selAlumnoRow['app'] . " " . $selAlumnoRow['apm'];
+                                                    echo $Apellidos ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="checkbox" name="" id="">
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "No hay alumnos registrados.";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+    new DataTable('#alumnos-table');
+</script>
 <!-- Optional: Place to the bottom of scripts -->
 <script>
     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
