@@ -112,7 +112,7 @@
 </div>
 
 <!-- modal para eliminar tema -->
-<div class="modal modal-blur fade" id="modal-danger-topic" data-bs-backdrop="static" tabindex="-1" role="dialog"
+<div class="modal modal-blur fade" id="modal-danger-topic-tema" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -187,46 +187,28 @@
     </div>
 </div>
 
-<!-- Modal para ver las unidades -->
-<div class="modal fade" id="modal-unidades" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+<!-- Modal para editar unidad -->
+<div class="modal fade" id="modalEditarUnidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Lista de unidades</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar detalles de la unidad</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="units" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Unidad</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $selUnidades = $conn->query("SELECT * FROM unidades_tematicas");
-                        while ($rowUnidades = $selUnidades->fetch(PDO::FETCH_ASSOC)) {
-                            $idUnidad = $rowUnidades['id_unidad'];
-                            $nombreUnidad = $rowUnidades['nombre_unidad'];
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $nombreUnidad ?>
-                                </td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" data-bs-dismiss="modal" data-value="<?php echo $idUnidad ?>"
-                                            class="copy-button btn btn-outline-primary">Copiar</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                <form id="formEditarUnidad" method="post" action="procesar_edicion_unidad.php">
+                    <input type="hidden" id="unidadId" name="unidadId" value="">
+                    <div class="mb-3">
+                        <label for="editNombreUnidad" class="form-label">Nombre de la Unidad</label>
+                        <input type="text" class="form-control" id="editNombreUnidad" name="editNombreUnidad" required>
+                    </div>
+                    <!-- Agrega más campos según sea necesario -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -246,197 +228,4 @@
             document.getElementById("unidad").value = valueToCopy;
         });
     }
-</script>
-
-<!-- Modal para editar las preguntas -->
-
-<div class="modal fade" id="editquestion" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Editar pregunta</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <form class="form-fieldset p-5">
-                        <div class="row">
-                            <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col mb-3">
-                                <label for="Enunciado" class="form-label">Enunciado</label>
-                                <input type="text" maxlength="100" class="form-control" name="Enunciado" required
-                                    id="Enunciado" aria-describedby="helpId" placeholder="">
-                                <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
-                                <input type="text" class="form-control" name="time" id="time" aria-describedby="helpId"
-                                    required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para
-                                    responder</small>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col mb-3">
-                                <label for="a" class="form-label">Inciso a</label>
-                                <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId"
-                                    required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Inciso a</small>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="b" class="form-label">Inciso b</label>
-                                <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId"
-                                    required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Inciso b</small>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="c" class="form-label">Inciso c</label>
-                                <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId"
-                                    required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Inciso c</small>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="d" class="form-label">Inciso d</label>
-                                <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId"
-                                    required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Inciso d</small>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col mb-3">
-                                <label for="" class="form-label">Respuesta</label>
-                                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" required
-                                    placeholder="">
-                                <small id="helpId" class="form-text text-muted"> Respuesta</small>
-                            </div>
-                            <div class="col mb-3">
-                                <label for="multimedia" class="form-label">Multimedia (opcional)</label>
-                                <input type="file" class="form-control" name="multimedia" id="multimedia"
-                                    aria-describedby="helpId" required placeholder="">
-                                <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col">
-                            </div>
-                            <div class="col">
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">
-                                        Subir examen
-                                    </button>
-                                    <button type="reset" class="btn btn-danger ms-2">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog"
-    aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Gestionar equipos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <form class="form-fieldset">
-                        <div class="row">
-                            <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col mb-3">
-                                <label for="nombre" class="form-label">Nombre del equipo</label>
-                                <input type="text" maxlength="100" class="form-control" name="nombre" required
-                                    id="nombre" aria-describedby="helpId" placeholder="">
-                            </div>
-                            <div class="col mb-3">
-                                <label for="time" class="form-label">Numero de integrantes</label>
-                                <input type="number" class="form-control" name="time" id="time"
-                                    aria-describedby="helpId" required placeholder="">
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col">
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">
-                                        Subir examen
-                                    </button>
-                                    <button type="reset" class="btn btn-danger ms-2">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <h4>Alumnos Disponibles</h4>
-                        <div class="table-responsive">
-                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Matricula</th>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th class="text-center">Seleccionar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno");
-                                    if ($selAlumno->rowCount() > 0) {
-                                        while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $selAlumnoRow['matricula'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $selAlumnoRow['nombre'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php $Apellidos = $selAlumnoRow['app'] . " " . $selAlumnoRow['apm'];
-                                                    echo $Apellidos ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="checkbox" name="" id="">
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    } else {
-                                        echo "No hay alumnos registrados.";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    new DataTable('#alumnos-table');
-</script>
-<script>
-    var editquestion = document.getElementById('editquestion');
-
-    editquestion.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        let button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
-        let recipient = button.getAttribute('data-bs-whatever');
-
-        // Use above variables to manipulate the DOM
-    });
 </script>

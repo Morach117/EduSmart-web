@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insumos</title>
-</head>
-
 <body>
     <div class="page-wrapper">
         <!-- Page header -->
@@ -20,23 +10,19 @@
                     $id = $_GET['id'];
                     ?>
 
-
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-fieldset">
+                            <form class="form-fieldset" method="post" action="./query/subtema/addSubtema.php">
                                 <div class="row">
                                     <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir Subtemas</h3>
-                                    <!-- <a href="direcciones.php?page=SubtopicsPage&id=<?php echo $id ?>"
-                                        class="col text-end link-primary"> Añadir
-                                        subtemas </a> -->
                                 </div>
                                 <hr class="m-1">
+                                <!-- Agregando un campo oculto para almacenar el ID del tema -->
+                                <input type="hidden" name="id_tema" value="<?php echo $id; ?>">
                                 <div class="mb-3">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Nombre del nuevo
-                                            subtema</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" maxlength="30"
-                                            required placeholder="Nuevo tema">
+                                        <label for="exampleFormControlInput1" class="form-label">Nombre del nuevo subtema</label>
+                                        <input type="text" class="form-control" name="nuevoSubtema" id="exampleFormControlInput1" maxlength="30" required placeholder="Nuevo tema">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -67,15 +53,10 @@
                                             while ($rowSubtemas = $selSubtemas->fetch(PDO::FETCH_ASSOC)) {
                                                 ?>
                                                 <tr>
+                                                    <td><?php echo $rowSubtemas['id_subtema'] ?></td>
+                                                    <td><?php echo $rowSubtemas['nombre'] ?></td>
                                                     <td>
-                                                        <?php echo $rowSubtemas['id_subtema'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $rowSubtemas['nombre'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <a href="direcciones.php?page=ContentPage&id=<?php echo $rowSubtemas['id_subtema'] ?>"
-                                                            class="btn btn-primary">Ver contenido</a>
+                                                        <a href="direcciones.php?page=ContentPage&id=<?php echo $rowSubtemas['id_subtema'] ?>" class="btn btn-primary">Ver contenido</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -96,21 +77,18 @@
                         <div class="container-tight py-4">
                             <div class="empty">
                                 <div class="empty-header">404</div>
-                                <p class="empty-title">Oops… No deberías estas aquí</p>
+                                <p class="empty-title">Oops… No deberías estar aquí</p>
                                 <p class="empty-subtitle text-muted">
                                 </p>
                                 <div class="empty-action">
                                     <a href="./." class="btn btn-primary">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/arrow-left -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l14 0" />
                                             <path d="M5 12l6 6" />
                                             <path d="M5 12l6 -6" />
                                         </svg>
-                                        Take me home
+                                        Llévame a casa
                                     </a>
                                 </div>
                             </div>
@@ -119,13 +97,57 @@
                     <?php
                 }
                 ?>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // modificar numero de items a mostrar
+        new DataTable('#example');
+    </script>
 
+    <script>
+        $(document).ready(function() {
+            $('form.form-fieldset').submit(function(event) {
+                event.preventDefault();
+                var url = $(this).attr('action');
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Éxito',
+                                text: response.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(function() {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al procesar la solicitud',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-<script>
-    // modificar numero de items a mostrar
-    new DataTable('#example');
-
-</script>
 
 </html>
