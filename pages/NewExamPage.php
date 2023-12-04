@@ -1,3 +1,7 @@
+<?php
+$docenteId = $selDocenteData['id_docente'];
+?>
+
 <body>
     <div class="page-wrapper">
         <!-- Page header -->
@@ -84,7 +88,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
         // modificar numero de items a mostrar

@@ -28,81 +28,80 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="card mt-3">
                     <div class="card-body">
-                        <form class="form-fieldset p-5">
-                            <div class="row">
-                                <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col mb-3">
-                                    <label for="Enunciado" class="form-label">Enunciado</label>
-                                    <input type="text" maxlength="100" class="form-control" name="Enunciado" required
-                                        id="Enunciado" aria-describedby="helpId" placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
-                                    <input type="text" class="form-control" name="time" id="time"
-                                        aria-describedby="helpId" required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para
-                                        responder</small>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col mb-3">
-                                    <label for="a" class="form-label">Inciso a</label>
-                                    <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId"
-                                        required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Inciso a</small>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="b" class="form-label">Inciso b</label>
-                                    <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId"
-                                        required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Inciso b</small>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="c" class="form-label">Inciso c</label>
-                                    <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId"
-                                        required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Inciso c</small>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="d" class="form-label">Inciso d</label>
-                                    <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId"
-                                        required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Inciso d</small>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col mb-3">
-                                    <label for="" class="form-label">Respuesta</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-                                        required placeholder="">
-                                    <small id="helpId" class="form-text text-muted"> Respuesta</small>
-                                </div>
-                                <div class="col mb-3">
-                                    <label for="multimedia" class="form-label">Multimedia (opcional)</label>
-                                    <input type="file" class="form-control" name="multimedia" id="multimedia"
-                                        aria-describedby="helpId" required placeholder="">
-                                    <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col">
-                                    <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a>
-                                </div>
-                                <div class="col">
-                                    <div class="text-end">
-                                        <button type="submit" class="btn btn-primary">
-                                            Subir examen
-                                        </button>
-                                        <button type="reset" class="btn btn-danger ms-2">
-                                            Cancelar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <form class="form-fieldset p-5">
+    <div class="row">
+        <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
+    </div>
+    <div class="row g-3">
+        <div class="col mb-3">
+            <input type="hidden" name="id_unidad" value="<?php echo $rowExamen['id_unidad']; ?>">
+            <input type="hidden" name="id_examen" value="<?php echo $idExamen; ?>">
+
+            <label for="Enunciado" class="form-label">Enunciado</label>
+            <input type="text" maxlength="100" class="form-control" name="Enunciado" required id="Enunciado"
+                aria-describedby="helpId" placeholder="">
+            <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
+        </div>
+        <div class="col mb-3">
+            <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
+            <input type="text" class="form-control" name="time" id="time" aria-describedby="helpId" required
+                placeholder="">
+            <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para responder</small>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col mb-3">
+            <label for="a" class="form-label">Inciso a</label>
+            <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId" required placeholder="">
+            <small id="helpId" class="form-text text-muted">Inciso a</small>
+        </div>
+        <div class="col mb-3">
+            <label for="b" class="form-label">Inciso b</label>
+            <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId" required placeholder="">
+            <small id="helpId" class="form-text text-muted">Inciso b</small>
+        </div>
+        <div class="col mb-3">
+            <label for="c" class="form-label">Inciso c</label>
+            <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId" required placeholder="">
+            <small id="helpId" class="form-text text-muted">Inciso c</small>
+        </div>
+        <div class="col mb-3">
+            <label for="d" class="form-label">Inciso d</label>
+            <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId" required placeholder="">
+            <small id="helpId" class="form-text text-muted">Inciso d</small>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col mb-3">
+            <label for="" class="form-label">Respuesta</label>
+            <select class="form-select" name="respuesta" id="respuesta">
+                <option value="" selected>Seleccionar respuesta</option>
+            </select>
+            <small id="helpId" class="form-text text-muted">Respuesta</small>
+        </div>
+        <div class="col mb-3">
+            <label for="multimedia" class="form-label">Multimedia (opcional)</label>
+            <input type="file" class="form-control" name="multimedia" id="multimedia" aria-describedby="helpId"
+                placeholder="">
+            <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col">
+            <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a>
+        </div>
+        <div class="col">
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                    Subir examen
+                </button>
+                <button type="reset" class="btn btn-danger ms-2">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
                         <div class="form-fieldset">
                             <h3 class="col text-2xl font-semibold leading-none tracking-tight">Preguntas actuales</h3>
                             <hr class="m-1">
@@ -178,6 +177,112 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
         new DataTable('#example');
 
     </script>
+
+<script>
+    $(document).ready(function () {
+        $('input[name^="a"]').on('input', function () {
+            actualizarRespuestas();
+        });
+
+        $('input[name^="b"]').on('input', function () {
+            actualizarRespuestas();
+        });
+
+        $('input[name^="c"]').on('input', function () {
+            actualizarRespuestas();
+        });
+
+        $('input[name^="d"]').on('input', function () {
+            actualizarRespuestas();
+        });
+    });
+
+    function actualizarRespuestas() {
+        var respuestasA = obtenerRespuestasIngresadas('a');
+        var respuestasB = obtenerRespuestasIngresadas('b');
+        var respuestasC = obtenerRespuestasIngresadas('c');
+        var respuestasD = obtenerRespuestasIngresadas('d');
+
+        var respuestasTotales = [...respuestasA, ...respuestasB, ...respuestasC, ...respuestasD];
+
+        llenarSelectRespuestas(respuestasTotales);
+    }
+
+    function obtenerRespuestasIngresadas(inciso) {
+        var respuestas = [];
+        $('input[name^="' + inciso + '"]').each(function () {
+            var respuesta = $(this).val();
+            if (respuesta.trim() !== '') {
+                respuestas.push(respuesta);
+            }
+        });
+        return respuestas;
+    }
+
+    function llenarSelectRespuestas(respuestas) {
+        var selectRespuesta = $('#respuesta');
+        selectRespuesta.empty();
+        respuestas.forEach(function (respuesta) {
+            selectRespuesta.append('<option value="' + respuesta + '">' + respuesta + '</option>');
+        });
+        selectRespuesta.append('<option value="" selected>Seleccionar respuesta</option>');
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Maneja el envío del formulario al hacer clic en el botón "Subir examen"
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            // Serializa los datos del formulario
+            var formData = new FormData(this);
+
+            // Envía la solicitud AJAX al archivo insertar_pregunta.php
+            $.ajax({
+                type: 'POST',
+                url: './query/preguntas/insertar_pregunta.php',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    // Analiza la respuesta JSON
+                    var result = JSON.parse(response);
+
+                    // Muestra una alerta de SweetAlert según el estado de la respuesta
+                    if (result.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Éxito',
+                            text: result.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function () {
+                            // Recargar la página después de 1.5 segundos
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: result.message
+                        });
+                    }
+                },
+                error: function () {
+                    // Muestra un mensaje de error en caso de problemas con la solicitud AJAX
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error al enviar la solicitud AJAX'
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+
 </body>
 
 </html>
