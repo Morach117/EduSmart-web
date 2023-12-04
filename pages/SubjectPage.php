@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="card-body p-4 text-center">
                                         <span class="cursor-pointer avatar avatar-xl mb-3 rounded"
-                                            style="background-image: url(./files/uploads/<?php echo $rowMaterias['img'] ?>)"></span>
+                                            style="background-image: url(./files/materias/<?php echo $rowMaterias['img'] ?>)"></span>
                                         <h3 class="m-0 mb-1">
                                             <a>
                                                 <?php echo $rowMaterias['nombre_materia'] ?>

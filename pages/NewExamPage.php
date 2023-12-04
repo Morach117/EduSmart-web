@@ -1,15 +1,3 @@
-<?php
-$docenteId = $selDocenteData['id_docente'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
     <div class="page-wrapper">
         <!-- Page header -->
@@ -23,7 +11,8 @@ $docenteId = $selDocenteData['id_docente'];
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-fieldset p-5">
+                            <form class="form-fieldset p-5" id="formSubirExamen">
+                                <input type="hidden" name="id_docente" value="<?php echo $selDocenteData['id_docente']; ?>">
                                 <div class="row">
                                     <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
                                     <a class="col text-end cursor-pointer" data-bs-toggle="modal"
@@ -33,7 +22,7 @@ $docenteId = $selDocenteData['id_docente'];
                                 <div class="row g-3">
                                     <div class="col mb-3">
                                         <label for="materia" class="form-label">Materias</label>
-                                        <select class="form-select form-select-md" name="materia" id="materia">
+                                        <select class="form-select form-select-md" name="materia" id="materia" onchange="cargarUnidades()">
                                             <option selected>Abrir menu de materias</option>
                                             <?php
                                             $selMaterias = $conn->query("SELECT * FROM materias WHERE id_docente = '$docenteId'");
@@ -45,27 +34,16 @@ $docenteId = $selDocenteData['id_docente'];
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="col form-group">
-                                        <div class="mb-3">
-                                            <div class="mb-3">
-                                                <label for="unidad" class="form-label">Unidad</label>
-                                                <input type="text" class="form-control" name="unidad" id="unidad"
-                                                    aria-describedby="helpId" placeholder="unidad">
-                                                <small id="helpId" class="form-text text-muted">Ingrese el nombre de la
-                                                    unidad</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
                                     <div class="col mb-3">
-                                        <label for="" class="form-label">Tipo de examen</label>
-                                        <select class="form-select form-select-md" name="tipo" id="tipo">
-                                            <option selected>Abrir menu</option>
-                                            <option value="equipo">Equipo</option>
-                                            <option value="individual">Individual</option>
+                                        <label for="unidad" class="form-label">Unidad</label>
+                                        <select class="form-select form-select-md" name="unidad" id="unidad">
+                                            <option selected>Abrir menu de unidades</option>
+                                            <!-- Las opciones de unidades se cargarán dinámicamente mediante JavaScript -->
                                         </select>
                                     </div>
+                                </div>
+
+                                <div class="row g-3">
                                     <div class="col mb-3">
                                         <label for="" class="form-label">Tipo de examen</label>
                                         <select class="form-select form-select-md" name="tipo" id="tipo">
@@ -79,10 +57,8 @@ $docenteId = $selDocenteData['id_docente'];
                                     <div class="col mb-3">
                                         <div class="mb-3">
                                             <label for="fecha" class="form-label">Fecha</label>
-                                            <input type="date" class="form-control" name="fecha" id="fecha"
-                                                aria-describedby="helpId">
-                                            <small id="helpId" class="form-text text-muted">Seleccione la fecha del
-                                                examen</small>
+                                            <input type="date" class="form-control" name="fecha" id="fecha" aria-describedby="helpId">
+                                            <small id="helpId" class="form-text text-muted">Seleccione la fecha del examen</small>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +68,7 @@ $docenteId = $selDocenteData['id_docente'];
                                     </div>
                                     <div class="col">
                                         <div class="text-end">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary" id="btnSubirExamen">
                                                 Subir examen
                                             </button>
                                             <button type="reset" class="btn btn-danger ms-2">
@@ -108,11 +84,104 @@ $docenteId = $selDocenteData['id_docente'];
             </div>
         </div>
     </div>
+
+
     <script>
         // modificar numero de items a mostrar
         new DataTable('#units');
 
     </script>
-</body>
 
-</html>
+    <script>
+        function cargarUnidades() {
+            var materiaSelect = document.getElementById('materia');
+            var unidadSelect = document.getElementById('unidad');
+
+            // Obtener el valor seleccionado en el primer select (Materias)
+            var idMateriaSeleccionada = materiaSelect.value;
+
+            // Realizar una solicitud AJAX para obtener las unidades de la materia seleccionada
+            // Aquí deberías adaptar el código para realizar la consulta a tu base de datos y obtener las unidades
+
+            // Ejemplo de cómo podrías hacer la solicitud AJAX con JavaScript puro (sin jQuery)
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Limpiar el contenido actual del segundo select (Unidad)
+                    unidadSelect.innerHTML = '<option selected>Abrir menu de unidades</option>';
+
+                    // Parsear la respuesta JSON (deberías ajustar la estructura según tu respuesta)
+                    var unidades = JSON.parse(xhr.responseText);
+
+                    // Iterar sobre las unidades y agregarlas al segundo select
+                    for (var i = 0; i < unidades.length; i++) {
+                        var idUnidad = unidades[i].id_unidad;
+                        var nombreUnidad = unidades[i].nombre_unidad;
+                        unidadSelect.innerHTML += "<option value='" + idUnidad + "'>" + nombreUnidad + "</option>";
+                    }
+                }
+            };
+
+            // Configurar y enviar la solicitud AJAX
+            xhr.open('GET', './query/examen/obtener_unidades.php?id_materia=' + idMateriaSeleccionada, true);
+            xhr.send();
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Manejar clic en el botón "Subir examen"
+            $("#btnSubirExamen").click(function (e) {
+                // Prevenir el envío del formulario predeterminado
+                e.preventDefault();
+
+                // Crear un objeto FormData para enviar datos del formulario
+                var formData = new FormData($("#formSubirExamen")[0]);
+
+                // Realizar una solicitud AJAX
+                $.ajax({
+                    url: './query/examen/addExamen.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // Manejar la respuesta del servidor
+                        var result = JSON.parse(response);
+
+                        if (result.success) {
+                            // Mostrar SweetAlert con un mensaje de éxito
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Examen subido exitosamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function () {
+                                // Redireccionar a la página de lista de exámenes
+                                window.location.href = 'direcciones.php?page=ShowExams';
+                            });
+                        } else {
+                            // Mostrar SweetAlert con un mensaje de error
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error al subir el examen',
+                                text: result.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    },
+                    error: function () {
+                        // Mostrar SweetAlert con un mensaje de error en caso de fallo
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error en la solicitud AJAX',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+

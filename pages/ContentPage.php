@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insumos</title>
-</head>
-
 <body>
     <div class="page-wrapper">
         <!-- Page header -->
         <div class="page-header d-print-none">
             <div class="container-xl">
                 <?php
-                // Verifica si se ha enviado el parámetro "id" a través de la URL
                 if (isset($_GET['id'])) {
-                    // Obtén el valor del parámetro "id"
                     $id = $_GET['id'];
                     ?>
                     <div class="row g-2 align-items-center">
@@ -29,59 +17,57 @@
 
                     <div class="card">
                         <div class="card-body">
-                        <form class="form-fieldset" enctype="multipart/form-data" method="post" action="./query/contenido/addContenido.php">
-    <div class="row">
-        <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir contenido temático</h3>
-    </div>
-    <hr class="m-1">
+                            <form class="form-fieldset" enctype="multipart/form-data" method="post" action="./query/contenido/addContenido.php">
+                                <div class="row">
+                                    <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir contenido temático</h3>
+                                </div>
+                                <hr class="m-1">
 
-    <div class="row g-3">
-        <div class="col mb-3">
-            <div class="form-label">Tipo de Contenido:</div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipo_contenido" id="videoRadio" value="video">
-                <label class="form-check-label" for="videoRadio">Video</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="tipo_contenido" id="infografiaRadio" value="infografia">
-                <label class="form-check-label" for="infografiaRadio">Infografía</label>
-            </div>
-        </div>
-        <div class="col mb-3" id="multimediaLinkContainer">
-            <div class="form-label">Multimedia</div>
-            <input type="text" class="form-control" name="multimedia_link" placeholder="YouTube Link" />
-        </div>
-        <div class="col mb-3" id="tituloContainer">
-            <div class="form-label">Titulo:</div>
-            <input type="hidden" name="id_subtema" value="<?php echo $id; ?>">
-            <input type="text" class="form-control" name="titulo" id="titulo" />
-        </div>
-        <div class="col mb-3" id="archivoContainer" style="display: none;">
-    <div class="form-label">Archivo:</div>
-    <input type="file" name="nombre_archivo" class="form-control" multiple="multiple" accept=".pdf, .doc, .docx, .ppt, .pptx" />
-</div>
+                                <div class="row g-3">
+                                    <div class="col mb-3">
+                                        <div class="form-label">Tipo de Contenido:</div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="tipo_contenido" id="videoRadio" value="video">
+                                            <label class="form-check-label" for="videoRadio">Video</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="tipo_contenido" id="infografiaRadio" value="infografia">
+                                            <label class="form-check-label" for="infografiaRadio">Infografía</label>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-3" id="multimediaLinkContainer">
+                                        <div class="form-label">Multimedia</div>
+                                        <input type="text" class="form-control" name="multimedia_link" placeholder="YouTube Link" />
+                                    </div>
+                                    <div class="col mb-3" id="tituloContainer">
+                                        <div class="form-label">Titulo:</div>
+                                        <input type="hidden" name="id_subtema" value="<?php echo $id; ?>">
+                                        <input type="text" class="form-control" name="titulo" id="titulo" />
+                                    </div>
+                                    <div class="col mb-3" id="archivoContainer" style="display: none;">
+                                        <div class="form-label">Archivo:</div>
+                                        <input type="file" name="nombre_archivo" class="form-control" multiple="multiple" accept=".pdf, .doc, .docx, .ppt, .pptx" />
+                                    </div>
 
-    <div class="col form-group" id="descripcionArchivoContainer" style="display: none;">
-        <label for="descripcionArchivo">Descripción del Archivo:</label>
-        <textarea class="form-control" name="descripcion" id="descripcionArchivo" rows="2"></textarea>
-    </div>
-</div>
+                                    <div class="col form-group" id="descripcionArchivoContainer" style="display: none;">
+                                        <label for="descripcionArchivo">Descripción del Archivo:</label>
+                                        <textarea class="form-control" name="descripcion" id="descripcionArchivo" rows="2"></textarea>
+                                    </div>
+                                </div>
 
-<div class="row g-3">
-    <div class="col">
-        <a href="direcciones.php?page=SubjectPage">Volver a la lista de materias</a>
-    </div>
-    <div class="col">
-        <div class="text-end">
-            <button type="submit" class="btn btn-primary">Subir multimedia</button>
-            <button type="reset" class="btn btn-danger ms-2">Cancelar</button>
-        </div>
-    </div>
-</div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <a href="direcciones.php?page=SubjectPage">Volver a la lista de materias</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary">Subir multimedia</button>
+                                            <button type="reset" class="btn btn-danger ms-2">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
 
-</form>
-
-
+                            </form>
                         </div>
                     </div>
 
@@ -130,11 +116,9 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                     <?php
                 } else {
-                    // si no hay id
                     ?>
                     <div class="page page-center">
                         <div class="container-tight py-4">
@@ -163,10 +147,11 @@
                     <?php
                 }
                 ?>
+            </div>
+        </div>
+    </div>
 
-
-</body>
-<script>
+    <script>
     // modificar numero de items a mostrar
     new DataTable('#example');
 
@@ -260,5 +245,7 @@
 </script>
 
 
+
+</body>
 
 </html>

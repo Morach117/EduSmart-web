@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Manejo de la imagen
     $rutaImagen = '';
     if (isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK) {
-        $directorioDestino = '../../files/uploads/';
+        $directorioDestino = '../../files/materias/';
         $nombreArchivo = uniqid('cover_', true) . '_' . $_FILES['cover']['name'];
         $rutaImagen = $directorioDestino . $nombreArchivo;
         
