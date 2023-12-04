@@ -213,6 +213,94 @@
         </div>
     </div>
 </div>
+<!-- Modal para editar unidad -->
+<div class="modal fade" id="editquestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar detalles de la unidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-fieldset p-5">
+                    <div class="row">
+                        <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col mb-3">
+                            <label for="Enunciado" class="form-label">Enunciado</label>
+                            <input type="text" maxlength="100" class="form-control" name="Enunciado" required
+                                id="Enunciado" aria-describedby="helpId" placeholder="">
+                            <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
+                            <input type="text" class="form-control" name="time" id="time" aria-describedby="helpId"
+                                required placeholder="">
+                            <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para
+                                responder</small>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col mb-3">
+                            <label for="a" class="form-label">Inciso a</label>
+                            <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId" required
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Inciso a</small>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="b" class="form-label">Inciso b</label>
+                            <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId" required
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Inciso b</small>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="c" class="form-label">Inciso c</label>
+                            <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId" required
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Inciso c</small>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="d" class="form-label">Inciso d</label>
+                            <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId" required
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted">Inciso d</small>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col mb-3">
+                            <label for="" class="form-label">Respuesta</label>
+                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" required
+                                placeholder="">
+                            <small id="helpId" class="form-text text-muted"> Respuesta</small>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="multimedia" class="form-label">Multimedia (opcional)</label>
+                            <input type="file" class="form-control" name="multimedia" id="multimedia"
+                                aria-describedby="helpId" required placeholder="">
+                            <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <!-- <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a> -->
+                        </div>
+                        <div class="col">
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">
+                                    Subir examen
+                                </button>
+                                <button type="reset" class="btn btn-danger ms-2">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Optional: Place to the bottom of scripts -->
