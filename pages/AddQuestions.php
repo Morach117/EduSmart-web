@@ -1,20 +1,13 @@
 <?php
 // obtiene el id del examen
-$idExamen = $_GET['id'];
+$idExamen = $_GET["id"];
 // obtiene el id de la materia
-$selExamen = $conn->query("SELECT * FROM examenes WHERE id_examen = '$idExamen'");
+$selExamen = $conn->query(
+    "SELECT * FROM examenes WHERE id_examen = '$idExamen'"
+);
 $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <div class="page-wrapper">
         <!-- Page header -->
         <div class="page-header d-print-none">
@@ -34,7 +27,9 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
     </div>
     <div class="row g-3">
         <div class="col mb-3">
-            <input type="hidden" name="id_unidad" value="<?php echo $rowExamen['id_unidad']; ?>">
+            <input type="hidden" name="id_unidad" value="<?php echo $rowExamen[
+                "id_unidad"
+            ]; ?>">
             <input type="hidden" name="id_examen" value="<?php echo $idExamen; ?>">
 
             <label for="Enunciado" class="form-label">Enunciado</label>
@@ -117,51 +112,58 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $selPreguntas = $conn->query("SELECT * FROM preguntas WHERE id_examen = '$idExamen'");
-                                        while ($rowPreguntas = $selPreguntas->fetch(PDO::FETCH_ASSOC)) {
-                                            ?>
+                                        $selPreguntas = $conn->query(
+                                            "SELECT * FROM preguntas WHERE id_examen = '$idExamen'"
+                                        );
+                                        while (
+                                            $rowPreguntas = $selPreguntas->fetch(
+                                                PDO::FETCH_ASSOC
+                                            )
+                                        ) { ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $rowPreguntas['enunciado']; ?>
+                                                    <?php echo $rowPreguntas[
+                                                        "enunciado"
+                                                    ]; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $rowPreguntas['tiempo_respuesta']; ?>
+                                                    <?php echo $rowPreguntas[
+                                                        "tiempo_respuesta"
+                                                    ]; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $rowPreguntas['respuesta']; ?>
+                                                    <?php echo $rowPreguntas[
+                                                        "respuesta"
+                                                    ]; ?>
                                                 </td>
-                                                <td>
-                                                    <a data-bs-toggle="modal" data-bs-target="#editquestion"
-                                                        class=" btn btn-primary btn-icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="icon icon-tabler icon-tabler-pencil" width="24"
-                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                            <path d="M13.5 6.5l4 4" />
-                                                        </svg>
-                                                    </a>
-                                                    <a data-bs-toggle="modal" data-bs-target="#modal-danger-question"
-                                                        class="btn btn-icon btn-danger">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                                            stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <line x1="4" y1="7" x2="20" y2="7" />
-                                                            <line x1="10" y1="11" x2="10" y2="17" />
-                                                            <line x1="14" y1="11" x2="14" y2="17" />
-                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                        </svg>
-                                                    </a>
-                                                </td>
+                                                <td scope="row">
+                                                        <div class="btn-group gap-2" role="group" aria-label="Basic example">
+                                                            <!-- <button type="button" class="btn btn-primary btn-editar" 
+                                                                data-id="<?php echo $rowPreguntas[
+                                                                    "id_pregunta"
+                                                                ]; ?>"
+                                                                data-bs-toggle="modal" data-bs-target="#editquestion">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                                                    <path d="M13.5 6.5l4 4" />
+                                                                </svg>
+                                                            </button> -->
+                                                            <button type="button" class="btn btn-danger btn-eliminar" data-bs-toggle="modal" data-bs-target="#modal-danger-question" data-id="<?php echo $rowPreguntas[
+                                                                "id_pregunta"
+                                                            ]; ?>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path d="M4 7h16" />
+                                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                                    <path d="M10 12l4 4m0 -4l-4 4" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                             </tr>
-                                            <?php
-                                        }
+                                            <?php }
                                         ?>
                                     </tbody>
                                 </table>
@@ -281,7 +283,161 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
         });
 
     });
+
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Asignar el evento a un contenedor existente (por ejemplo, el cuerpo de la tabla)
+        var tableBody = document.getElementById('example').getElementsByTagName('tbody')[0];
+
+        // Usar un selector para filtrar los clics a los botones de eliminación
+        tableBody.addEventListener('click', function (event) {
+            if (event.target.classList.contains('btn-eliminar')) {
+                var preguntaId = event.target.getAttribute('data-id');
+
+                // Asignar el id de la pregunta al botón de confirmación en el modal
+                var confirmButton = document.querySelector('#modal-danger-question .btn-danger');
+                confirmButton.setAttribute('data-id', preguntaId);
+                confirmButton.addEventListener('click', function () {
+                    eliminarPregunta(preguntaId);
+                });
+            }
+        });
+    });
+
+    function eliminarPregunta(preguntaId) {
+        // Realizar la solicitud de eliminación al servidor (puedes usar fetch o jQuery.ajax)
+        // Aquí se muestra un ejemplo usando fetch
+        fetch('./query/preguntas/eliminar_pregunta.php?id=' + preguntaId, {
+            method: 'GET'
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                // Eliminación exitosa, puedes recargar la página o realizar otras acciones necesarias
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Pregunta eliminada con éxito!',
+                    showConfirmButton: false,
+                    timer: 1000 // 1 segundo
+                }).then(() => {
+                    // Recargar la página después de 1 segundo
+                    setTimeout(function () {
+                        location.reload();
+                    }, 500);
+                });
+            } else {
+                alert('Error al eliminar la pregunta');
+            }
+        })
+        .catch(function(error) {
+            console.error('Error al eliminar la pregunta:', error);
+        });
+    }
+</script>
+
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Asignar el evento a un contenedor existente (el cuerpo de la tabla)
+        var tableBody = document.getElementById('example').getElementsByTagName('tbody')[0];
+
+        // Usar un selector para filtrar los clics a los botones de edición
+        tableBody.addEventListener('click', function (event) {
+            if (event.target.classList.contains('btn-editar')) {
+                var preguntaId = event.target.getAttribute('data-id');
+
+                // Realizar una llamada AJAX para obtener los detalles de la pregunta
+                fetch('./query/preguntas/obtener_detalle_pregunta.php?id=' + preguntaId)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        // Llenar el formulario de edición con los datos obtenidos
+                        document.getElementById('editEnunciado').value = data.enunciado;
+                        document.getElementById('editTime').value = data.tiempo_respuesta;
+                        document.getElementById('editA').value = data.inciso_a;
+                        document.getElementById('editB').value = data.inciso_b;
+                        document.getElementById('editC').value = data.inciso_c;
+                        document.getElementById('editD').value = data.inciso_d;
+                        document.getElementById('editRespuesta').value = data.respuesta;
+                        document.getElementById('preguntaId').value = preguntaId;
+                    })
+                    .catch(function (error) {
+                        console.error('Error al obtener detalles de la pregunta:', error);
+                    });
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var formEditarPregunta = document.getElementById('formEditarPregunta');
+
+        formEditarPregunta.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Obtener solo los campos necesarios del formulario
+            var enunciado = document.getElementById('editEnunciado').value;
+            var tiempoRespuesta = document.getElementById('editTime').value;
+            var incisoA = document.getElementById('editA').value;
+            var incisoB = document.getElementById('editB').value;
+            var incisoC = document.getElementById('editC').value;
+            var incisoD = document.getElementById('editD').value;
+            var respuesta = document.getElementById('editRespuesta').value;
+
+            // Crear un objeto FormData solo con los campos necesarios
+            var formData = new FormData();
+            formData.append('preguntaId', document.getElementById('preguntaId').value);
+            formData.append('editEnunciado', enunciado);
+            formData.append('editTime', tiempoRespuesta);
+            formData.append('editA', incisoA);
+            formData.append('editB', incisoB);
+            formData.append('editC', incisoC);
+            formData.append('editD', incisoD);
+            formData.append('editRespuesta', respuesta);
+
+            fetch('./query/preguntas/actualizar_pregunta.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (data.success) {
+                        // Actualización exitosa, puedes cerrar el modal o realizar otras acciones necesarias
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Pregunta actualizada con éxito!',
+                            showConfirmButton: false,
+                            timer: 1000 // 1 segundo
+                        }).then(() => {
+                            $('#editquestion').modal('hide');
+                            // Puedes recargar la tabla u otras acciones necesarias
+
+                            // Recargar la página después de 1 segundo
+                            setTimeout(function () {
+                                location.reload();
+                            }, 500);
+                        });
+                    } else {
+                        alert('Error al actualizar la pregunta');
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error al actualizar la pregunta:', error);
+                });
+        });
+    });
+</script> -->
+
+
+
+
 
 </body>
 

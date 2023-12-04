@@ -19,10 +19,10 @@
                         </h1>
                         <h1 class="page-pretitle">
                             <?php
-                            $docenteId = $selDocenteData['id_docente'];
-                            $selExamenes = $conn->query("SELECT COUNT(*) AS total FROM examenes WHERE id_docente = '$docenteId'");
-                            $rowExamenes = $selExamenes->fetch(PDO::FETCH_ASSOC);
-                            ?>
+$docenteId = $selDocenteData['id_docente'];
+$selExamenes = $conn->query("SELECT COUNT(*) AS total FROM examenes WHERE id_docente = '$docenteId'");
+$rowExamenes = $selExamenes->fetch(PDO::FETCH_ASSOC);
+?>
                             Tienes disponibles
                             <?php echo $rowExamenes['total']; ?> exámenes
                         </h1>
@@ -57,7 +57,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $selExamenes = $conn->query("SELECT
+$selExamenes = $conn->query("SELECT
                                 e.id_examen,
                                 e.tipo_examen,
                                 m.nombre_materia,
@@ -68,13 +68,13 @@
                                 INNER JOIN unidades_tematicas u ON e.id_unidad = u.id_unidad
                                 WHERE e.id_docente = '$docenteId'
                                 ORDER BY e.fecha_examen DESC");
-                                while ($rowExamenes = $selExamenes->fetch(PDO::FETCH_ASSOC)) {
-                                    $idExamen = $rowExamenes['id_examen'];
-                                    $nombreMateria = $rowExamenes['nombre_materia'];
-                                    $nombreUnidad = $rowExamenes['nombre_unidad'];
-                                    $fechaExamen = $rowExamenes['fecha_examen'];
-                                    $tipoExamen = $rowExamenes['tipo_examen'];
-                                    ?>
+while ($rowExamenes = $selExamenes->fetch(PDO::FETCH_ASSOC)) {
+    $idExamen = $rowExamenes['id_examen'];
+    $nombreMateria = $rowExamenes['nombre_materia'];
+    $nombreUnidad = $rowExamenes['nombre_unidad'];
+    $fechaExamen = $rowExamenes['fecha_examen'];
+    $tipoExamen = $rowExamenes['tipo_examen'];
+    ?>
                                     <tr>
                                         <td>
                                             <?php echo $nombreMateria; ?>
@@ -92,17 +92,17 @@
                                             <div class="btn-group gap-2">
                                                 <a href="direcciones.php?page=AddQuestions&id=<?php echo $idExamen; ?>"
                                                     class="btn btn-sm btn-primary">Agregar preguntas</a>
-                                                <a href="direcciones.php?page=ShowExams&id=<?php echo $idExamen; ?>"
-                                                    class="btn btn-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
-                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                                        <path d="M13.5 6.5l4 4" />
-                                                    </svg>
-                                                </a>
+                                                    <a href="#" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#editarExamenModal">
+    <svg xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-power" width="24" height="24"
+        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 18v-12" />
+        <path d="M12 6l6.2 6.3a7.5 7.5 0 1 1 -12.2 0l6.2 -6.3a7.5 7.5 0 0 1 0 12.6" />
+    </svg>
+</a>
+
 
                                                 <a href="direcciones.php?page=ShowExams&id=<?php echo $idExamen; ?>"
                                                     class="btn btn-icon">
@@ -122,7 +122,7 @@
                                         </td>
                                     </tr>
                                 <?php }
-                                ?>
+?>
                             </tbody>
                         </table>
                     </div>
@@ -135,5 +135,25 @@
         new DataTable('#example');
     </script>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Asignar el evento al botón de activar/desactivar dentro del modal
+        var activarDesactivarBtn = document.getElementById('activarDesactivarBtn');
+        activarDesactivarBtn.addEventListener('click', function () {
+            // Cambiar el texto y estilo del botón según el estado actual
+            if (activarDesactivarBtn.textContent === 'Activar') {
+                activarDesactivarBtn.textContent = 'Desactivar';
+                activarDesactivarBtn.classList.remove('btn-success');
+                activarDesactivarBtn.classList.add('btn-danger');
+            } else {
+                activarDesactivarBtn.textContent = 'Activar';
+                activarDesactivarBtn.classList.remove('btn-danger');
+                activarDesactivarBtn.classList.add('btn-success');
+            }
+        });
+    });
+</script>
+
 
 </html>
