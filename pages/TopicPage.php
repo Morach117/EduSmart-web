@@ -39,52 +39,46 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-fieldset">
-                                <div class="row">
-                                    <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir Temas</h3>
-                                    <!-- <a href="direcciones.php?page=SubtopicsPage&id=<?php echo $id ?>"
-                                        class="col text-end link-primary"> Añadir
-                                        subtemas </a> -->
-                                </div>
-                                <hr class="m-1">
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Unidad</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Abrir menu</option>
-                                        <?php
-                                        $selUnidades = $conn->query("SELECT * FROM unidades_tematicas WHERE id_materia = '$id'");
-                                        while ($rowUnidades = $selUnidades->fetch(PDO::FETCH_ASSOC)) {
-                                            ?>
-                                            <option value="<?php echo $rowUnidades['id_unidad']; ?>">
-                                                <?php echo $rowUnidades['nombre_unidad']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        <!-- <option value="1">One</option> -->
-                                    </select>
-                                    <div id="emailHelp" class="form-text">Selecciona la unidad a la que pertenece el tema
-                                        nuevo
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Nombre del nuevo
-                                            tema</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" maxlength="30"
-                                            required placeholder="Nuevo tema">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="direcciones.php?page=SubjectPage"> Volver a la lista de materias </a>
-                                    </div>
-                                    <div class="col text-end">
-                                        <button type="submit" class="btn btn-primary">Añadir</button>
-                                        <button type="reset" class="btn btn-danger">Cancelar</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <form class="form-fieldset" method="post" action="procesar_formulario.php">
+    <div class="row">
+        <h3 class="col text-2xl font-semibold leading-none tracking-tight">Añadir Temas</h3>
+    </div>
+    <hr class="m-1">
+    <!-- Agrega un campo hidden para el ID de la materia -->
+    <input type="hidden" name="id_materia" value="<?php echo $id; ?>">
+    <div class="mb-3">
+        <label for="unidadSelect" class="form-label">Unidad</label>
+        <select class="form-select" name="unidad" id="unidadSelect" aria-label="Default select example" required>
+            <option value="" selected disabled>Selecciona la unidad</option>
+            <?php
+            $selUnidades = $conn->query("SELECT * FROM unidades_tematicas WHERE id_materia = '$id'");
+            while ($rowUnidades = $selUnidades->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                <option value="<?php echo $rowUnidades['id_unidad']; ?>">
+                    <?php echo $rowUnidades['nombre_unidad']; ?>
+                </option>
+                <?php
+            }
+            ?>
+        </select>
+        <div id="emailHelp" class="form-text">Selecciona la unidad a la que pertenece el tema nuevo.</div>
+    </div>
+    <div class="mb-3">
+        <label for="nombreTema" class="form-label">Nombre del nuevo tema</label>
+        <input type="text" class="form-control" id="nombreTema" name="nombre_tema" maxlength="30" required
+            placeholder="Nuevo tema">
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="direcciones.php?page=SubjectPage"> Volver a la lista de materias </a>
+        </div>
+        <div class="col text-end">
+            <button type="submit" class="btn btn-primary">Añadir</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+        </div>
+    </div>
+</form>
+
 
                             <div class="form-fieldset container text-center ">
                                 <h3 class="col text-2xl font-semibold leading-none tracking-tight">Temas Actuales</h3>
@@ -116,21 +110,13 @@
                                                     </td>
                                                     <td>
                                                         <div class="btn-list flex-nowrap">
-                                                            <button data-bs-toggle="modal"
-                                                                data-id="<?php echo $rowTemas['id_tema'] ?>"
-                                                                data-bs-target="#modal-danger-topic"
-                                                                class="btn btn-link text-danger text-decoration-none">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                    class="icon icon-tabler icon-tabler-trash" width="24"
-                                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                                    stroke-linejoin="round">
+                                                        <button type="button" class="btn btn-danger btn-eliminar" data-bs-toggle="modal" data-bs-target="#modal-danger-topic-tema" data-id="<?php echo $rowTemas['id_tema']; ?>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                    <path d="M4 7l16 0" />
-                                                                    <path d="M10 11l0 6" />
-                                                                    <path d="M14 11l0 6" />
+                                                                    <path d="M4 7h16" />
                                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                                    <path d="M10 12l4 4m0 -4l-4 4" />
                                                                 </svg>
                                                             </button>
                                                             <a href="direcciones.php?page=SubtopicsPage&id=<?php echo $rowTemas['id_tema'] ?>"
@@ -201,5 +187,94 @@
     new DataTable('#example');
 
 </script>
+
+<script>
+    $(document).ready(function () {
+        // Asignar el evento al formulario
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            // Obtener los datos del formulario
+            var formData = $(this).serialize();
+
+            // Realizar la solicitud de inserción al servidor usando AJAX
+            $.ajax({
+                type: 'POST',
+                url: './query/tema/addTema.php',
+                data: formData,
+                success: function (response) {
+                    // Manejar la respuesta del servidor
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Tema añadido correctamente',
+                        showConfirmButton: false,
+                        timer: 1500 // 1.5 segundos
+                    }).then(function () {
+                        // Recargar la página después de la alerta
+                        location.reload();
+                    });
+                },
+                error: function (error) {
+                    console.error('Error en la solicitud AJAX:', error);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Asignar el evento a un contenedor existente (por ejemplo, el cuerpo de la tabla)
+        var tableBody = document.getElementById('example').getElementsByTagName('tbody')[0];
+
+        // Usar un selector para filtrar los clics a los botones de eliminación
+        tableBody.addEventListener('click', function (event) {
+            if (event.target.classList.contains('btn-eliminar')) {
+                var temaId = event.target.getAttribute('data-id');
+
+                // Asignar el id de la unidad al botón de confirmación en el modal
+                document.querySelector('#modal-danger-topic-tema .btn-danger').setAttribute('data-id', temaId);
+            }
+        });
+
+        // Asignar el evento al botón de confirmación en el modal
+        document.querySelector('#modal-danger-topic-tema .btn-danger').addEventListener('click', function () {
+            // Obtener el id de la unidad desde el atributo data-id del botón
+            var temaId = this.getAttribute('data-id');
+
+            // Realizar la solicitud de eliminación al servidor (puedes usar fetch o jQuery.ajax)
+            // Aquí se muestra un ejemplo usando fetch
+            fetch('./query/tema/eliminar_tema.php?id=' + temaId, {
+                method: 'GET'
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    // Eliminación exitosa, puedes recargar la página o realizar otras acciones necesarias
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Tema eliminado con éxito!',
+                        showConfirmButton: false,
+                        timer: 1000 // 1 segundo
+                    }).then(() => {
+                        // Recargar la página después de 1 segundo
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    });
+                } else {
+                    alert('Error al eliminar la unidad');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error al eliminar la unidad:', error);
+            });
+        });
+    });
+</script>
+
+
 
 </html>
