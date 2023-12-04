@@ -70,7 +70,7 @@ function enviarCorreoElectronico($correo, $nuevaContraseña)
         $mail->addAddress($correo); // Agrega el destinatario
         $mail->Subject = 'Recuperación de contraseña';
         $mail->Body = 'Tu nueva contraseña es: ' . $nuevaContraseña;
-        
+
 
         // Enviar el correo electrónico
         $mail->send();
