@@ -194,6 +194,9 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                         <a class="dropdown-item" href="direcciones.php?page=materiasxalumno ">
                           Asignar materias
                         </a>
+                        <a class="dropdown-item" href="direcciones.php?page=viewmateriasxalumnos">
+                          Ver alumnos asignados
+                        </a>
                       </div>
                     </div>
                   </div>
