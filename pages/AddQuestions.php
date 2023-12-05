@@ -8,137 +8,142 @@ $selExamen = $conn->query(
 $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
 ?>
 
-    <div class="page-wrapper">
-        <!-- Page header -->
-        <div class="page-header d-print-none">
-            <div class="container-xl">
-                <div class="row g-2 align-items-center">
-                    <div class="col">
-                        <h1 class="page-title">
-                            Agregar preguntas
-                        </h1>
-                    </div>
+<div class="page-wrapper">
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <h1 class="page-title">
+                        Agregar preguntas
+                    </h1>
                 </div>
-                <div class="card mt-3">
-                    <div class="card-body">
-                    <form class="form-fieldset p-5">
-    <div class="row">
-        <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
-    </div>
-    <div class="row g-3">
-        <div class="col mb-3">
-            <input type="hidden" name="id_unidad" value="<?php echo $rowExamen[
-                "id_unidad"
-            ]; ?>">
-            <input type="hidden" name="id_examen" value="<?php echo $idExamen; ?>">
-
-            <label for="Enunciado" class="form-label">Enunciado</label>
-            <input type="text" maxlength="100" class="form-control" name="Enunciado" required id="Enunciado"
-                aria-describedby="helpId" placeholder="">
-            <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
-        </div>
-        <div class="col mb-3">
-            <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
-            <input type="text" class="form-control" name="time" id="time" aria-describedby="helpId" required
-                placeholder="">
-            <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para responder</small>
-        </div>
-    </div>
-    <div class="row g-3">
-        <div class="col mb-3">
-            <label for="a" class="form-label">Inciso a</label>
-            <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId" required placeholder="">
-            <small id="helpId" class="form-text text-muted">Inciso a</small>
-        </div>
-        <div class="col mb-3">
-            <label for="b" class="form-label">Inciso b</label>
-            <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId" required placeholder="">
-            <small id="helpId" class="form-text text-muted">Inciso b</small>
-        </div>
-        <div class="col mb-3">
-            <label for="c" class="form-label">Inciso c</label>
-            <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId" required placeholder="">
-            <small id="helpId" class="form-text text-muted">Inciso c</small>
-        </div>
-        <div class="col mb-3">
-            <label for="d" class="form-label">Inciso d</label>
-            <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId" required placeholder="">
-            <small id="helpId" class="form-text text-muted">Inciso d</small>
-        </div>
-    </div>
-    <div class="row g-3">
-        <div class="col mb-3">
-            <label for="" class="form-label">Respuesta</label>
-            <select class="form-select" name="respuesta" id="respuesta">
-                <option value="" selected>Seleccionar respuesta</option>
-            </select>
-            <small id="helpId" class="form-text text-muted">Respuesta</small>
-        </div>
-        <div class="col mb-3">
-            <label for="multimedia" class="form-label">Multimedia (opcional)</label>
-            <input type="file" class="form-control" name="multimedia" id="multimedia" aria-describedby="helpId"
-                placeholder="">
-            <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
-        </div>
-    </div>
-    <div class="row g-3">
-        <div class="col">
-            <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a>
-        </div>
-        <div class="col">
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary">
-                    Subir examen
-                </button>
-                <button type="reset" class="btn btn-danger ms-2">
-                    Cancelar
-                </button>
             </div>
-        </div>
-    </div>
-</form>
-                        <div class="form-fieldset">
-                            <h3 class="col text-2xl font-semibold leading-none tracking-tight">Preguntas actuales</h3>
-                            <hr class="m-1">
-                            <div class="table-responsive-xl">
-                                <table class="table table-striped table-hover text-center" id="example">
-                                    <thead>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <form class="form-fieldset p-5">
+                        <div class="row">
+                            <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col mb-3">
+                                <input type="hidden" name="id_unidad" value="<?php echo $rowExamen[
+                                    "id_unidad"
+                                ]; ?>">
+                                <input type="hidden" name="id_examen" value="<?php echo $idExamen; ?>">
+
+                                <label for="Enunciado" class="form-label">Enunciado</label>
+                                <input type="text" maxlength="100" class="form-control" name="Enunciado" required
+                                    id="Enunciado" aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Enunciado de la pregunta</small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="time" class="form-label">Tiempo de respuesta (en minutos)</label>
+                                <input type="text" class="form-control" name="time" id="time" aria-describedby="helpId"
+                                    required placeholder="">
+                                <small id="helpId" class="form-text text-muted">Tiempo que tiene el alumno para
+                                    responder</small>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col mb-3">
+                                <label for="a" class="form-label">Inciso a</label>
+                                <input type="text" class="form-control" name="a" id="a" aria-describedby="helpId"
+                                    required placeholder="">
+                                <small id="helpId" class="form-text text-muted">Inciso a</small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="b" class="form-label">Inciso b</label>
+                                <input type="text" class="form-control" name="b" id="b" aria-describedby="helpId"
+                                    required placeholder="">
+                                <small id="helpId" class="form-text text-muted">Inciso b</small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="c" class="form-label">Inciso c</label>
+                                <input type="text" class="form-control" name="c" id="c" aria-describedby="helpId"
+                                    required placeholder="">
+                                <small id="helpId" class="form-text text-muted">Inciso c</small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="d" class="form-label">Inciso d</label>
+                                <input type="text" class="form-control" name="d" id="d" aria-describedby="helpId"
+                                    required placeholder="">
+                                <small id="helpId" class="form-text text-muted">Inciso d</small>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Respuesta</label>
+                                <select class="form-select" name="respuesta" id="respuesta">
+                                    <option value="" selected>Seleccionar respuesta</option>
+                                </select>
+                                <small id="helpId" class="form-text text-muted">Respuesta</small>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="multimedia" class="form-label">Multimedia (opcional)</label>
+                                <input type="file" class="form-control" name="multimedia" id="multimedia"
+                                    aria-describedby="helpId" placeholder="">
+                                <small id="helpId" class="form-text text-muted">Imagen, video o audio</small>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col">
+                                <a href="direcciones.php?page=ShowExams"> Ver a la lista de exámenes </a>
+                            </div>
+                            <div class="col">
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">
+                                        Subir examen
+                                    </button>
+                                    <button type="reset" class="btn btn-danger ms-2">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-fieldset">
+                        <h3 class="col text-2xl font-semibold leading-none tracking-tight">Preguntas actuales</h3>
+                        <hr class="m-1">
+                        <div class="table-responsive-xl">
+                            <table class="table table-striped table-hover text-center" id="example">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Enunciado</th>
+                                        <th scope="col">Tiempo</th>
+                                        <th scope="col">Respuesta</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $selPreguntas = $conn->query(
+                                        "SELECT * FROM preguntas WHERE id_examen = '$idExamen'"
+                                    );
+                                    while (
+                                        $rowPreguntas = $selPreguntas->fetch(
+                                            PDO::FETCH_ASSOC
+                                        )
+                                    ) { ?>
                                         <tr>
-                                            <th scope="col">Enunciado</th>
-                                            <th scope="col">Tiempo</th>
-                                            <th scope="col">Respuesta</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $selPreguntas = $conn->query(
-                                            "SELECT * FROM preguntas WHERE id_examen = '$idExamen'"
-                                        );
-                                        while (
-                                            $rowPreguntas = $selPreguntas->fetch(
-                                                PDO::FETCH_ASSOC
-                                            )
-                                        ) { ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $rowPreguntas[
-                                                        "enunciado"
-                                                    ]; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $rowPreguntas[
-                                                        "tiempo_respuesta"
-                                                    ]; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $rowPreguntas[
-                                                        "respuesta"
-                                                    ]; ?>
-                                                </td>
-                                                <td scope="row">
-                                                        <div class="btn-group gap-2" role="group" aria-label="Basic example">
-                                                            <!-- <button type="button" class="btn btn-primary btn-editar" 
+                                            <td>
+                                                <?php echo $rowPreguntas[
+                                                    "enunciado"
+                                                ]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $rowPreguntas[
+                                                    "tiempo_respuesta"
+                                                ]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $rowPreguntas[
+                                                    "respuesta"
+                                                ]; ?>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="btn-group gap-2" role="group" aria-label="Basic example">
+                                                    <!-- <button type="button" class="btn btn-primary btn-editar" 
                                                                 data-id="<?php echo $rowPreguntas[
                                                                     "id_pregunta"
                                                                 ]; ?>"
@@ -149,36 +154,42 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
                                                                     <path d="M13.5 6.5l4 4" />
                                                                 </svg>
                                                             </button> -->
-                                                            <button type="button" class="btn btn-danger btn-eliminar" data-bs-toggle="modal" data-bs-target="#modal-danger-question" data-id="<?php echo $rowPreguntas[
-                                                                "id_pregunta"
-                                                            ]; ?>">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                    <path d="M4 7h16" />
-                                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                                    <path d="M10 12l4 4m0 -4l-4 4" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                            </tr>
-                                            <?php }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    <button type="button" class="btn btn-danger btn-eliminar"
+                                                        data-bs-toggle="modal" data-bs-target="#modal-danger-question"
+                                                        data-id="<?php echo $rowPreguntas[
+                                                            "id_pregunta"
+                                                        ]; ?>">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="icon icon-tabler icon-tabler-trash-x" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M4 7h16" />
+                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                            <path d="M10 12l4 4m0 -4l-4 4" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        // modificar numero de items a mostrar
-        new DataTable('#example');
+</div>
+<script>
+    // modificar numero de items a mostrar
+    new DataTable('#example');
 
-    </script>
+</script>
 
 <script>
     $(document).ready(function () {
@@ -312,30 +323,30 @@ $rowExamen = $selExamen->fetch(PDO::FETCH_ASSOC);
         fetch('./query/preguntas/eliminar_pregunta.php?id=' + preguntaId, {
             method: 'GET'
         })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            if (data.success) {
-                // Eliminación exitosa, puedes recargar la página o realizar otras acciones necesarias
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Pregunta eliminada con éxito!',
-                    showConfirmButton: false,
-                    timer: 1000 // 1 segundo
-                }).then(() => {
-                    // Recargar la página después de 1 segundo
-                    setTimeout(function () {
-                        location.reload();
-                    }, 500);
-                });
-            } else {
-                alert('Error al eliminar la pregunta');
-            }
-        })
-        .catch(function(error) {
-            console.error('Error al eliminar la pregunta:', error);
-        });
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    // Eliminación exitosa, puedes recargar la página o realizar otras acciones necesarias
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Pregunta eliminada con éxito!',
+                        showConfirmButton: false,
+                        timer: 1000 // 1 segundo
+                    }).then(() => {
+                        // Recargar la página después de 1 segundo
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    });
+                } else {
+                    alert('Error al eliminar la pregunta');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error al eliminar la pregunta:', error);
+            });
     }
 </script>
 
