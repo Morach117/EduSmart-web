@@ -69,7 +69,9 @@
                                         </label>
                                     </div>
                                     <div class="form-footer">
-                                        <button type="submit" class="btn btn-primary w-100">Ingresar al sistema</button>
+                                        <button type="submit" class="btn btn-primary mb-3 w-100">Ingresar al
+                                            sistema</button>
+                                        <a href="./pages/Auth/GetApp.php" class="mt-5">Obtener aplicación móvil</a>
                                     </div>
                                 </form>
                             </div>
