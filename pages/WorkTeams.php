@@ -7,7 +7,8 @@
                         <h2 class="page-tittle-text">Lista de alumnos</h2>
                     </div>
                     <div class="text-end col">
-                        <button data-bs-toggle="modal" data-bs-target="#modal-equipos" class="btn btn-primary">Administrar equipos</button>
+                        <button data-bs-toggle="modal" data-bs-target="#modal-equipos"
+                            class="btn btn-primary">Administrar equipos</button>
                     </div>
                 </div>
 
@@ -35,12 +36,14 @@
                                         </td>
                                         <td>
                                             <!-- Agregamos un botón que activa el modal interno -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#integrantesModal" data-id-equipo="<?php echo $selEquipoRow['id_equipo']; ?>">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#integrantesModal"
+                                                data-id-equipo="<?php echo $selEquipoRow['id_equipo']; ?>">
                                                 Ver Integrantes
                                             </button>
                                         </td>
                                     </tr>
-                                <?php
+                                    <?php
                                 }
                             } else {
                                 echo "<tr><td colspan='3'>No hay equipos registrados.</td></tr>";
@@ -122,5 +125,6 @@
             });
         });
     </script>
-</body>
-</html>
+    </body>
+
+    </html>
