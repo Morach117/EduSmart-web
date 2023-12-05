@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "edusmart_v2";
+$servername = "195.35.61.64";
+$username = "u508128631_dilmar";
+$password = "dilmarGH12";
+$dbname = "u508128631_edusmart_v2";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Encriptar la contraseña
             $contraseñaEncriptada = encriptarContraseña($contraseña);
             // Insertar los datos en la base de datos usando una sentencia preparada
-            $sql_insertar_usuario = "INSERT INTO docentes (nombre, app, apm, correo_electronico, password, id_institucion) VALUES (?, ?, ?, ?, ?, 1)";
+            $sql_insertar_usuario = "INSERT INTO docentes (nombre, app, apm, correo_electronico, contrasena, id_institucion) VALUES (?, ?, ?, ?, ?, 1)";
             $stmt_insertar_usuario = $conn->prepare($sql_insertar_usuario);
             $stmt_insertar_usuario->bind_param("sssss", $nombre, $app, $apm, $correo, $contraseñaEncriptada);
 

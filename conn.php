@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "edusmart_v2";
+$host = "195.35.61.64";
+$user = "u508128631_dilmar";
+$pass = "dilmarGH12";
+$db = "u508128631_edusmart_v2";
 $conn = null;
 
 try {

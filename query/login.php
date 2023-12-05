@@ -35,7 +35,7 @@ $selAcc = $conn->query("SELECT * FROM docentes WHERE correo_electronico = '$emai
 $selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC); // Obtener la fila de la cuenta seleccionada
 
 if ($selAcc->rowCount() > 0) {
-    $storedHash = $selAccRow['password']; // Hash almacenado en la base de datos
+    $storedHash = $selAccRow['contrasena']; // Hash almacenado en la base de datos
 
     if ($providedHash === $storedHash) {
         $_SESSION['admin'] = array(
