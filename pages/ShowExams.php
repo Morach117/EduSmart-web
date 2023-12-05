@@ -100,33 +100,15 @@
                                                     onclick="abrirModalCambiarEstado(<?php echo $idExamen; ?>, <?php echo $estadoExamen; ?>)">
                                                     Apagar/Encender
                                                 </button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                <a href="direcciones.php?page=ShowExams&id=<?php echo $idExamen; ?>"
-                                                    class="btn btn-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="icon icon-tabler icon-tabler-trash" width="24" height="24"
-                                                        viewBox="0 0 24 24" stroke-width="2" stroke="#EE1313" fill="none"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M4 7l16 0" />
-                                                        <path d="M10 11l0 6" />
-                                                        <path d="M14 11l0 6" />
-                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                    </svg>
-                                                </a>
+                                                <button type="button" class="btn btn-danger btn-eliminar-examen" data-bs-toggle="modal" data-bs-target="#modal-danger-examen" data-id="<?php echo $idExamen ?>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                                    <path d="M4 7h16" />
+                                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                                    <path d="M10 12l4 4m0 -4l-4 4" />
+                                                                </svg>
+                                                            </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -237,6 +219,60 @@ function abrirModalCambiarEstado(examenId, estadoExamen) {
             }
         });
     }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Asignar el evento a un contenedor existente (por ejemplo, el cuerpo de la tabla)
+    var tableBody = document.getElementById('example').getElementsByTagName('tbody')[0];
+
+    // Usar un selector para filtrar los clics a los botones de eliminación
+    tableBody.addEventListener('click', function (event) {
+        if (event.target.classList.contains('btn-eliminar-examen')) {
+            var examenId = event.target.getAttribute('data-id');
+
+            // Asignar el id del examen al botón de confirmación en el modal
+            document.querySelector('#modal-danger-examen .btn-danger').setAttribute('data-id', examenId);
+        }
+    });
+
+    // Asignar el evento al botón de confirmación en el modal
+    document.querySelector('#modal-danger-examen .btn-danger').addEventListener('click', function () {
+        // Obtener el id del examen desde el atributo data-id del botón
+        var examenId = this.getAttribute('data-id');
+
+        // Realizar la solicitud de eliminación al servidor (puedes usar fetch o jQuery.ajax)
+        // Aquí se muestra un ejemplo usando fetch
+        fetch('./query/examen/eliminar_examen.php?id=' + examenId, {
+            method: 'GET'
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                // Eliminación exitosa, puedes recargar la página o realizar otras acciones necesarias
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Examen eliminado con éxito!',
+                    showConfirmButton: false,
+                    timer: 1000 // 1 segundo
+                }).then(() => {
+                    // Recargar la página después de 1 segundo
+                    setTimeout(function () {
+                        location.reload();
+                    }, 500);
+                });
+            } else {
+                alert('Error al eliminar el examen');
+            }
+        })
+        .catch(function(error) {
+            console.error('Error al eliminar el examen:', error);
+        });
+    });
+});
+
 </script>
 
 

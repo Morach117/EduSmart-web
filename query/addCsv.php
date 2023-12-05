@@ -20,7 +20,7 @@ foreach ($lineas as $linea) {
         $apellido_paterno = !empty($datos[2]) ? ($datos[2]) : '';
         $apellido_materno = !empty($datos[3]) ? ($datos[3]) : '';
         $correo = !empty($datos[4]) ? ($datos[4]) : '';
-        $contrasena = !empty($datos[5]) ? password_hash($datos[5], PASSWORD_DEFAULT) : password_hash('EduSmart123', PASSWORD_DEFAULT); // Contraseña encriptada
+        $contrasena = !empty($datos[5]) ? password_hash($datos[5], PASSWORD_BCRYPT) : password_hash('EduSmart123', PASSWORD_BCRYPT); // Contraseña encriptada con Bcrypt
         $telefono = !empty($datos[6]) ? ($datos[6]) : '';
         $sexo = !empty($datos[7]) ? ($datos[7]) : '';
         $fecha_nacimiento = !empty($datos[8]) ? date('Y-m-d', strtotime($datos[8])) : null;
