@@ -85,4 +85,6 @@ $docenteId = $selDocenteData['id_docente'];
 ```
 <script>
     new DataTable('#example');
+
+    //no se
 </script>
