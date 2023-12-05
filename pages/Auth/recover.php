@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$servername = "195.35.61.64";
+$servername = "localhost";
 $username = "u508128631_dilmar";
 $password = "dilmarGH12";
 $dbname = "u508128631_edusmart_v2";

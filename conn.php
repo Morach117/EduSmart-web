@@ -1,12 +1,12 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db = "edusmart_v2";
+$user = "u508128631_dilmar";
+$pass = "dilmarGH12";
+$db = "u508128631_edusmart_v2";
 $conn = null;
 
-// $host = "195.35.61.64";
+// $host = "localhost";
 // $user = "u508128631_dilmar";
 // $pass = "dilmarGH12";
 // $db = "u508128631_edusmart_v2";

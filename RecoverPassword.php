@@ -3,13 +3,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../PHPMailer/src/Exception.php';
-require '../../PHPMailer/src/PHPMailer.php';
-require '../../PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 // Tu código de conexión a la base de datos y funciones de seguridad
 // ...
-include '../../conn.php';
+include 'conn.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $correo = htmlspecialchars($_POST["correo"]);
@@ -88,11 +88,11 @@ function enviarCorreoElectronico($correo, $nuevaContraseña)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../assets/dist/css/tabler.min.css?1684106062" rel="stylesheet" />
-    <link href="../../assets/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet" />
-    <link href="../../assets/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet" />
-    <link href="../../assets/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet" />
-    <link href="../../assets/dist/css/demo.min.css?1684106062" rel="stylesheet" />
+    <link href="assets/dist/css/tabler.min.css?1684106062" rel="stylesheet" />
+    <link href="assets/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet" />
+    <link href="assets/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet" />
+    <link href="assets/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet" />
+    <link href="assets/dist/css/demo.min.css?1684106062" rel="stylesheet" />
     <title>Recuperar contraseña</title>
 
 </head>
