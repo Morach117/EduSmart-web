@@ -385,7 +385,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno");
+                                    $selAlumno = $conn->query("SELECT * FROM alumnos WHERE id_alumno NOT IN (SELECT id_alumno FROM equipoxalumno) ORDER BY id_alumno");
                                     if ($selAlumno->rowCount() > 0) {
                                         while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
                                             ?>
