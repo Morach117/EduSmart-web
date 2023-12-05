@@ -349,6 +349,8 @@
 </div>
 
 
+
+<!-- modal para equipos -->
 <div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -358,7 +360,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form id="equipo-form" action="./query/equipos/guardar_equipo.php" method="post" class="form-fieldset">
+                    <form id="equipo-form" method="post" class="form-fieldset">
                         <div class="row g-3">
                             <div class="col mb-3">
                                 <label for="nombre" class="form-label">Nombre del equipo</label>
@@ -372,7 +374,7 @@
 
                         <h4>Alumnos Disponibles</h4>
                         <div class="table-responsive">
-                        <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
+                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Matricula</th>
@@ -400,8 +402,6 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <input type="checkbox" name="alumnos_seleccionados[]" value="<?php echo $selAlumnoRow['id_alumno']; ?>">
-                                                    <input type="hidden" name="alumnosSeleccionados" id="alumnosSeleccionados" value="">
-
                                                 </td>
                                             </tr>
                                             <?php
@@ -417,7 +417,7 @@
                         <div class="row g-3">
                             <div class="col">
                                 <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" id="submit-btn">
                                         Subir equipo
                                     </button>
                                     <button type="reset" class="btn btn-danger ms-2">
@@ -432,6 +432,28 @@
         </div>
     </div>
 </div>
+
+
+<!-- Agrega un modal para mostrar los integrantes -->
+<div class="modal fade" id="integrantesModal" tabindex="-1" role="dialog" aria-labelledby="integrantesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="integrantesModalLabel">Integrantes del Equipo</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="integrantesModalBody">
+                <!-- Contenido dinámico cargado por AJAX -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- modal para eliminar examen -->

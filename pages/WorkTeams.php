@@ -1,147 +1,117 @@
-<div class="page-body">
-    <div class="container-xl">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-header">
-                    <div class="page-tittle col">
-                        <h2 class="page-tittle-text">Lista de alumnos</h2>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="page-tittle col">
+                            <h2 class="page-tittle-text">Lista de alumnos</h2>
+                        </div>
+                        <div class="text-end col">
+                            <button data-bs-toggle="modal" data-bs-target="#modal-equipos"
+                                class="btn btn-primary">Administrar equipos</button>
+                        </div>
                     </div>
-                    <div class="text-end col">
-                        <button data-bs-toggle="modal" data-bs-target="#modal-equipos"
-                            class="btn btn-primary">Administrar equipos</button>
-                    </div>
-                </div>
 
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="example">
-                        <thead>
-                            <tr>
-                                <th>Matrícula</th>
-                                <th>Nombre</th>
-                                <th>Equipo</th>
-                                <th class="text-center">Número de integrantes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $selAlumno = $conn->query("SELECT
-                            a.matricula,
-                            a.nombre,
-                            e.nombre_equipo,
-                            e.numero_integrantes
-                            FROM alumnos a
-                            INNER JOIN equipoxalumno ea ON a.id_alumno = ea.id_alumno
-                            INNER JOIN equipos e ON ea.id_equipo = e.id_equipo
-                            ORDER BY a.id_alumno ASC");
-                            if ($selAlumno->rowCount() > 0) {
-                                $i = 1;
-                                while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $selAlumnoRow['matricula']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $selAlumnoRow['nombre']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $selAlumnoRow['nombre_equipo']; ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php echo $selAlumnoRow['numero_integrantes']; ?>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $i++;
-                                }
-                            } else {
-                                ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="example">
+                            <thead>
                                 <tr>
-                                    <td>No hay datos disponibles</td>
-                                    <td>No hay datos disponibles</td>
-                                    <td>No hay datos disponibles</td>
-                                    <td>No hay datos disponibles</td>
+                                    <th>Equipo</th>
+                                    <th>Integrantes</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                            }
-                            ?>
-                        </tbody>
-
-
-                    </table>
+                                $selEquipos = $conn->query("SELECT * FROM equipos ORDER BY id_equipo");
+                                if ($selEquipos->rowCount() > 0) {
+                                    while ($selEquipoRow = $selEquipos->fetch(PDO::FETCH_ASSOC)) {
+                                        ?>
+                                        <tr data-toggle="modal" data-target="#integrantesModal" data-id-equipo="<?php echo $selEquipoRow['id_equipo']; ?>">
+                                            <td>
+                                                <?php echo $selEquipoRow['nombre_equipo']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $selEquipoRow['numero_integrantes']; ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='2'>No hay equipos registrados.</td></tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<script>
-    $(document).ready(function () {
-        $('#equipos-table').DataTable();
+    <!-- Script para manejar la apertura del modal -->
+    <script>
+        // Reemplaza el evento de clic en la fila para abrir el modal
+        $('table').on('click', 'tr', function () {
+            var idEquipo = $(this).data('id-equipo');
 
-        // Captura el evento de envío del formulario
-        $('#equipo-form').on('submit', function (e) {
-            e.preventDefault();
-
-            // Recopila los checkboxes marcados en un array
-            var alumnosSeleccionados = [];
-            $('input[name="alumnos_seleccionados[]"]:checked').each(function () {
-                alumnosSeleccionados.push($(this).val());
-            });
-
-            // Establece el valor del campo oculto con los IDs de los alumnos seleccionados
-            $('#alumnosSeleccionados').val(JSON.stringify(alumnosSeleccionados));
-
-            // Recopila otros datos del formulario si es necesario
-            var nombreEquipo = $('#nombre-equipo').val();
-            var integrantesEquipo = $('#integrantes').val();
-
-            // Realiza una solicitud AJAX para guardar los datos
             $.ajax({
-                type: 'POST',
-                url: "./query/equipos/guardar_equipo.php",
-                data: {
-                    nombreEquipo: nombreEquipo,
-                    integrantesEquipo: integrantesEquipo,
-                    alumnosSeleccionados: alumnosSeleccionados
-                },
+                type: "POST",
+                url: "./query/equipos/obtener_integrantes.php",
+                data: { id_equipo: idEquipo },
                 success: function (response) {
-                    if (response.success) {
-                        Swal.fire({
-                            title: 'Éxito',
-                            text: response.message,
-                            icon: 'success',
-                        }).then(function () {
-                            // Realiza acciones adicionales después de guardar el equipo (si es necesario)
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: response.message,
-                            icon: 'error',
-                        });
-                    }
+                    $('#integrantesModalBody').html(response);
+                    $('#integrantesModal').modal('show');
                 },
-                error: function (xhr, status, error) {
-                    console.error(error);
+                error: function (error) {
+                    console.error('Error al obtener los integrantes del equipo: ' + error.responseText);
                 }
             });
         });
 
+    </script>
+
+    <!-- Script para manejar el botón de submit -->
+    <script>
         $(document).ready(function () {
-            $('#alumnos-table').DataTable();
+            $("#submit-btn").on("click", function () {
+                var maxIntegrantes = parseInt($("#integrantes").val());
+                var alumnosSeleccionados = $("input[name='alumnos_seleccionados[]']:checked").length;
+
+                if (alumnosSeleccionados > maxIntegrantes) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Seleccionaste más alumnos de los permitidos.',
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "./query/equipos/guardar_equipo.php",
+                    data: $("#equipo-form").serialize(),
+                    success: function (response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Equipo creado correctamente!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error al crear el equipo.',
+                            text: error.responseText
+                        });
+                    }
+                });
+            });
         });
-    });
-</script>
-
-
-
-
-
-
-<script>
-    new DataTable('#example');
-</script>
+    </script>
 </body>
 
 </html>

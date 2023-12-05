@@ -1,42 +1,47 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include('../../conn.php'); // Incluye el archivo de conexión a la base de datos
+// conexión a la base de datos
+include '../../conn.php';
 
-    // Recopila los datos del formulario
-    $nombreEquipo = $_POST['nombreEquipo'];
-    $integrantesEquipo = $_POST['integrantesEquipo'];
-    $alumnosSeleccionados = $_POST['alumnosSeleccionados'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    try {
+        // Limpia y valida los datos del formulario
+        $nombreEquipo = filter_input(INPUT_POST, "nombreEquipo", FILTER_SANITIZE_STRING);
+        $integrantesEquipo = filter_input(INPUT_POST, "integrantesEquipo", FILTER_VALIDATE_INT);
 
-    // Realiza la inserción del equipo en la tabla de equipos (ajusta la consulta SQL según tu estructura)
-    $queryInsertEquipo = "INSERT INTO equipos (nombre_equipo, numero_integrantes) VALUES (:nombreEquipo, :integrantesEquipo)";
-    $stmtInsertEquipo = $conn->prepare($queryInsertEquipo);
-    $stmtInsertEquipo->bindParam(':nombreEquipo', $nombreEquipo, PDO::PARAM_STR);
-    $stmtInsertEquipo->bindParam(':integrantesEquipo', $integrantesEquipo, PDO::PARAM_STR);
-    
-    if ($stmtInsertEquipo->execute()) {
-        // Obtiene el ID del equipo insertado
-        $equipoId = $conn->lastInsertId();
-    
-        // Recorre los IDs de los alumnos seleccionados y realiza la inserción en la tabla de relación equipos_alumnos (ajusta la consulta SQL según tu estructura)
-        foreach ($alumnosSeleccionados as $alumnoId) {
-            $queryInsertEquipoAlumno = "INSERT INTO equipoxalumno (id_equipo, id_alumno) VALUES (:equipoId, :alumnoId)";
-            $stmtInsertEquipoAlumno = $conn->prepare($queryInsertEquipoAlumno);
-            $stmtInsertEquipoAlumno->bindParam(':equipoId', $equipoId, PDO::PARAM_INT);
-            $stmtInsertEquipoAlumno->bindParam(':alumnoId', $alumnoId, PDO::PARAM_INT);
-            $stmtInsertEquipoAlumno->execute();
+        // Verifica que los datos no estén vacíos o sean inválidos
+        if (empty($nombreEquipo) || $integrantesEquipo === false) {
+            http_response_code(400);
+            echo "Datos de formulario inválidos";
+            exit;
         }
-    
-        $response = array('success' => true, 'message' => 'Equipo guardado correctamente.');
-        echo json_encode($response);
-    } else {
-        $response = array('success' => false, 'message' => 'Error al guardar el equipo.');
-        echo json_encode($response);
+
+        // Inserta la información del equipo en la tabla 'equipos'
+        $stmt = $conn->prepare("INSERT INTO equipos (nombre_equipo, numero_integrantes) VALUES (?, ?)");
+        $stmt->execute([$nombreEquipo, $integrantesEquipo]);
+
+        // Obtiene el ID del equipo recién insertado
+        $equipoId = $conn->lastInsertId();
+
+        // Inserta los alumnos seleccionados en la tabla 'equipoxalumno'
+        if (isset($_POST["alumnos_seleccionados"]) && is_array($_POST["alumnos_seleccionados"])) {
+            foreach ($_POST["alumnos_seleccionados"] as $alumnoId) {
+                // Asegúrate de que $alumnoId sea un entero
+                $alumnoId = filter_var($alumnoId, FILTER_VALIDATE_INT);
+                if ($alumnoId !== false) {
+                    // Realiza la inserción en la base de datos
+                    $stmt = $conn->prepare("INSERT INTO equipoxalumno (id_alumno, id_equipo) VALUES (?, ?)");
+                    $stmt->execute([$alumnoId, $equipoId]);
+                }
+            }
+        }
+
+        echo "Equipo creado correctamente!";
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo "Error al crear el equipo: " . $e->getMessage();
     }
-    
 } else {
-    // Maneja la solicitud incorrecta
     http_response_code(400);
-    $response = array('success' => false, 'message' => 'Solicitud incorrecta');
-    echo json_encode($response);
+    echo "Bad Request";
 }
 ?>

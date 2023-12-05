@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Actualizar la contraseña en la base de datos
         $hashedPassword = hash('sha256', $nuevaContraseña);
-        $stmtUpdate = $conn->prepare("UPDATE docentes SET password = ? WHERE correo_electronico = ?");
+        $stmtUpdate = $conn->prepare("UPDATE docentes SET contrasena = ? WHERE correo_electronico = ?");
         $stmtUpdate->bindParam(1, $hashedPassword);
         $stmtUpdate->bindParam(2, $correo);
         $stmtUpdate->execute();
