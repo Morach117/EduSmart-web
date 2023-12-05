@@ -29,13 +29,26 @@ if ($_SESSION[$loginAttemptsKey] >= $maxLoginAttempts) {
     }
 }
 
-$providedHash = hash('sha256', $password); // Hash de la contraseña proporcionada
+// Validar y sanitizar datos de entrada
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
-$selAcc = $conn->query("SELECT * FROM docentes WHERE correo_electronico = '$email'"); // Seleccionar la cuenta con el correo proporcionado
-$selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC); // Obtener la fila de la cuenta seleccionada
+if ($email === false) {
+    // Correo electrónico no válido, puede ser un intento de ataque SQL
+    $res = array('res' => 'invalid_email');
+    echo json_encode($res);
+    exit;
+}
+
+// Utilizar consultas preparadas para evitar inyecciones SQL
+$selAcc = $conn->prepare("SELECT * FROM docentes WHERE correo_electronico = :email");
+$selAcc->bindParam(':email', $email);
+$selAcc->execute();
 
 if ($selAcc->rowCount() > 0) {
-    $storedHash = $selAccRow['contrasena']; // Hash almacenado en la base de datos
+    $selAccRow = $selAcc->fetch(PDO::FETCH_ASSOC);
+    $providedHash = hash('sha256', $password);
+
+    $storedHash = $selAccRow['contrasena'];
 
     if ($providedHash === $storedHash) {
         $_SESSION['admin'] = array(
