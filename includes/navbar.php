@@ -275,7 +275,7 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
     <div class="modal modal-blur fade" id="modal-alumnos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="form-importar" method="post" action="./query/addAlumnos.php" enctype="multipart/form-data">
+            <form id="form-importar" method="post" action="./query/csv.php" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Importar Datos de Alumnos</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
