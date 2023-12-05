@@ -349,8 +349,7 @@
 </div>
 
 
-<div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog"
-    aria-labelledby="modalTitleId" aria-hidden="true">
+<div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -359,37 +358,21 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form class="form-fieldset">
-                        <div class="row">
-                            <h3 class="col text-2xl font-semibold leading-none tracking-tight"></h3>
-                        </div>
+                    <form id="equipo-form" action="./query/equipos/guardar_equipo.php" method="post" class="form-fieldset">
                         <div class="row g-3">
                             <div class="col mb-3">
                                 <label for="nombre" class="form-label">Nombre del equipo</label>
-                                <input type="text" maxlength="100" class="form-control" name="nombre" required
-                                    id="nombre" aria-describedby="helpId" placeholder="">
+                                <input type="text" maxlength="100" class="form-control" name="nombreEquipo" required id="nombre" aria-describedby="helpId" placeholder="">
                             </div>
                             <div class="col mb-3">
-                                <label for="time" class="form-label">Numero de integrantes</label>
-                                <input type="number" class="form-control" name="time" id="time"
-                                    aria-describedby="helpId" required placeholder="">
+                                <label for="integrantes" class="form-label">Numero de integrantes</label>
+                                <input type="number" class="form-control" name="integrantesEquipo" id="integrantes" aria-describedby="helpId" required placeholder="">
                             </div>
                         </div>
-                        <div class="row g-3">
-                            <div class="col">
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">
-                                        Subir examen
-                                    </button>
-                                    <button type="reset" class="btn btn-danger ms-2">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+
                         <h4>Alumnos Disponibles</h4>
                         <div class="table-responsive">
-                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
+                        <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Matricula</th>
@@ -416,7 +399,9 @@
                                                     echo $Apellidos ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <input type="checkbox" name="" id="">
+                                                    <input type="checkbox" name="alumnos_seleccionados[]" value="<?php echo $selAlumnoRow['id_alumno']; ?>">
+                                                    <input type="hidden" name="alumnosSeleccionados" id="alumnosSeleccionados" value="">
+
                                                 </td>
                                             </tr>
                                             <?php
@@ -428,6 +413,19 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">
+                                        Subir equipo
+                                    </button>
+                                    <button type="reset" class="btn btn-danger ms-2">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -436,6 +434,7 @@
 </div>
 
 
+<!-- modal para eliminar examen -->
 <div class="modal modal-blur fade" id="modal-danger-examen" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
