@@ -272,6 +272,36 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
       </div>
     </header>
 
+    <div class="modal modal-blur fade" id="modal-alumnos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="form-importar" method="post" action="./query/addAlumnos.php" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar Datos de Alumnos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dataCliente" class="form-label">Seleccionar archivo Excel</label>
+                        <div class="custom-file">
+                            <input type="file" name="dataCliente" id="file-input" class="custom-file-input">
+                            <label class="custom-file-label" for="file-input">Elegir archivo</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>Descargar plantilla:</p>
+                        <a href="./Plantilla.csv" download="Plantilla.csv" class="btn btn-outline-primary">Descargar Plantilla</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="btn-importar" type="submit" class="btn btn-primary">Importar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
     <script src="./assets/dist/libs/dropzone/dist/dropzone-min.js?1684106062" defer></script>
     <script>

@@ -48,7 +48,7 @@
                                         <label class="form-label mb-3">
                                             Contraseña
                                             <span class="form-label-description mb-3">
-                                                <a href="RecoverPassword.php">¿Perdiste tu contraseña?</a>
+                                                <a href="../RecoverPassword.php">¿Perdiste tu contraseña?</a>
                                             </span>
                                         </label>
                                         <div class="input-group input-group-flat mb-5">

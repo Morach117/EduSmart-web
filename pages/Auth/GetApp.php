@@ -41,7 +41,7 @@
                                     Descarga nuestra aplicación movil y disfruta de una experiencia
                                     fluida, segura y sencilla para aprender.
                                 </p>
-                                <a href="#" class="btn btn-dark btn-lg mt-4">
+                                <a href="../../files/edusmart.apk" download="EduSmart.apk" class="btn btn-dark btn-lg mt-4">
                                     Download APK
                                 </a>
                             </div>

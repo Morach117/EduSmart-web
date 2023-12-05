@@ -60,22 +60,6 @@
                                 ?>
                             <div class="col-md-6 col-lg-3">
                                 <div class="card">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end text-warning">
-                                        <button data-bs-toggle="modal" data-id="<?php echo $rowMateria['id_materia'] ?>"
-                                            data-bs-target="#modal-danger" class="btn btn-link a text-center" type="button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash"
-                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M4 7l16 0" />
-                                                <path d="M10 11l0 6" />
-                                                <path d="M14 11l0 6" />
-                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                        </button>
-                                    </div>
                                     <div class="card-body p-4 text-center">
                                         <span class="cursor-pointer avatar avatar-xl mb-3 rounded"
                                             style="background-image: url(./files/materias/<?php echo $rowMaterias['img'] ?>)"></span>
@@ -129,7 +113,7 @@
 
                 // Realizar una solicitud AJAX
                 $.ajax({
-                    url: './query/materia/add_materia.php',
+                    url: './query/materia/add_Materia.php',
                     type: 'POST',
                     data: formData,
                     contentType: false,
