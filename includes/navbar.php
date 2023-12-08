@@ -1,5 +1,5 @@
 <?php
-include("./query/selectData.php"); //incluye el archivo de consultas a la base de datos
+include "./query/selectData.php"; //incluye el archivo de consultas a la base de datos
 ?>
 <!doctype html>
 <html lang="en">
@@ -119,8 +119,8 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                   <div>
                     <span class="h3">
                       <?php
-                      echo $selDocenteData['nombre'];
-                      ?>
+echo $selDocenteData['nombre'];
+?>
                     </span>
                   </div>
                 </div>
@@ -180,23 +180,40 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                         $selAlumnos = $conn->query("SELECT * FROM alumnos");
                         $selAlumnosRow = $selAlumnos->fetch(PDO::FETCH_ASSOC);
                         if ($selAlumnos->rowCount() > 0) {
-                          echo '<a class="dropdown-item" href="direcciones.php?page=ShowStudents">Ver alumnos</a>';
+                            echo '<a class="dropdown-item" href="direcciones.php?page=ShowStudents">Ver alumnos</a>';
                         } else {
-                          echo '<a class="dropdown-item btn bg-red text-white fw-bold text-center" data-bs-toggle="modal" data-bs-target="#modal-alumnos">
-                        Cargar lista de alumnos <br>
-                        (No hay ningún registro actualmente)
-                      </a>';
+                            echo '<a class="dropdown-item btn bg-red text-white fw-bold text-center" data-bs-toggle="modal" data-bs-target="#modal-alumnos">
+                                                Cargar lista de alumnos <br>
+                                                (No hay ningún registro actualmente)
+                                              </a>';
                         }
                         ?>
-                        <a class="dropdown-item" href="direcciones.php?page=WorkTeams">
-                          Asignar equipos
-                        </a>
-                        <a class="dropdown-item" href="direcciones.php?page=materiasxalumno ">
-                          Asignar materias
-                        </a>
-                        <a class="dropdown-item" href="direcciones.php?page=viewmateriasxalumnos">
-                          Ver alumnos asignados
-                        </a>
+                        <?php
+                        $docenteId = $selDocenteData['id_docente'];
+
+                        // Consulta para verificar si hay alumnos asignados al docente
+                        $consultaAlumnos = $conn->prepare("SELECT COUNT(*) as total_alumnos FROM alumnos WHERE id_docente = :docenteId");
+                        $consultaAlumnos->bindParam(':docenteId', $docenteId, PDO::PARAM_INT);
+                        $consultaAlumnos->execute();
+                        $totalAlumnos = $consultaAlumnos->fetch(PDO::FETCH_ASSOC)['total_alumnos'];
+                        ?>
+                        <?php if ($totalAlumnos > 0): ?>
+                          <a class="dropdown-item" href="direcciones.php?page=WorkTeams">
+                                                  Asignar equipos
+                                                </a>
+                        <?php endif;?>
+
+                        <?php if ($totalAlumnos > 0): ?>
+                          <a class="dropdown-item" href="direcciones.php?page=materiasxalumno">
+                            Asignar materias
+                          </a>
+                        <?php endif;?>
+                        <?php if ($totalAlumnos > 0): ?>
+                          <a class="dropdown-item" href="direcciones.php?page=viewmateriasxalumnos">
+                                                  Ver alumnos asignados
+                                                </a>
+                        <?php endif;?>
+
                       </div>
                     </div>
                   </div>
@@ -281,6 +298,9 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Agregar campo oculto para almacenar el ID del docente -->
+                    <input type="hidden" name="idDocente" value="<?php echo $selDocenteData['id_docente']; ?>">
+
                     <div class="form-group">
                         <label for="dataCliente" class="form-label">Seleccionar archivo Excel</label>
                         <div class="custom-file">
@@ -290,7 +310,7 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
                     </div>
                     <div class="form-group">
                         <p>Descargar plantilla:</p>
-                        <a href="./Plantilla.csv" download="Plantilla.csv" class="btn btn-outline-primary">Descargar Plantilla</a>
+                        <a href="./files/Plantilla.csv" download="Plantilla.csv" class="btn btn-outline-primary">Descargar Plantilla</a>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -301,7 +321,6 @@ include("./query/selectData.php"); //incluye el archivo de consultas a la base d
         </div>
     </div>
 </div>
-
 
     <script src="./assets/dist/libs/dropzone/dist/dropzone-min.js?1684106062" defer></script>
     <script>

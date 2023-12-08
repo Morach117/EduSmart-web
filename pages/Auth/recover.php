@@ -1,9 +1,9 @@
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
-$username = "u508128631_dilmar";
-$password = "dilmarGH12";
-$dbname = "u508128631_edusmart_v2";
+$username = "root";
+$password = "";
+$dbname = "edusmart_v2";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -50,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($stmt_verificar_correo->num_rows > 0) {
         $mensaje = "El correo electrónico ya está registrado.";
     } else {
-        // Verificar si la contraseña cumple con los requisitos (por ejemplo, al menos 8 caracteres y al menos un número)
-        $requisitos_contraseña = "/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/";
+        // Verificar si la contraseña cumple con los requisitos (por ejemplo, al menos 8 caracteres, al menos un número y al menos una letra mayúscula)
+        $requisitos_contraseña = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/";
         if (!preg_match($requisitos_contraseña, $contraseña)) {
-            $mensaje = "La contraseña debe tener entre 8 a 20 caracteres y contener al menos un número.";
+            $mensaje = "La contraseña debe tener entre 8 a 20 caracteres, contener al menos un número y al menos una letra mayúscula.";
         } else {
             // Encriptar la contraseña
             $contraseñaEncriptada = encriptarContraseña($contraseña);
@@ -170,24 +170,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="../../assets/dist/js/tabler.min.js?1684106062" defer></script>
     <script src="../../assets/dist/js/demo.min.js?1684106062" defer></script>
     <script>
-        var showPasswordLink = document.getElementById('showPassword');
-        var passwordInput = document.getElementById('password');
-        var showIcon = document.getElementById('icon')
+    var showPasswordLink = document.getElementById('showPassword');
+    var passwordInput = document.getElementById('password');
+    var showIcon = document.getElementById('icon')
 
-        showPasswordLink.addEventListener('click', function (event) {
+    showPasswordLink.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            showIcon.src = '../../assets/dist/svg/eye-off.svg';
+            showPasswordLink.setAttribute('title', 'Mostrar contraseña')
+        } else {
+            passwordInput.type = 'password';
+            showIcon.src = '../../assets/dist/svg/eye.svg';
+            showPasswordLink.setAttribute('title', 'Ocultar contraseña')
+        }
+    });
+
+    // Nueva parte para mostrar una alerta si la contraseña no cumple con los requisitos
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        var password = document.getElementById('password').value;
+        var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        if (!passwordRegex.test(password)) {
             event.preventDefault();
+            alert('La contraseña debe tener entre 8 y 20 caracteres, contener al menos un número y al menos una letra mayúscula.');
+        }
+    });
+</script>
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                showIcon.src = '../../assets/dist/svg/eye-off.svg';
-                showPasswordLink.setAttribute('title', 'Mostrar contraseña')
-            } else {
-                passwordInput.type = 'password';
-                showIcon.src = '../../assets/dist/svg/eye.svg';
-                showPasswordLink.setAttribute('title', 'Ocultar contraseña')
-            }
-        });
-    </script>
 </body>
 
 </html>

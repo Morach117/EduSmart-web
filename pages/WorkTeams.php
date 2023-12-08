@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $selEquipos = $conn->query("SELECT * FROM equipos ORDER BY id_equipo");
+                            $selEquipos = $conn->query("SELECT * FROM equipos WHERE id_docente = $docenteId ORDER BY id_equipo");
                             if ($selEquipos->rowCount() > 0) {
                                 while ($selEquipoRow = $selEquipos->fetch(PDO::FETCH_ASSOC)) {
                                     ?>

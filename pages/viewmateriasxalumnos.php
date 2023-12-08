@@ -18,10 +18,14 @@ $docenteId = $selDocenteData['id_docente'];
                             </thead>
                             <tbody>
                                 <?php
-                                $consulta = $conn->query("SELECT alumnos.nombre, alumnos.matricula, materias.nombre_materia
+                                // Modificación: Agregar una cláusula WHERE para filtrar por ID de docente
+                                $consulta = $conn->prepare("SELECT alumnos.nombre, alumnos.matricula, materias.nombre_materia
                                         FROM alumnos
                                         INNER JOIN materiaxalumno ON alumnos.id_alumno = materiaxalumno.id_alumno
-                                        INNER JOIN materias ON materiaxalumno.id_materia = materias.id_materia");
+                                        INNER JOIN materias ON materiaxalumno.id_materia = materias.id_materia
+                                        WHERE alumnos.id_docente = :docenteId");
+                                $consulta->bindParam(':docenteId', $docenteId, PDO::PARAM_INT);
+                                $consulta->execute();
 
                                 if ($consulta->rowCount() > 0) {
                                     while ($fila = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -42,9 +46,7 @@ $docenteId = $selDocenteData['id_docente'];
                                 } else {
                                     ?>
                                     <tr>
-                                        <td>No hay alumnos con materias asignadas</td>
-                                        <td>No hay alumnos con materias asignadas</td>
-                                        <td>No hay alumnos con materias asignadas</td>
+                                        <td colspan="3">No hay alumnos asignados con materias</td>
                                     </tr>
                                     <?php
                                 }
@@ -64,7 +66,6 @@ $docenteId = $selDocenteData['id_docente'];
     </div>
 </div>
 
-```
 <script>
     new DataTable('#example');
 

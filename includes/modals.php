@@ -351,6 +351,7 @@
 
 
 <!-- modal para equipos -->
+<!-- modal para equipos -->
 <div class="modal fade modal-blur" data-bs-backdrop="static" id="modal-equipos" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -361,13 +362,16 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <form id="equipo-form" method="post" class="form-fieldset">
+                        <!-- Agrega un campo oculto para almacenar el ID del docente -->
+                        <input type="hidden" name="idDocente" value="<?php echo $selDocenteData['id_docente']; ?>">
+
                         <div class="row g-3">
                             <div class="col mb-3">
                                 <label for="nombre" class="form-label">Nombre del equipo</label>
                                 <input type="text" maxlength="100" class="form-control" name="nombreEquipo" required id="nombre" aria-describedby="helpId" placeholder="">
                             </div>
                             <div class="col mb-3">
-                                <label for="integrantes" class="form-label">Numero de integrantes</label>
+                                <label for="integrantes" class="form-label">Número de integrantes</label>
                                 <input type="number" class="form-control" name="integrantesEquipo" id="integrantes" aria-describedby="helpId" required placeholder="">
                             </div>
                         </div>
@@ -385,7 +389,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $selAlumno = $conn->query("SELECT * FROM alumnos WHERE id_alumno NOT IN (SELECT id_alumno FROM equipoxalumno) ORDER BY id_alumno");
+                                    $selAlumno = $conn->query("SELECT * FROM alumnos WHERE id_alumno NOT IN (SELECT id_alumno FROM equipoxalumno) AND id_docente = {$selDocenteData['id_docente']} ORDER BY id_alumno");
                                     if ($selAlumno->rowCount() > 0) {
                                         while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
                                             ?>
@@ -417,7 +421,7 @@
                         <div class="row g-3">
                             <div class="col">
                                 <div class="text-end">
-                                <button type="button" class="btn btn-primary" id="submit-btn">
+                                    <button type="button" class="btn btn-primary" id="submit-btn">
                                         Subir equipo
                                     </button>
                                     <button type="reset" class="btn btn-danger ms-2">

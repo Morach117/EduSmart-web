@@ -1,16 +1,10 @@
 <?php
 
 $host = "localhost";
-$user = "u508128631_dilmar";
-$pass = "dilmarGH12";
-$db = "u508128631_edusmart_v2";
+$user = "root";
+$pass = "";
+$db = "edusmart_v2";
 $conn = null;
-
-// $host = "localhost";
-// $user = "u508128631_dilmar";
-// $pass = "dilmarGH12";
-// $db = "u508128631_edusmart_v2";
-// $conn = null;
 
 try {
   $conn = new PDO("mysql:host=$host;dbname=$db;", $user, $pass, [

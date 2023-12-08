@@ -26,7 +26,8 @@
                         </thead>
                         <tbody>
                             <?php
-                            $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno ASC");
+                            $docente = $selDocenteData['id_docente'];
+                            $selAlumno = $conn->query("SELECT * FROM alumnos WHERE id_docente = $docente ORDER BY id_alumno ASC");
                             if ($selAlumno->rowCount() > 0) {
                                 $i = 1;
                                 while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
