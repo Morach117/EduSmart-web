@@ -40,8 +40,67 @@
     </div>
 </div>
 
-<!-- Modal para la creacion de un nuevo alumno -->
+<!-- Modal para buscar alumnos -->
+<div class="modal modal-blur fade" id="modal-alumno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear nueva materia</h5>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Matricula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $selAlumno = $conn->query("SELECT * FROM alumnos WHERE id_alumno NOT IN (SELECT id_alumno FROM equipoxalumno) AND id_docente = {$selDocenteData['id_docente']} ORDER BY id_alumno");
+                                    if ($selAlumno->rowCount() > 0) {
+                                        while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['matricula'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['nombre'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php $Apellidos = $selAlumnoRow['app'] . " " . $selAlumnoRow['apm'];
+                                                    echo $Apellidos ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" data-bs-dismiss="modal" data-value="<?php echo $selAlumnoRow['matricula'] ?>" class="btn btn-primary copy-button2 btn-sm">Copiar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "No hay alumnos registrados.";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container text-end">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnCargarMateria">Cargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modal para la creacion de un nuevo alumno -->
 <div class="modal modal-blur fade" id="modal-alumnos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -509,12 +568,23 @@
     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
 
 </script>
+
 <script>
     var copyButtons = document.getElementsByClassName("copy-button");
     for (var i = 0; i < copyButtons.length; i++) {
         copyButtons[i].addEventListener("click", function () {
             var valueToCopy = this.getAttribute("data-value");
             document.getElementById("unidad").value = valueToCopy;
+        });
+    }
+</script>
+
+<script>
+    var copyButtons = document.getElementsByClassName("copy-button2");
+    for (var i = 0; i < copyButtons.length; i++) {
+        copyButtons[i].addEventListener("click", function () {
+            var valueToCopy = this.getAttribute("data-value");
+            document.getElementById("matricula").value = valueToCopy;
         });
     }
 </script>
