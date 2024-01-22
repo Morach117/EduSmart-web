@@ -218,7 +218,13 @@ echo $selDocenteData['nombre'];
                                                   Seguimiento de alumno
                                                 </a>
                         <?php endif;?>
+                        <?php if ($totalAlumnos > 0): ?>
+                          <a class="dropdown-item" href="direcciones.php?page=calificacion_general">
+                                                  Calificaciones generales
+                                                </a>
+                        <?php endif;?>
                       </div>
+                      
                     </div>
                   </div>
                 </li>

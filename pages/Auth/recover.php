@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Encriptar la contraseña
             $contraseñaEncriptada = encriptarContraseña($contraseña);
             // Insertar los datos en la base de datos usando una sentencia preparada
-            $sql_insertar_usuario = "INSERT INTO docentes (nombre, app, apm, correo_electronico, contrasena, id_institucion) VALUES (?, ?, ?, ?, ?, 1)";
+            $sql_insertar_usuario = "INSERT INTO docentes (nombre, app, apm, correo_electronico, contrasena) VALUES (?, ?, ?, ?, ?)";
             $stmt_insertar_usuario = $conn->prepare($sql_insertar_usuario);
             $stmt_insertar_usuario->bind_param("sssss", $nombre, $app, $apm, $correo, $contraseñaEncriptada);
 
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             </form>
             <div class="text-center text-muted mt-3">
-                ¿Ya tienes una cuenta?<a href="../index.php" tabindex="-1"> Inicia sesión aquí </a>
+                ¿Ya tienes una cuenta?<a href="../../index.php" tabindex="-1"> Inicia sesión aquí </a>
             </div>
         </div>
     </div>

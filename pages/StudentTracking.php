@@ -49,6 +49,11 @@ $docenteId = $selDocenteData['id_docente'];
             $selCalificacionesrow = $selCalificaciones-> fetch(PDO::FETCH_ASSOC);
             $name = $selAlumnoRow2['nombre'] . " " . $selAlumnoRow2['app'] . " " . $selAlumnoRow2['apm'];
 
+            // Modificación para obtener el puntaje desde la tabla gamificacion
+    $selGamificacion = $conn->query("SELECT puntaje FROM gamificacion WHERE id_alumno = '{$selAlumnoRow2['id_alumno']}'");
+    $selGamificacionRow = $selGamificacion->fetch(PDO::FETCH_ASSOC);
+    $puntaje = isset($selGamificacionRow['puntaje']) ? $selGamificacionRow['puntaje'] : 'No disponible';    
+
     ?>
     <!--imprime la info del alumno -->
     <div class="container">
@@ -83,7 +88,7 @@ $docenteId = $selDocenteData['id_docente'];
                         </div>
                         <!-- calificaciones -->
                         <div class="col-6 mb-3">
-                            <input type="text" readonly disabled class="form-control fs-2" name="calificacion" id="calificacion" aria-describedby="helpId" placeholder="Calificacion del alumno" value="10">
+                        <input type="text" readonly disabled class="form-control fs-2" name="calificacion" id="calificacion" aria-describedby="helpId" placeholder="Calificacion del alumno" value="<?php echo $puntaje; ?>">
                             <label for="materia" class="form-label">Calificacion</label>
                         </div>
                         <!-- materia -->
